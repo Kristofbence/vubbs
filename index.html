@@ -200,11 +200,11 @@
     .fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
     .fi.vis{opacity:1;transform:translateY(0);}
 
-    /* ── DESKTOP: constrain width, subtle 3D tilt ── */
+    /* ── DESKTOP ── */
     @media (min-width:861px) {
       .chat-demo{max-width:300px;margin:0 auto;}
-      .cd-card{height:500px;transform:perspective(1000px) rotateY(-5deg) rotateX(1.5deg);}
-      .cd-card:hover{transform:perspective(1000px) rotateY(-1.5deg) rotateX(.5deg);}
+      .cd-card{transform:perspective(1200px) rotateY(-5deg) rotateX(1.5deg);}
+      .cd-card:hover{transform:perspective(1200px) rotateY(-1.5deg) rotateX(.5deg);}
     }
 
     /* ── MOBILE ── */
@@ -213,7 +213,7 @@
       .hero{padding:80px 5vw 48px;}
       .hero-sub{max-width:100%;}
 
-      .chat-demo{width:100%;}
+      .chat-demo{width:100%;max-width:360px;margin:0 auto;}
       .cd-outer{width:100%;}
       .cd-card{border-radius:18px;transform:none !important;}
 
