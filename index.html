@@ -7,418 +7,240 @@
   <meta name="description" content="Chat-powered video editing. Describe your edit in plain language and Vubbs clips, captions, and formats your footage instantly. No timeline. No tutorials.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vubbs.com/">
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Vubbs — Edit video. Just chat.">
-  <meta property="og:description" content="Describe your edit. Vubbs clips, captions, and formats your footage. No timeline dragging. No tutorials.">
+  <meta property="og:description" content="Describe your edit. Vubbs clips, captions, and formats your footage. No timeline. No tutorials.">
   <meta property="og:url" content="https://vubbs.com">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Vubbs">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Vubbs — Edit video. Just chat.">
   <meta name="twitter:description" content="Chat-powered video editing. Describe the edit, get the clip.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vubbs","url":"https://vubbs.com","description":"Chat-powered video editing platform. Describe your edit and Vubbs clips, captions, and formats your footage.","applicationCategory":"VideoApplication","operatingSystem":"Web","offers":{"@type":"Offer","availability":"https://schema.org/PreOrder","price":"0"},"creator":{"@type":"Organization","name":"Vubbs","url":"https://vubbs.com"}}</script>
 
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Vubbs",
-    "url": "https://vubbs.com",
-    "description": "Chat-powered video editing platform. Describe your edit in plain language and Vubbs clips, captions, and formats your footage. No timeline dragging, no tutorials.",
-    "applicationCategory": "VideoApplication",
-    "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "0" },
-    "creator": { "@type": "Organization", "name": "Vubbs", "url": "https://vubbs.com" }
-  }
-  </script>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C178M6PKL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-7C178M6PKL');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7C178M6PKL');</script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
     :root {
-      --bg:       #FFFFFF;
-      --bg2:      #F7F7F4;
-      --bg-dark:  #0A0A14;
-      --border:   rgba(0,0,0,0.07);
-      --border-m: rgba(0,0,0,0.12);
-      --lime:     #AAFF00;
-      --lime-bg:  rgba(170,255,0,0.12);
-      --lime-brd: rgba(170,255,0,0.3);
-      --lime-dk:  #6BBF00;
-      --text:     #0A0A14;
-      --muted:    #666680;
-      --dim:      #BBBBD0;
-      --card-sh:  0 2px 20px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.05);
-      --ff-head:  'Syne', sans-serif;
-      --ff-body:  'Outfit', sans-serif;
-      --ff-mono:  'JetBrains Mono', monospace;
-      --r:        12px;
-      --r-sm:     8px;
+      --bg:      #FFFFFF;
+      --bg2:     #F7F7F4;
+      --bg-dark: #0A0A14;
+      --border:  rgba(0,0,0,0.07);
+      --border-m:rgba(0,0,0,0.12);
+      --lime:    #AAFF00;
+      --lime-bg: rgba(170,255,0,0.12);
+      --lime-brd:rgba(170,255,0,0.3);
+      --lime-dk: #6BBF00;
+      --text:    #0A0A14;
+      --muted:   #666680;
+      --dim:     #BBBBD0;
+      --sh:      0 2px 20px rgba(0,0,0,0.07),0 0 0 1px rgba(0,0,0,0.05);
+      --ff-head: 'Syne',sans-serif;
+      --ff-body: 'Outfit',sans-serif;
+      --ff-mono: 'JetBrains Mono',monospace;
+      --r:       12px;
+      --r-sm:    8px;
     }
 
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--ff-body);
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--ff-body);font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 6vw;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .logo {
-      font-family: var(--ff-head); font-weight: 800; font-size: 20px;
-      color: var(--text); text-decoration: none; letter-spacing: -0.04em;
-    }
-    .logo em { font-style: normal; color: var(--lime-dk); }
-    .nav-btn {
-      background: var(--text); color: #fff;
-      font-family: var(--ff-head); font-weight: 700; font-size: 13px;
-      letter-spacing: 0.02em; padding: 10px 22px;
-      border: none; border-radius: 100px; cursor: pointer;
-      text-decoration: none; transition: opacity .2s, transform .2s;
-    }
-    .nav-btn:hover { opacity: .8; transform: translateY(-1px); }
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;background:rgba(255,255,255,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+    .logo{font-family:var(--ff-head);font-weight:800;font-size:20px;color:var(--text);text-decoration:none;letter-spacing:-0.04em;}
+    .logo em{font-style:normal;color:var(--lime-dk);}
+    .nav-btn{background:var(--text);color:#fff;font-family:var(--ff-head);font-weight:700;font-size:13px;padding:10px 20px;border:none;border-radius:100px;cursor:pointer;text-decoration:none;transition:opacity .2s;white-space:nowrap;}
+    .nav-btn:hover{opacity:.8;}
 
     /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 110px 6vw 80px;
-      position: relative; overflow: hidden;
-      background: var(--bg);
-    }
-    /* lime blob */
-    .hero::before {
-      content: '';
-      position: absolute; top: -10%; right: -5%;
-      width: 50vw; height: 50vw;
-      background: radial-gradient(circle, rgba(170,255,0,0.18) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute; bottom: 0; left: -5%;
-      width: 35vw; height: 35vw;
-      background: radial-gradient(circle, rgba(170,255,0,0.08) 0%, transparent 65%);
-      pointer-events: none;
-    }
+    .hero{min-height:100vh;display:flex;align-items:center;padding:90px 5vw 60px;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;top:-10%;right:-5%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(170,255,0,0.16) 0%,transparent 65%);pointer-events:none;}
+    .hero::after{content:'';position:absolute;bottom:0;left:-5%;width:30vw;height:30vw;background:radial-gradient(circle,rgba(170,255,0,0.07) 0%,transparent 65%);pointer-events:none;}
 
-    .hero-grid {
-      max-width: 1160px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 55% 1fr;
-      gap: 40px; align-items: center;
-      position: relative; z-index: 1;
-    }
+    .hero-grid{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:52% 1fr;gap:48px;align-items:center;position:relative;z-index:1;}
 
-    .chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--ff-mono); font-size: 11px;
-      color: var(--lime-dk); letter-spacing: 0.14em; text-transform: uppercase;
-      margin-bottom: 20px; background: var(--lime-bg);
-      padding: 5px 12px; border-radius: 20px; border: 1px solid var(--lime-brd);
-    }
+    .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;color:var(--lime-dk);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;background:var(--lime-bg);padding:5px 12px;border-radius:20px;border:1px solid var(--lime-brd);}
 
-    .hero h1 {
-      font-family: var(--ff-head);
-      font-size: clamp(38px, 5vw, 68px);
-      font-weight: 800; line-height: 1.04; letter-spacing: -0.035em;
-      margin-bottom: 20px; color: var(--text);
-    }
-    .hero h1 .hl {
-      color: var(--lime-dk);
-      background: var(--lime-bg);
-      padding: 0 6px; border-radius: 6px;
-    }
+    .hero h1{font-family:var(--ff-head);font-size:clamp(40px,5.2vw,72px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;margin-bottom:18px;}
+    .hero h1 .hl{color:var(--lime-dk);background:var(--lime-bg);padding:0 6px;border-radius:6px;}
 
-    .hero p {
-      font-size: clamp(15px, 1.4vw, 17px); color: var(--muted);
-      line-height: 1.72; max-width: 430px; margin-bottom: 36px;
-    }
+    .hero-sub{font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.7;max-width:420px;margin-bottom:32px;}
 
-    /* forms */
-    .inline-form { display: flex; max-width: 440px; }
-    .inline-form input {
-      flex: 1; background: var(--bg2);
-      border: 1px solid var(--border-m); border-right: none;
-      border-radius: var(--r-sm) 0 0 var(--r-sm);
-      padding: 14px 16px; color: var(--text);
-      font-family: var(--ff-body); font-size: 14px; outline: none;
-      transition: border-color .2s;
-    }
-    .inline-form input:focus { border-color: var(--lime-dk); }
-    .inline-form input::placeholder { color: var(--dim); }
-    .inline-form button {
-      background: var(--text); color: #fff;
-      font-family: var(--ff-head); font-weight: 700; font-size: 13px;
-      padding: 14px 22px; border: none;
-      border-radius: 0 var(--r-sm) var(--r-sm) 0;
-      cursor: pointer; white-space: nowrap; transition: opacity .2s;
-    }
-    .inline-form button:hover { opacity: .82; }
-    .form-note { margin-top: 10px; font-family: var(--ff-mono); font-size: 11px; color: var(--dim); }
-    .success-msg {
-      display: none; background: var(--lime-bg);
-      border: 1px solid var(--lime-brd); border-radius: var(--r-sm);
-      padding: 13px 18px; font-family: var(--ff-mono); font-size: 13px;
-      color: var(--lime-dk); max-width: 440px;
-    }
+    /* ── FORM ── */
+    .hero-form-wrap{display:flex;flex-direction:column;gap:10px;max-width:460px;}
+    .form-row{display:flex;}
+    .form-row input{flex:1;background:var(--bg2);border:1.5px solid var(--border-m);border-right:none;border-radius:var(--r-sm) 0 0 var(--r-sm);padding:15px 18px;color:var(--text);font-family:var(--ff-body);font-size:15px;outline:none;transition:border-color .2s;}
+    .form-row input:focus{border-color:var(--lime-dk);}
+    .form-row input::placeholder{color:var(--dim);}
+    .form-row button{background:var(--text);color:#fff;font-family:var(--ff-head);font-weight:700;font-size:14px;padding:15px 24px;border:none;border-radius:0 var(--r-sm) var(--r-sm) 0;cursor:pointer;white-space:nowrap;transition:opacity .2s;}
+    .form-row button:hover{opacity:.82;}
+    .form-note{font-family:var(--ff-mono);font-size:11px;color:var(--dim);}
+    .success-msg{display:none;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r-sm);padding:13px 18px;font-family:var(--ff-mono);font-size:13px;color:var(--lime-dk);}
 
     /* ── CHAT DEMO ── */
-    .chat-demo {
-      position: relative;
-      padding: 10px 60px 10px 10px;
-    }
-    .cd-frame {
-      position: relative;
-      width: 82%;
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      background: #1a1020;
-      box-shadow: 0 28px 64px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
-    }
-    .cd-frame img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-    }
-    .cd-frame-fallback {
-      position: absolute; inset: 0;
-      background: linear-gradient(145deg,#1a0e05 0%,#0d0d22 50%,#0a1a12 100%);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .cd-frame-fallback-txt {
-      font-family: var(--ff-mono); font-size: 10px;
-      color: rgba(255,255,255,.2); letter-spacing: 0.1em; text-align: center;
-    }
-    /* Pills: float to the right, overlapping the frame */
-    .cd-pills {
-      position: absolute;
-      right: 0; top: 22%;
-      display: flex; flex-direction: column;
-      gap: 10px; align-items: flex-end;
-      z-index: 10;
-    }
-    .cd-pill {
-      background: rgba(18,18,28,0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: rgba(255,255,255,.88);
-      font-family: var(--ff-body); font-size: 13.5px; font-weight: 500;
-      padding: 10px 20px; border-radius: 100px; white-space: nowrap;
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 4px 18px rgba(0,0,0,.22);
-      opacity: 0; transform: translateX(24px);
-      transition: opacity .38s ease, transform .38s ease;
-    }
-    .cd-pill.show { opacity: 1; transform: translateX(0); }
-    .cd-pill.applying {
-      background: rgba(255,255,255,.96);
-      color: var(--lime-dk);
-      border-color: var(--lime-brd);
-      font-weight: 600;
-      gap: 8px; display: flex; align-items: center;
-    }
-    .cd-applying-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--lime-dk); flex-shrink: 0;
-      animation: applying-pulse 1s ease-in-out infinite;
-    }
-    @keyframes applying-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
-    /* Input bar */
-    .cd-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(18,18,28,0.88);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-radius: 100px; padding: 11px 11px 11px 22px;
-      margin-top: 14px; width: 90%;
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 4px 18px rgba(0,0,0,.14);
-    }
-    .cd-bar-text {
-      font-family: var(--ff-body); font-size: 14px;
-      color: rgba(255,255,255,.45); flex: 1;
-      min-height: 20px;
-    }
-    .cd-bar-text.typing { color: rgba(255,255,255,.85); }
-    .cd-bar-btn {
-      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(255,255,255,.15);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.6); font-size: 15px;
-      transition: background .2s;
-    }
-    .cd-bar-btn.ready { background: var(--lime-dk); color: #fff; }
+    .chat-demo{position:relative;}
+
+    .cd-card{background:#111118;border-radius:22px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.16),0 4px 16px rgba(0,0,0,0.08);}
+
+    .cd-video-area{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
+    .cd-video-area > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+    .cd-fallback{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;}
+    .cd-fallback span{font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:0.1em;text-align:center;}
+    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(0deg,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.4) 50%,transparent 100%);z-index:2;pointer-events:none;}
+
+    /* Pills stack upward like chat — column-reverse means new pill appears at bottom, old ones rise */
+    .cd-pills{position:absolute;bottom:20px;left:14px;right:14px;display:flex;flex-direction:column-reverse;gap:10px;align-items:flex-end;z-index:10;}
+    @keyframes pill-up{0%{opacity:0;transform:translateY(20px) scale(0.93);}60%{transform:translateY(-3px) scale(1.01);}100%{opacity:1;transform:translateY(0) scale(1);}}
+    .cd-pill{background:rgba(18,18,30,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:rgba(255,255,255,.94);font-family:var(--ff-body);font-size:16px;font-weight:500;padding:13px 24px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 24px rgba(0,0,0,.35);opacity:0;}
+    .cd-pill.show{animation:pill-up .42s cubic-bezier(.22,.68,0,1.2) forwards;}
+    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;font-size:16px;}
+    .cd-applying-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;animation:apulse 1s ease-in-out infinite;}
+    @keyframes apulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+
+    /* Chat bar — bigger, more prominent */
+    .cd-bar{display:flex;align-items:center;gap:14px;background:#0e0e18;padding:16px 16px 16px 24px;border-top:1px solid rgba(255,255,255,.07);}
+    .cd-bar-text{font-family:var(--ff-body);font-size:17px;color:rgba(255,255,255,.35);flex:1;min-width:0;}
+    .cd-bar-text.typing{color:rgba(255,255,255,.9);}
+    .cd-bar-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:19px;flex-shrink:0;transition:background .2s,color .2s;}
+    .cd-bar-btn.ready{background:var(--lime-dk);color:#fff;}
 
     /* ── SECTIONS ── */
-    section { padding: 96px 6vw; }
-    .inner { max-width: 1160px; margin: 0 auto; }
+    section{padding:88px 5vw;}
+    .inner{max-width:1160px;margin:0 auto;}
 
-    .eyebrow {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--ff-mono); font-size: 11px;
-      color: var(--lime-dk); letter-spacing: 0.14em; text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .eyebrow-line { width: 20px; height: 1px; background: var(--lime-dk); }
+    .eyebrow{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:11px;color:var(--lime-dk);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:14px;}
+    .eyebrow-line{width:20px;height:1px;background:var(--lime-dk);}
 
-    h2 {
-      font-family: var(--ff-head);
-      font-size: clamp(28px, 3.5vw, 48px);
-      font-weight: 800; line-height: 1.08;
-      letter-spacing: -0.025em; margin-bottom: 52px; color: var(--text);
-    }
+    h2{font-family:var(--ff-head);font-size:clamp(28px,3.5vw,48px);font-weight:800;line-height:1.08;letter-spacing:-0.025em;margin-bottom:48px;color:var(--text);}
 
     /* ── HOW IT WORKS ── */
-    .how-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
-    .step {
-      background: #fff; border: 1px solid var(--border);
-      padding: 36px 28px; position: relative; transition: box-shadow .25s;
-    }
-    .step:first-child { border-radius: var(--r) 0 0 var(--r); }
-    .step:last-child  { border-radius: 0 var(--r) var(--r) 0; }
-    .step:hover { box-shadow: var(--card-sh); }
-    .step-num { font-family: var(--ff-head); font-size: 52px; font-weight: 800; color: rgba(0,0,0,.06); line-height: 1; margin-bottom: 16px; letter-spacing: -0.04em; }
-    .step h3 { font-family: var(--ff-head); font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
-    .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
-    .step-arrow { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: var(--bg2); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: var(--lime-dk); font-size: 12px; }
+    .how-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+    .step{background:#fff;border:1px solid var(--border);padding:36px 28px;position:relative;transition:box-shadow .25s;}
+    .step:first-child{border-radius:var(--r) 0 0 var(--r);}
+    .step:last-child{border-radius:0 var(--r) var(--r) 0;}
+    .step:hover{box-shadow:var(--sh);}
+    .step-num{font-family:var(--ff-head);font-size:52px;font-weight:800;color:rgba(0,0,0,.06);line-height:1;margin-bottom:16px;letter-spacing:-0.04em;}
+    .step h3{font-family:var(--ff-head);font-size:18px;font-weight:700;margin-bottom:10px;}
+    .step p{font-size:14px;color:var(--muted);line-height:1.65;}
+    .step-arrow{position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:26px;height:26px;background:var(--bg2);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;color:var(--lime-dk);font-size:12px;}
 
     /* ── FEATURES ── */
-    .feats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-    .feat { background: #fff; border: 1px solid var(--border); border-radius: var(--r); padding: 32px 26px; transition: box-shadow .25s; }
-    .feat:hover { box-shadow: var(--card-sh); }
-    .feat-icon { width: 44px; height: 44px; background: var(--lime-bg); border: 1px solid var(--lime-brd); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
-    .feat-icon svg { width: 20px; height: 20px; stroke: var(--lime-dk); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .feat h3 { font-family: var(--ff-head); font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
-    .feat p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .feat{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:30px 24px;transition:box-shadow .25s;}
+    .feat:hover{box-shadow:var(--sh);}
+    .feat-icon{width:44px;height:44px;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+    .feat-icon svg{width:20px;height:20px;stroke:var(--lime-dk);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+    .feat h3{font-family:var(--ff-head);font-size:19px;font-weight:700;margin-bottom:9px;}
+    .feat p{font-size:14px;color:var(--muted);line-height:1.7;}
 
     /* ── SHOWCASE ── */
-    .showcase-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .ig-row {
-      display: flex; gap: 12px; overflow-x: auto;
-      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-      padding-bottom: 16px; margin-bottom: 32px; cursor: grab;
-      scrollbar-width: thin; scrollbar-color: var(--lime-dk) var(--bg2);
-    }
-    .ig-row:active { cursor: grabbing; }
-    .ig-row::-webkit-scrollbar { height: 4px; }
-    .ig-row::-webkit-scrollbar-track { background: var(--bg2); border-radius: 4px; }
-    .ig-row::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 4px; }
-    .ig-card {
-      flex: 0 0 240px; scroll-snap-align: start;
-      position: relative; border-radius: var(--r);
-      overflow: hidden; background: #fff;
-      border: 1px solid var(--border); height: 480px;
-      box-shadow: var(--card-sh);
-    }
-    .ig-badge {
-      position: absolute; bottom: 12px; left: 12px; z-index: 20;
-      background: var(--text); color: var(--lime);
-      font-family: var(--ff-head); font-weight: 700; font-size: 11px;
-      letter-spacing: 0.02em; padding: 5px 12px; border-radius: 20px;
-      pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,.3);
-    }
-    .ig-card iframe { display: block; width: 100%; height: 100%; border: none; }
-    .ig-channels { display: flex; gap: 14px; flex-wrap: wrap; }
-    .ig-channel-link {
-      font-family: var(--ff-mono); font-size: 13px; color: var(--text);
-      text-decoration: none; border: 1px solid var(--border-m);
-      padding: 8px 16px; border-radius: var(--r-sm); transition: all .2s; background: #fff;
-    }
-    .ig-channel-link:hover { border-color: var(--lime-dk); color: var(--lime-dk); }
+    .showcase-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .ig-row{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px;margin-bottom:28px;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--lime-dk) var(--bg2);}
+    .ig-row:active{cursor:grabbing;}
+    .ig-row::-webkit-scrollbar{height:3px;}
+    .ig-row::-webkit-scrollbar-track{background:var(--bg2);}
+    .ig-row::-webkit-scrollbar-thumb{background:var(--lime-dk);border-radius:3px;}
+    .ig-card{flex:0 0 240px;scroll-snap-align:start;position:relative;border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--border);height:480px;box-shadow:var(--sh);}
+    .ig-badge{position:absolute;bottom:12px;left:12px;z-index:20;background:var(--text);color:var(--lime);font-family:var(--ff-head);font-weight:700;font-size:11px;padding:5px 12px;border-radius:20px;pointer-events:none;}
+    .ig-card iframe{display:block;width:100%;height:100%;border:none;}
+    .ig-channels{display:flex;gap:12px;flex-wrap:wrap;}
+    .ig-channel-link{font-family:var(--ff-mono);font-size:13px;color:var(--text);text-decoration:none;border:1px solid var(--border-m);padding:8px 16px;border-radius:var(--r-sm);transition:all .2s;background:#fff;}
+    .ig-channel-link:hover{border-color:var(--lime-dk);color:var(--lime-dk);}
 
     /* ── PROOF STRIP ── */
-    .proof-strip { padding: 56px 6vw; border-top: 1px solid var(--border); }
-    .proof-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-    .proof-text { font-family: var(--ff-head); font-size: 17px; font-weight: 600; max-width: 460px; color: var(--muted); line-height: 1.55; }
-    .proof-text strong { color: var(--text); }
-    .proof-stats { display: flex; gap: 44px; }
-    .proof-stat-val { font-family: var(--ff-head); font-size: 34px; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
-    .proof-stat-lbl { font-size: 12px; color: var(--muted); margin-top: 5px; }
+    .proof-strip{padding:52px 5vw;border-top:1px solid var(--border);}
+    .proof-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+    .proof-text{font-family:var(--ff-head);font-size:17px;font-weight:600;max-width:460px;color:var(--muted);line-height:1.55;}
+    .proof-text strong{color:var(--text);}
+    .proof-stats{display:flex;gap:40px;}
+    .proof-stat-val{font-family:var(--ff-head);font-size:34px;font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1;}
+    .proof-stat-lbl{font-size:12px;color:var(--muted);margin-top:4px;}
 
-    /* ── FINAL CTA ── */
-    .cta-dark {
-      background: var(--bg-dark); padding: 100px 6vw;
-      border-radius: 24px; margin: 0 24px 60px;
-    }
-    .cta-dark-inner { max-width: 680px; margin: 0 auto; text-align: center; }
-    .cta-dark .eyebrow { justify-content: center; color: rgba(170,255,0,.7); }
-    .cta-dark .eyebrow-line { background: rgba(170,255,0,.4); display: none; }
-    .cta-dark h2 { color: #fff; margin-bottom: 16px; }
-    .cta-dark p { color: rgba(255,255,255,.55); font-size: 16px; max-width: 400px; margin: 0 auto 36px; }
-    .cta-dark .inline-form input { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); color: #fff; }
-    .cta-dark .inline-form input::placeholder { color: rgba(255,255,255,.3); }
-    .cta-dark .inline-form input:focus { border-color: var(--lime); }
-    .cta-dark .inline-form button { background: var(--lime); color: #060610; }
-    .cta-dark .form-note { color: rgba(255,255,255,.25); text-align: center; }
-    .cta-dark .success-msg { background: rgba(170,255,0,.1); border-color: rgba(170,255,0,.3); color: var(--lime); }
-    .cta-dark .inline-form { justify-content: center; }
+    /* ── CTA ── */
+    .cta-wrap{padding:0 5vw 64px;}
+    .cta-dark{background:var(--bg-dark);padding:72px 5vw;border-radius:24px;text-align:center;}
+    .cta-dark-inner{max-width:520px;margin:0 auto;}
+    .cta-dark .eyebrow{justify-content:center;color:rgba(170,255,0,.65);}
+    .cta-dark .eyebrow-line{background:rgba(170,255,0,.35);}
+    .cta-dark h2{color:#fff;margin-bottom:14px;}
+    .cta-dark p{color:rgba(255,255,255,.5);font-size:16px;margin-bottom:32px;}
+    .cta-dark .form-row input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#fff;}
+    .cta-dark .form-row input::placeholder{color:rgba(255,255,255,.28);}
+    .cta-dark .form-row input:focus{border-color:var(--lime);}
+    .cta-dark .form-row button{background:var(--lime);color:#060610;}
+    .cta-dark .form-note{color:rgba(255,255,255,.22);text-align:center;}
+    .cta-dark .success-msg{background:rgba(170,255,0,.1);border-color:rgba(170,255,0,.25);color:var(--lime);}
+    .cta-dark .hero-form-wrap{max-width:100%;}
+    .cta-dark .form-row{justify-content:center;}
 
     /* ── FOOTER ── */
-    footer { padding: 28px 6vw; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
-    footer .logo { font-size: 17px; }
-    .foot-copy { font-family: var(--ff-mono); font-size: 11px; color: var(--dim); }
+    footer{padding:24px 5vw;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+    footer .logo{font-size:17px;}
+    .foot-copy{font-family:var(--ff-mono);font-size:11px;color:var(--dim);}
 
     /* ── FADE-IN ── */
-    .fi { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-    .fi.vis { opacity: 1; transform: translateY(0); }
+    .fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+    .fi.vis{opacity:1;transform:translateY(0);}
+
+    /* ── DESKTOP: limit demo width ── */
+    @media (min-width:861px) {
+      .cd-card{max-height:480px;}
+      .cd-video-area{aspect-ratio:unset;height:100%;}
+    }
 
     /* ── MOBILE ── */
-    @media (max-width: 860px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-      .hero { padding: 88px 5vw 60px; }
-      .edit-demo { display: none; }
-      .chat-demo { display: none; }
-      .steps { grid-template-columns: 1fr; gap: 2px; }
-      .step:first-child { border-radius: var(--r) var(--r) 0 0; }
-      .step:last-child  { border-radius: 0 0 var(--r) var(--r); }
-      .step-arrow { display: none; }
-      .feats { grid-template-columns: 1fr; gap: 16px; }
-      .proof-inner { flex-direction: column; align-items: flex-start; }
-      .proof-stats { gap: 28px; }
-      .cta-dark { margin: 0 12px 40px; border-radius: 16px; padding: 64px 5vw; }
-      .inline-form { flex-direction: column; max-width: 100%; }
-      .inline-form input { border-right: 1px solid var(--border-m); border-bottom: none; border-radius: var(--r-sm) var(--r-sm) 0 0; }
-      .inline-form button { border-radius: 0 0 var(--r-sm) var(--r-sm); padding: 14px; }
-      h2 { margin-bottom: 36px; }
-      section { padding: 64px 5vw; }
-      .ig-card { flex: 0 0 200px; height: 420px; }
+    @media (max-width:860px) {
+      .hero-grid{grid-template-columns:1fr;gap:36px;}
+      .hero{padding:80px 5vw 48px;}
+      .hero-sub{max-width:100%;}
+
+      .chat-demo{width:100%;}
+      .cd-card{border-radius:18px;}
+      .cd-video-area{aspect-ratio:3/4;}
+      .cd-pill{font-size:15px;padding:12px 20px;}
+      .cd-bar{padding:14px 14px 14px 20px;}
+      .cd-bar-text{font-size:16px;}
+      .cd-bar-btn{width:42px;height:42px;}
+
+      .steps{grid-template-columns:1fr;gap:2px;}
+      .step:first-child{border-radius:var(--r) var(--r) 0 0;}
+      .step:last-child{border-radius:0 0 var(--r) var(--r);}
+      .step-arrow{display:none;}
+
+      .feats{grid-template-columns:1fr;gap:14px;}
+
+      .proof-inner{flex-direction:column;align-items:flex-start;}
+      .proof-stats{gap:24px;}
+
+      .cta-dark{border-radius:16px;padding:52px 5vw;}
+      .form-row{flex-direction:column;}
+      .form-row input{border-right:1.5px solid var(--border-m);border-bottom:none;border-radius:var(--r-sm) var(--r-sm) 0 0;}
+      .form-row button{border-radius:0 0 var(--r-sm) var(--r-sm);padding:15px;}
+
+      h2{margin-bottom:32px;}
+      section{padding:60px 5vw;}
+      .ig-card{flex:0 0 210px;height:420px;}
     }
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 36px; }
-      .proof-stats { flex-wrap: wrap; gap: 20px; }
+
+    @media (max-width:480px) {
+      .hero h1{font-size:36px;}
+      .proof-stats{flex-wrap:wrap;gap:20px;}
+      .cd-pill{font-size:14px;padding:11px 18px;}
+      .cd-pills{left:10px;right:10px;bottom:16px;gap:8px;}
+      .cd-bar-text{font-size:15px;}
     }
   </style>
 </head>
 <body>
 
-<nav aria-label="Main navigation">
+<nav>
   <a href="/" class="logo">vubbs<em>.</em></a>
   <a href="#waitlist" class="nav-btn">Get early access →</a>
 </nav>
@@ -426,49 +248,52 @@
 <main>
 
 <!-- HERO -->
-<section class="hero" aria-labelledby="hero-headline">
+<section class="hero" aria-labelledby="hero-h1">
   <div class="hero-grid">
+
     <div>
       <div class="chip">Chat-powered video editing</div>
-      <h1 id="hero-headline">Edit video.<br><span class="hl">Just chat.</span></h1>
-      <p>Describe what you want. Vubbs clips, captions, and formats your footage — no timeline dragging, no tutorials, no guesswork.</p>
+      <h1 id="hero-h1">Edit video.<br><span class="hl">Just chat.</span></h1>
+      <p class="hero-sub">Describe what you want. Vubbs clips, captions, and formats your footage — no timeline, no tutorials, no guesswork.</p>
+
       <div id="hf-wrap">
-        <form class="inline-form" id="hero-form" novalidate aria-label="Join the waitlist">
-          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
-          <button type="submit">Join waitlist →</button>
-        </form>
-        <p class="form-note" id="hf-note">Early access · No spam · Unsubscribe anytime</p>
-        <div class="success-msg" id="hf-ok" role="status">✓ You're in — we'll be in touch soon.</div>
+        <div class="hero-form-wrap">
+          <form class="form-row" id="hero-form" novalidate>
+            <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
+            <button type="submit">Join waitlist →</button>
+          </form>
+          <p class="form-note" id="hf-note">Early access · No spam · Unsubscribe anytime</p>
+          <div class="success-msg" id="hf-ok" role="status">✓ You're in — we'll be in touch soon.</div>
+        </div>
       </div>
     </div>
 
-    <!-- Chat-to-edit animation demo -->
+    <!-- Chat-to-edit demo -->
     <div class="chat-demo" aria-hidden="true">
-      <!-- Video frame -->
-      <div class="cd-frame">
-        <img src="scene.jpg" alt="Video being edited"
-          onload="var f=document.getElementById('cd-fallback');if(f)f.style.display='none';"
-          onerror="this.style.display='none'">
-        <div class="cd-frame-fallback" id="cd-fallback">
-          <div class="cd-frame-fallback-txt">YOUR VIDEO<br>HERE</div>
+      <div class="cd-card">
+        <div class="cd-video-area">
+          <img src="scene.jpg" alt=""
+            onload="var f=document.getElementById('cd-fb');if(f)f.style.display='none';"
+            onerror="this.style.display='none'">
+          <div id="cd-fb" class="cd-fallback"><span>YOUR VIDEO<br>HERE</span></div>
+          <div class="cd-gradient"></div>
+          <div class="cd-pills" id="cd-pills"></div>
+        </div>
+        <div class="cd-bar">
+          <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
+          <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
         </div>
       </div>
-      <!-- Floating command pills -->
-      <div class="cd-pills" id="cd-pills"></div>
-      <!-- Chat input bar -->
-      <div class="cd-bar">
-        <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
-        <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
-      </div>
     </div>
+
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how-bg" aria-labelledby="how-headline">
+<section class="how-bg" aria-labelledby="how-h2">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>How it works</div>
-    <h2 id="how-headline" class="fi">Three steps.<br>No learning curve.</h2>
+    <h2 id="how-h2" class="fi">Three steps.<br>No learning curve.</h2>
     <div class="steps fi">
       <div class="step">
         <div class="step-num">01</div>
@@ -485,61 +310,55 @@
       <div class="step">
         <div class="step-num">03</div>
         <h3>Download &amp; post</h3>
-        <p>Your clip is ready — captions synced, format optimised, sized for the platform you're posting to.</p>
+        <p>Your clip is ready — captions synced, format optimised, sized for every platform.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section aria-labelledby="feat-headline">
+<section aria-labelledby="feat-h2">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>What you get</div>
-    <h2 id="feat-headline" class="fi">Every tool you need.<br>One conversation.</h2>
+    <h2 id="feat-h2" class="fi">Every tool you need.<br>One conversation.</h2>
     <div class="feats">
       <div class="feat fi">
-        <div class="feat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M3 6v12M21 6v12"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
-        </div>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M3 6v12M21 6v12"/><path d="M9 9l6 6M15 9l-6 6"/></svg></div>
         <h3>Smart Clipping</h3>
         <p>Tell Vubbs which moments to keep — or let it find them. No scrubbing through timelines. Just describe the cut.</p>
       </div>
       <div class="feat fi">
-        <div class="feat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <h3>Chat to Edit</h3>
-        <p>The chat interface is the product. No menus, no tutorials. Describe the change, iterate in conversation, export when it's right.</p>
+        <p>The chat interface is the product. No menus, no tutorials. Describe the change, iterate, export when it's right.</p>
       </div>
       <div class="feat fi">
-        <div class="feat-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><rect x="15" y="13" width="6" height="6" rx="1"/></svg>
-        </div>
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><rect x="15" y="13" width="6" height="6" rx="1"/></svg></div>
         <h3>Auto Captions</h3>
-        <p>Word-synced captions, not vibe-synced. Every word lands exactly when it's spoken — styled to your template, ready to post.</p>
+        <p>Word-synced captions, not vibe-synced. Every word lands exactly when spoken — styled to your template, ready to post.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SHOWCASE -->
-<section class="showcase-bg" aria-labelledby="showcase-headline">
+<section class="showcase-bg" aria-labelledby="showcase-h2">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>The work</div>
-    <h2 id="showcase-headline" class="fi">Real edits.<br>Real numbers.</h2>
-    <div class="ig-row fi" id="ig-row" role="list" aria-label="Instagram video showcase">
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYvCGgkClU3/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 4.6M views" loading="lazy"></iframe><div class="ig-badge">4.6M views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYsXI_WEf76/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 4.4M views" loading="lazy"></iframe><div class="ig-badge">4.4M views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DZARfDTKFhw/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 472K views" loading="lazy"></iframe><div class="ig-badge">472K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY_xg0dqdiu/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 204K views" loading="lazy"></iframe><div class="ig-badge">204K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY7z6L5qDlB/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 166K views" loading="lazy"></iframe><div class="ig-badge">166K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY4nrPwKjkF/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 112K views" loading="lazy"></iframe><div class="ig-badge">112K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY10ilAKwcG/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 100K views" loading="lazy"></iframe><div class="ig-badge">100K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYzqA0UCTR0/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 79.6K views" loading="lazy"></iframe><div class="ig-badge">79.6K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYwwkVUjABa/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 70K views" loading="lazy"></iframe><div class="ig-badge">70K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYo68JEHT5f/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 56.5K views" loading="lazy"></iframe><div class="ig-badge">56.5K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYmqnWaAH1m/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 51.7K views" loading="lazy"></iframe><div class="ig-badge">51.7K views</div></div>
-      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY2E8Rrqkmk/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 51.1K views" loading="lazy"></iframe><div class="ig-badge">51.1K views</div></div>
+    <h2 id="showcase-h2" class="fi">Real edits.<br>Real numbers.</h2>
+    <div class="ig-row fi" id="ig-row" role="list">
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYvCGgkClU3/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="4.6M views"></iframe><div class="ig-badge">4.6M views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYsXI_WEf76/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="4.4M views"></iframe><div class="ig-badge">4.4M views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DZARfDTKFhw/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="472K views"></iframe><div class="ig-badge">472K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY_xg0dqdiu/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="204K views"></iframe><div class="ig-badge">204K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY7z6L5qDlB/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="166K views"></iframe><div class="ig-badge">166K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY4nrPwKjkF/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="112K views"></iframe><div class="ig-badge">112K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY10ilAKwcG/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="100K views"></iframe><div class="ig-badge">100K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYzqA0UCTR0/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="79.6K views"></iframe><div class="ig-badge">79.6K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYwwkVUjABa/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="70K views"></iframe><div class="ig-badge">70K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYo68JEHT5f/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="56.5K views"></iframe><div class="ig-badge">56.5K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYmqnWaAH1m/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="51.7K views"></iframe><div class="ig-badge">51.7K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY2E8Rrqkmk/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="51.1K views"></iframe><div class="ig-badge">51.1K views</div></div>
     </div>
     <div class="ig-channels fi">
       <a href="https://www.instagram.com/theasterisk_vubbs/" target="_blank" rel="noopener noreferrer" class="ig-channel-link">↗ @theasterisk_vubbs</a>
@@ -548,12 +367,10 @@
   </div>
 </section>
 
-<!-- PROOF STRIP -->
-<div class="proof-strip fi" role="region" aria-label="Key statistics">
+<!-- PROOF -->
+<div class="proof-strip fi" role="region" aria-label="Statistics">
   <div class="proof-inner">
-    <div class="proof-text">
-      <strong>Built by a team that's been deep in the edit.</strong> The same pipeline powers short-form content that's driven tens of millions of views across major platforms.
-    </div>
+    <div class="proof-text"><strong>Built by a team that's been deep in the edit.</strong> The same pipeline powers short-form content that's driven tens of millions of views across major platforms.</div>
     <div class="proof-stats">
       <div><div class="proof-stat-val">10M+</div><div class="proof-stat-lbl">views powered</div></div>
       <div><div class="proof-stat-val">3</div><div class="proof-stat-lbl">live channels</div></div>
@@ -562,155 +379,127 @@
   </div>
 </div>
 
-<!-- FINAL CTA -->
-<section id="waitlist" aria-labelledby="cta-headline">
+<!-- CTA -->
+<div class="cta-wrap" id="waitlist">
   <div class="cta-dark">
     <div class="cta-dark-inner">
       <div class="eyebrow fi">Early access</div>
-      <h2 id="cta-headline" class="fi">You're early.<br>That's the point.</h2>
-      <p class="fi">Vubbs is in private beta. Get on the list and you'll be first through the door.</p>
-      <div class="fi" id="cf-wrap">
-        <form class="inline-form" id="cta-form" novalidate aria-label="Early access waitlist">
-          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
+      <h2 class="fi">You're early.<br>That's the point.</h2>
+      <p class="fi">Vubbs is in private beta. Get on the list and be first through the door.</p>
+      <div class="fi hero-form-wrap" id="cf-wrap">
+        <form class="form-row" id="cta-form" novalidate>
+          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
           <button type="submit">Get early access →</button>
         </form>
-        <p class="form-note" id="cf-note">Zero spam. Just early access when we open.</p>
+        <p class="form-note" id="cf-note">Zero spam. Early access when we open.</p>
         <div class="success-msg" id="cf-ok" role="status">✓ You're on the list. We'll reach out when it's ready.</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 </main>
 
 <footer>
   <a href="/" class="logo">vubbs<em>.</em></a>
-  <div class="foot-copy">© 2026 Vubbs · All rights reserved · <a href="https://www.instagram.com/theasterisk_vubbs/" style="color:inherit;text-decoration:none" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="foot-copy">© 2026 Vubbs · <a href="https://www.instagram.com/theasterisk_vubbs/" style="color:inherit;text-decoration:none" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 
 <script>
-  // ── CHAT DEMO ANIMATION ─────────────────────────────────
-  const pillsEl   = document.getElementById('cd-pills');
-  const barText   = document.getElementById('cd-bar-text');
-  const barBtn    = document.getElementById('cd-bar-btn');
+  // ── CHAT DEMO ───────────────────────────────────────────
+  const pillsEl  = document.getElementById('cd-pills');
+  const barText  = document.getElementById('cd-bar-text');
+  const barBtn   = document.getElementById('cd-bar-btn');
 
-  const sequences = [
-    { cmd: 'Add word captions',   pills: ['Add word captions',   'Sync to audio'] },
-    { cmd: 'Trim to 30 seconds',  pills: ['Trim to 30 seconds',  'Keep best moments'] },
-    { cmd: 'Make it vertical',    pills: ['Make it vertical',    'Reframe to face'] },
-    { cmd: 'Change caption style',pills: ['Change caption style','Apply bold template'] },
+  const seqs = [
+    { cmd:'Add word captions',    done:['Add word captions',   'Sync to audio']         },
+    { cmd:'Trim to 30 seconds',   done:['Trim to 30 seconds',  'Keep best moments']     },
+    { cmd:'Make it vertical',     done:['Make it vertical',    'Reframe to face']       },
+    { cmd:'Change caption style', done:['Change caption style','Apply bold template']   },
   ];
 
-  let seqIdx = 0;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  let si=0;
+  const sleep = ms => new Promise(r=>setTimeout(r,ms));
 
-  async function typeText(text) {
-    barText.textContent = '';
+  async function typeCmd(txt) {
+    barText.textContent='';
     barText.classList.add('typing');
-    for (const ch of text) { barText.textContent += ch; await sleep(42); }
+    for(const ch of txt){barText.textContent+=ch;await sleep(40);}
     barBtn.classList.add('ready');
-    await sleep(400);
+    await sleep(350);
     barBtn.classList.remove('ready');
   }
 
-  function makePill(text, isApplying) {
-    const p = document.createElement('div');
-    p.className = 'cd-pill' + (isApplying ? ' applying' : '');
-    if (isApplying) {
-      const dot = document.createElement('div');
-      dot.className = 'cd-applying-dot';
-      p.appendChild(dot);
-      p.appendChild(document.createTextNode(text));
-    } else {
-      p.textContent = text;
-    }
+  function pill(txt,isApplying){
+    const p=document.createElement('div');
+    p.className='cd-pill'+(isApplying?' applying':'');
+    if(isApplying){
+      const d=document.createElement('div');d.className='cd-applying-dot';p.appendChild(d);
+      p.appendChild(document.createTextNode(txt));
+    } else {p.textContent=txt;}
     return p;
   }
 
-  async function runSequence() {
-    const seq = sequences[seqIdx++ % sequences.length];
-
-    // Type in bar
-    await typeText(seq.cmd);
-    await sleep(200);
-
-    // Clear pills
-    [...pillsEl.children].forEach(p => { p.style.opacity='0'; p.style.transform='translateX(20px)'; });
-    await sleep(320);
-    pillsEl.innerHTML = '';
-
-    // Add done pills one by one
-    for (const text of seq.pills) {
-      const pill = makePill(text, false);
-      pillsEl.appendChild(pill);
-      await sleep(30);
-      pill.classList.add('show');
-      await sleep(480);
+  async function runSeq(){
+    const s=seqs[si++%seqs.length];
+    await typeCmd(s.cmd);
+    await sleep(180);
+    [...pillsEl.children].forEach(p=>{p.style.opacity='0';p.style.transform='translateX(16px)';});
+    await sleep(300);
+    pillsEl.innerHTML='';
+    for(const t of s.done){
+      const p=pill(t,false);pillsEl.appendChild(p);await sleep(40);p.classList.add('show');await sleep(600);
     }
-
-    // Add "Applying edits..." pill
-    const applying = makePill('Applying edits...', true);
-    pillsEl.appendChild(applying);
-    await sleep(30);
-    applying.classList.add('show');
-
-    // Reset bar
-    barText.textContent = 'Chat to edit';
-    barText.classList.remove('typing');
-
+    const ap=pill('Applying edits...',true);pillsEl.appendChild(ap);await sleep(40);ap.classList.add('show');
+    barText.textContent='Chat to edit';barText.classList.remove('typing');
     await sleep(2800);
-    runSequence();
+    runSeq();
   }
 
-  if (pillsEl) setTimeout(runSequence, 600);
+  if(pillsEl) setTimeout(runSeq,700);
 
-  // ── DRAG-TO-SCROLL ──────────────────────────────────────
-  const row = document.getElementById('ig-row');
-  if (row) {
-    let isDown=false, startX, scrollLeft;
-    row.addEventListener('mousedown', e => { isDown=true; startX=e.pageX-row.offsetLeft; scrollLeft=row.scrollLeft; });
-    row.addEventListener('mouseleave', ()=>isDown=false);
-    row.addEventListener('mouseup', ()=>isDown=false);
-    row.addEventListener('mousemove', e => { if(!isDown)return; e.preventDefault(); row.scrollLeft=scrollLeft-(e.pageX-row.offsetLeft-startX)*1.4; });
+  // ── CAROUSEL DRAG ───────────────────────────────────────
+  const row=document.getElementById('ig-row');
+  if(row){
+    let dn=false,sx,sl;
+    row.addEventListener('mousedown',e=>{dn=true;sx=e.pageX-row.offsetLeft;sl=row.scrollLeft;});
+    row.addEventListener('mouseleave',()=>dn=false);
+    row.addEventListener('mouseup',()=>dn=false);
+    row.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();row.scrollLeft=sl-(e.pageX-row.offsetLeft-sx)*1.4;});
   }
 
-  // ── SCROLL FADE-IN ──────────────────────────────────────
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+  // ── FADE-IN ─────────────────────────────────────────────
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 
   // ── FORMS ───────────────────────────────────────────────
-  async function submitForm(email) {
-    try {
-      const r = await fetch('https://api.web3forms.com/submit', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ access_key:'0fa80f2a-9db5-4902-aebf-74da4351d2de', email, subject:'Vubbs Waitlist Signup', from_name:'Vubbs Waitlist' })
-      });
+  async function sub(email){
+    try{
+      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({access_key:'0fa80f2a-9db5-4902-aebf-74da4351d2de',email,subject:'Vubbs Waitlist Signup',from_name:'Vubbs Waitlist'})});
       return r.ok;
-    } catch { return false; }
+    }catch{return false;}
   }
 
-  function bindForm(formId, noteId, okId, label) {
-    document.getElementById(formId).addEventListener('submit', async function(e) {
+  function bindForm(fid,nid,oid,lbl){
+    document.getElementById(fid).addEventListener('submit',async function(e){
       e.preventDefault();
-      const inp = this.querySelector('input[type=email]');
-      if (!inp.value) return;
-      const btn = this.querySelector('button');
-      btn.textContent='Sending…'; btn.disabled=true;
-      const ok = await submitForm(inp.value);
-      if (ok) {
+      const inp=this.querySelector('input[type=email]');if(!inp.value)return;
+      const btn=this.querySelector('button');btn.textContent='Sending…';btn.disabled=true;
+      const ok=await sub(inp.value);
+      if(ok){
         this.style.display='none';
-        const note=document.getElementById(noteId); if(note) note.style.display='none';
-        document.getElementById(okId).style.display='block';
-        if(typeof gtag!=='undefined') gtag('event','waitlist_signup',{event_category:'lead',event_label:label});
-      } else { btn.textContent='Try again'; btn.disabled=false; }
+        const n=document.getElementById(nid);if(n)n.style.display='none';
+        document.getElementById(oid).style.display='block';
+        if(typeof gtag!=='undefined')gtag('event','waitlist_signup',{event_category:'lead',event_label:lbl});
+      }else{btn.textContent='Try again';btn.disabled=false;}
     });
   }
 
   bindForm('hero-form','hf-note','hf-ok','hero');
   bindForm('cta-form','cf-note','cf-ok','cta');
 </script>
-
 </body>
 </html>
