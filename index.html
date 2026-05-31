@@ -446,8 +446,10 @@
     <div class="chat-demo" aria-hidden="true">
       <!-- Video frame -->
       <div class="cd-frame">
-        <img src="scene.jpg" alt="Video being edited" onerror="this.style.display='none'">
-        <div class="cd-frame-fallback">
+        <img src="scene.jpg" alt="Video being edited"
+          onload="var f=document.getElementById('cd-fallback');if(f)f.style.display='none';"
+          onerror="this.style.display='none'">
+        <div class="cd-frame-fallback" id="cd-fallback">
           <div class="cd-frame-fallback-txt">YOUR VIDEO<br>HERE</div>
         </div>
       </div>
