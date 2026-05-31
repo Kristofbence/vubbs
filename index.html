@@ -430,7 +430,7 @@
   const barText = document.getElementById('cd-bar-text');
   const barBtn  = document.getElementById('cd-bar-btn');
 
-  if (!pillsEl) return;
+  if (pillsEl) {
 
   const groups = [
     ['Add captions',      'Sync to audio'],
@@ -510,6 +510,7 @@
   }
 
   setTimeout(runGroup, 800);
+  } // end if(pillsEl)
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
