@@ -112,11 +112,11 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 6px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
       width:fit-content;margin-left:auto;
-      opacity:0;transform:translateX(18px);
-      transition:opacity .35s ease,transform .38s ease;
+      opacity:0;transform:translateY(14px) scale(0.95);
+      transition:opacity .4s ease,transform .42s cubic-bezier(.34,1.3,.64,1);
     }
-    .cd-pill.show{opacity:1;transform:translateX(0);}
-    .cd-pill.out{opacity:0;transform:translateX(-10px);}
+    .cd-pill.show{opacity:1;transform:translateY(0) scale(1);}
+    .cd-pill.out{opacity:0;transform:translateY(-8px) scale(0.95);}
     .cd-pill.apply{background:rgba(255,255,255,.97);color:#6bbf00;border-color:rgba(107,191,0,.3);font-weight:700;display:flex;align-items:center;gap:9px;font-size:19px;box-shadow:0 6px 24px rgba(107,191,0,.22);}
     .cd-adot{width:8px;height:8px;border-radius:50%;background:#6bbf00;flex-shrink:0;animation:adot .9s ease-in-out infinite;}
     @keyframes adot{0%,100%{box-shadow:0 0 0 0 transparent;}50%{box-shadow:0 0 8px 3px rgba(107,191,0,.65);}}
@@ -202,9 +202,9 @@
 
     /* ── DESKTOP ── */
     @media (min-width:861px) {
-      .chat-demo{max-width:300px;margin:0 auto;}
-      .cd-outer{transform:perspective(1200px) rotateY(-5deg) rotateX(1.5deg);transition:transform .5s ease;}
-      .cd-outer:hover{transform:perspective(1200px) rotateY(-1.5deg) rotateX(.5deg);}
+      .chat-demo{width:300px;flex-shrink:0;}
+      .cd-outer{width:300px;}
+      .cd-card{width:300px;}
     }
 
     /* ── MOBILE ── */
@@ -240,7 +240,7 @@
     @media (max-width:480px) {
       .hero h1{font-size:36px;}
       .proof-stats{flex-wrap:wrap;gap:20px;}
-      .cd-pills{left:10px;right:10px;bottom:16px;gap:10px;}
+      .cd-pills{left:10px;right:10px;}
     }
   </style>
 </head>
@@ -421,27 +421,49 @@
 
   const groups = [
     ['Add captions',   'Sync to audio'  ],
-    ['Trim to 30s',    'Best moment'    ],
-    ['Make vertical',  'Auto-frame face'],
-    ['Bold style',     'Brand colors'   ],
-    ['Add intro',      'Fade in 0.5s'   ],
-    ['Color grade',    'Boost contrast' ],
-    ['Speed 1.5x',     'Smooth audio'   ],
+    ['Trim to 30 seconds', 'Keep best moment'],
+    ['Make it vertical', 'Auto-frame face'],
+    ['Bold caption style', 'Match brand colors'],
+    ['Add intro title', 'Fade in 0.5s'  ],
+    ['Color grade warm', 'Boost contrast'],
+    ['Speed up 1.5x',  'Smooth audio'   ],
     ['Translate subs', 'Sync timing'    ],
   ];
 
   let gi = 0;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  function pill(text, isApply) {
+  // Type text into bar character by character
+  async function typeBar(text) {
+    barText.textContent = '';
+    barText.classList.add('on');
+    barBtn.classList.remove('on');
+    for (const ch of text) {
+      barText.textContent += ch;
+      await sleep(52);
+    }
+    barBtn.classList.add('on');
+    await sleep(450);
+  }
+
+  // Clear bar after sending
+  function clearBar() {
+    barText.textContent = 'Chat to edit';
+    barText.classList.remove('on');
+    barBtn.classList.remove('on');
+  }
+
+  // Spawn a pill bubble
+  function spawnPill(text, isApply) {
+    if (!pillsEl) return null;
     const p = document.createElement('div');
     p.className = 'cd-pill' + (isApply ? ' apply' : '');
     if (isApply) {
       const d = document.createElement('div'); d.className='cd-adot'; p.appendChild(d);
       p.appendChild(document.createTextNode(text));
     } else { p.textContent = text; }
-    if (pillsEl) pillsEl.appendChild(p);
-    p.getBoundingClientRect();
+    pillsEl.appendChild(p);
+    p.getBoundingClientRect(); // force reflow
     requestAnimationFrame(() => p.classList.add('show'));
     return p;
   }
@@ -450,29 +472,33 @@
     if (!pillsEl) return;
     const g = groups[gi++ % groups.length];
 
-    barText.textContent = g[0]; barText.classList.add('on');
-    barBtn.classList.add('on');
-    const p0 = pill(g[0], false);
-    await sleep(160); barBtn.classList.remove('on');
-    await sleep(800);
+    // Type first command → send → bubble appears
+    await typeBar(g[0]);
+    const p0 = spawnPill(g[0], false);
+    clearBar();
+    await sleep(1000);
 
-    barText.textContent = g[1];
-    const p1 = pill(g[1], false);
-    await sleep(800);
+    // Type second command → send → bubble appears
+    await typeBar(g[1]);
+    const p1 = spawnPill(g[1], false);
+    clearBar();
+    await sleep(1000);
 
-    barText.textContent = 'Chat to edit'; barText.classList.remove('on');
-    const p2 = pill('Applying edits...', true);
+    // AI responds: "Applying edits..."
+    const p2 = spawnPill('Applying edits...', true);
 
-    await sleep(2200);
+    // Hold — all three visible and readable
+    await sleep(2800);
 
-    [p0,p1,p2].forEach(p => p.classList.add('out'));
-    await sleep(380);
-    [p0,p1,p2].forEach(p => { if(p.parentNode) p.remove(); });
-    await sleep(420);
+    // Fade all out
+    [p0, p1, p2].filter(Boolean).forEach(p => p.classList.add('out'));
+    await sleep(400);
+    [p0, p1, p2].filter(Boolean).forEach(p => { if (p.parentNode) p.remove(); });
+    await sleep(500);
     run();
   }
 
-  setTimeout(run, 700);
+  setTimeout(run, 1000);
 
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
