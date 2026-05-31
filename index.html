@@ -107,8 +107,8 @@
       display:block;margin-bottom:10px;
       background:rgba(10,10,22,.88);
       color:rgba(255,255,255,.92);
-      font-family:var(--ff-body);font-size:17px;font-weight:500;
-      padding:13px 22px;border-radius:100px;
+      font-family:var(--ff-body);font-size:19px;font-weight:500;
+      padding:14px 24px;border-radius:100px;
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 6px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
       width:fit-content;margin-left:auto;
@@ -117,7 +117,7 @@
     }
     .cd-pill.show{opacity:1;transform:translateX(0);}
     .cd-pill.out{opacity:0;transform:translateX(-10px);}
-    .cd-pill.apply{background:rgba(255,255,255,.97);color:#6bbf00;border-color:rgba(107,191,0,.3);font-weight:700;display:flex;align-items:center;gap:9px;box-shadow:0 6px 24px rgba(107,191,0,.22);}
+    .cd-pill.apply{background:rgba(255,255,255,.97);color:#6bbf00;border-color:rgba(107,191,0,.3);font-weight:700;display:flex;align-items:center;gap:9px;font-size:19px;box-shadow:0 6px 24px rgba(107,191,0,.22);}
     .cd-adot{width:8px;height:8px;border-radius:50%;background:#6bbf00;flex-shrink:0;animation:adot .9s ease-in-out infinite;}
     @keyframes adot{0%,100%{box-shadow:0 0 0 0 transparent;}50%{box-shadow:0 0 8px 3px rgba(107,191,0,.65);}}
 
@@ -203,8 +203,8 @@
     /* ── DESKTOP ── */
     @media (min-width:861px) {
       .chat-demo{max-width:300px;margin:0 auto;}
-      .cd-card{transform:perspective(1200px) rotateY(-5deg) rotateX(1.5deg);}
-      .cd-card:hover{transform:perspective(1200px) rotateY(-1.5deg) rotateX(.5deg);}
+      .cd-outer{transform:perspective(1200px) rotateY(-5deg) rotateX(1.5deg);transition:transform .5s ease;}
+      .cd-outer:hover{transform:perspective(1200px) rotateY(-1.5deg) rotateX(.5deg);}
     }
 
     /* ── MOBILE ── */
