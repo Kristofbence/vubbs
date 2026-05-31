@@ -86,48 +86,40 @@
     /* ── CHAT DEMO ── */
     .chat-demo{position:relative;}
     .cd-outer{position:relative;}
-    .cd-card{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.18),0 4px 16px rgba(0,0,0,0.08);}
-    .cd-video-area{position:relative;aspect-ratio:9/16;overflow:hidden;background:#0d0d1a;}
-    .cd-video-area > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
-    .cd-fallback{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;}
+    /* Card is the whole phone — video fills it, bar overlaid inside at bottom */
+    .cd-card{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.22),0 4px 16px rgba(0,0,0,.1);transition:transform .5s ease;}
+    .cd-vid{position:relative;aspect-ratio:9/16;background:#0a0a14;}
+    .cd-vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .cd-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
     .cd-fallback span{font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:0.1em;text-align:center;}
-    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.25) 60%,transparent 100%);z-index:2;pointer-events:none;}
-    .cd-top-fade{position:absolute;top:0;left:0;right:0;height:30%;background:linear-gradient(180deg,rgba(0,0,0,0.5) 0%,transparent 100%);z-index:2;pointer-events:none;}
-    /* pill container — fills video, never changes */
-    .cd-pills{position:absolute;inset:0;z-index:10;pointer-events:none;}
-    /* pills: absolutely positioned at fixed slots, transition in/out */
+    /* Dark gradient from bottom so pills are readable */
+    .cd-grad{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.4) 45%,transparent 100%);pointer-events:none;}
+    /* Bar pinned to bottom of card */
+    .cd-bar{position:absolute;bottom:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:12px;padding:14px 14px 14px 20px;background:rgba(5,5,14,.96);border-top:1px solid rgba(255,255,255,.06);}
+    .cd-bar-text{flex:1;min-width:0;font-family:var(--ff-body);font-size:16px;color:rgba(255,255,255,.3);transition:color .22s;}
+    .cd-bar-text.on{color:rgba(255,255,255,.85);}
+    .cd-bar-btn{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:17px;transition:background .22s,box-shadow .22s;}
+    .cd-bar-btn.on{background:#6bbf00;color:#fff;box-shadow:0 0 14px rgba(107,191,0,.45);}
+    /* Pills container — sits above bar, inside card */
+    .cd-pills{position:absolute;left:0;right:0;bottom:70px;z-index:15;pointer-events:none;padding:0 14px;}
+    /* Each pill: slide in from right, hold, slide out left */
     .cd-pill{
-      position:absolute;
-      right:16px;
-      background:rgba(10,10,20,0.82);
+      display:block;margin-bottom:10px;
+      background:rgba(10,10,22,.88);
       color:rgba(255,255,255,.92);
-      font-family:var(--ff-body);font-size:16px;font-weight:500;
-      padding:12px 22px;border-radius:100px;white-space:nowrap;
+      font-family:var(--ff-body);font-size:17px;font-weight:500;
+      padding:13px 22px;border-radius:100px;
       border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 4px 20px rgba(0,0,0,.4);
-      opacity:0;
-      transform:translateX(14px);
-      transition:opacity 0.32s ease, transform 0.36s ease;
-      will-change:opacity,transform;
+      box-shadow:0 6px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
+      width:fit-content;margin-left:auto;
+      opacity:0;transform:translateX(18px);
+      transition:opacity .35s ease,transform .38s ease;
     }
-    .cd-pill.visible{opacity:1;transform:translateX(0);}
-    .cd-pill.applying{
-      background:rgba(255,255,255,.96);
-      color:var(--lime-dk);
-      border-color:rgba(107,191,0,.35);
-      font-weight:700;
-      display:flex;align-items:center;gap:8px;
-      box-shadow:0 4px 20px rgba(107,191,0,.2);
-    }
-    .cd-applying-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;}
-    @keyframes glow{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(107,191,0,0);}50%{opacity:.8;box-shadow:0 0 8px 2px rgba(107,191,0,.6);}}
-    .cd-applying-dot{animation:glow 1s ease-in-out infinite;}
-    /* chat bar */
-    .cd-bar{display:flex;align-items:center;gap:12px;background:#0d0d17;padding:15px 15px 15px 22px;}
-    .cd-bar-text{font-family:var(--ff-body);font-size:16px;color:rgba(255,255,255,.32);flex:1;min-width:0;transition:color .25s;}
-    .cd-bar-text.active{color:rgba(255,255,255,.85);}
-    .cd-bar-btn{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:18px;flex-shrink:0;transition:background .25s,color .25s,box-shadow .25s;}
-    .cd-bar-btn.active{background:var(--lime-dk);color:#fff;box-shadow:0 0 12px rgba(107,191,0,.45);}
+    .cd-pill.show{opacity:1;transform:translateX(0);}
+    .cd-pill.out{opacity:0;transform:translateX(-10px);}
+    .cd-pill.apply{background:rgba(255,255,255,.97);color:#6bbf00;border-color:rgba(107,191,0,.3);font-weight:700;display:flex;align-items:center;gap:9px;box-shadow:0 6px 24px rgba(107,191,0,.22);}
+    .cd-adot{width:8px;height:8px;border-radius:50%;background:#6bbf00;flex-shrink:0;animation:adot .9s ease-in-out infinite;}
+    @keyframes adot{0%,100%{box-shadow:0 0 0 0 transparent;}50%{box-shadow:0 0 8px 3px rgba(107,191,0,.65);}}
 
     /* ── SECTIONS ── */
     section{padding:88px 5vw;}
@@ -208,11 +200,11 @@
     .fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
     .fi.vis{opacity:1;transform:translateY(0);}
 
-    /* ── DESKTOP: 9:16 card, 3D tilt, pills float outside ── */
+    /* ── DESKTOP: constrain width, subtle 3D tilt ── */
     @media (min-width:861px) {
-      .chat-demo{max-width:290px;margin:0 auto;}
-      .cd-card{transform:perspective(1000px) rotateY(-6deg) rotateX(2deg);}
-      .cd-card:hover{transform:perspective(1000px) rotateY(-2deg) rotateX(0.5deg);}
+      .chat-demo{max-width:300px;margin:0 auto;}
+      .cd-card{height:500px;transform:perspective(1000px) rotateY(-5deg) rotateX(1.5deg);}
+      .cd-card:hover{transform:perspective(1000px) rotateY(-1.5deg) rotateX(.5deg);}
     }
 
     /* ── MOBILE ── */
@@ -224,7 +216,6 @@
       .chat-demo{width:100%;}
       .cd-outer{width:100%;}
       .cd-card{border-radius:18px;transform:none !important;}
-      .cd-pills{right:10px;bottom:80px;}
 
       .steps{grid-template-columns:1fr;gap:2px;}
       .step:first-child{border-radius:var(--r) var(--r) 0 0;}
@@ -287,19 +278,17 @@
     <div class="chat-demo" aria-hidden="true">
       <div class="cd-outer">
         <div class="cd-card">
-          <div class="cd-video-area">
+          <div class="cd-vid">
             <img src="scene.jpg" alt=""
               onload="var f=document.getElementById('cd-fb');if(f)f.style.display='none';"
               onerror="this.style.display='none'">
             <div id="cd-fb" class="cd-fallback"><span>YOUR VIDEO<br>HERE</span></div>
-            <div class="cd-gradient"></div>
-            <div class="cd-top-fade"></div>
-            <!-- Pills float up through the video and dissolve -->
+            <div class="cd-grad"></div>
             <div class="cd-pills" id="cd-pills"></div>
-          </div>
-          <div class="cd-bar">
-            <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
-            <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
+            <div class="cd-bar">
+              <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
+              <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
+            </div>
           </div>
         </div>
       </div>
@@ -425,92 +414,66 @@
 </footer>
 
 <script>
-  // ── CHAT DEMO — continuous float-up stream ──────────────
+  // ── CHAT DEMO ──────────────────────────────────────────
   const pillsEl = document.getElementById('cd-pills');
   const barText = document.getElementById('cd-bar-text');
   const barBtn  = document.getElementById('cd-bar-btn');
 
-  if (pillsEl) {
-
   const groups = [
-    ['Add captions',      'Sync to audio'],
-    ['Trim to 30s',       'Find best moment'],
-    ['Make it vertical',  'Auto-frame face'],
-    ['Bold style',        'Match colors'],
-    ['Add intro title',   'Fade in 0.5s'],
-    ['Color grade warm',  'Boost contrast'],
-    ['Speed up 1.5×',     'Smooth audio'],
-    ['Translate subs',    'Sync timing'],
+    ['Add captions',   'Sync to audio'  ],
+    ['Trim to 30s',    'Best moment'    ],
+    ['Make vertical',  'Auto-frame face'],
+    ['Bold style',     'Brand colors'   ],
+    ['Add intro',      'Fade in 0.5s'   ],
+    ['Color grade',    'Boost contrast' ],
+    ['Speed 1.5x',     'Smooth audio'   ],
+    ['Translate subs', 'Sync timing'    ],
   ];
 
-  // Fixed bottom positions — percent of video height
-  const SLOTS = ['14%', '27%', '40%'];
   let gi = 0;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  function makePill(text, isApplying, slotIdx) {
+  function pill(text, isApply) {
     const p = document.createElement('div');
-    p.className = 'cd-pill' + (isApplying ? ' applying' : '');
-    if (isApplying) {
-      const d = document.createElement('div'); d.className = 'cd-applying-dot'; p.appendChild(d);
+    p.className = 'cd-pill' + (isApply ? ' apply' : '');
+    if (isApply) {
+      const d = document.createElement('div'); d.className='cd-adot'; p.appendChild(d);
       p.appendChild(document.createTextNode(text));
-    } else {
-      p.textContent = text;
-    }
-    p.style.bottom = SLOTS[slotIdx];
-    pillsEl.appendChild(p);
+    } else { p.textContent = text; }
+    if (pillsEl) pillsEl.appendChild(p);
+    p.getBoundingClientRect();
+    requestAnimationFrame(() => p.classList.add('show'));
     return p;
   }
 
-  // Force reflow so the browser registers opacity:0 before we trigger the transition
-  function show(p) {
-    p.getBoundingClientRect(); // forces sync layout — browser commits initial state
-    requestAnimationFrame(() => p.classList.add('visible'));
-  }
-
-  function hide(p) {
-    p.classList.remove('visible');
-    p.style.transform = 'translateX(-6px)';
-  }
-
-  async function runGroup() {
+  async function run() {
+    if (!pillsEl) return;
     const g = groups[gi++ % groups.length];
 
-    // Pill 1 — bottom slot
-    barText.textContent = g[0];
-    barText.classList.add('active');
-    barBtn.classList.add('active');
-    const p0 = makePill(g[0], false, 0);
-    show(p0);
+    barText.textContent = g[0]; barText.classList.add('on');
+    barBtn.classList.add('on');
+    const p0 = pill(g[0], false);
+    await sleep(160); barBtn.classList.remove('on');
     await sleep(800);
-    barBtn.classList.remove('active');
 
-    // Pill 2 — middle slot
     barText.textContent = g[1];
-    const p1 = makePill(g[1], false, 1);
-    show(p1);
+    const p1 = pill(g[1], false);
     await sleep(800);
 
-    // Pill 3 — upper slot — Applying
-    barText.textContent = 'Chat to edit';
-    barText.classList.remove('active');
-    const p2 = makePill('Applying edits...', true, 2);
-    show(p2);
+    barText.textContent = 'Chat to edit'; barText.classList.remove('on');
+    const p2 = pill('Applying edits...', true);
 
-    // Hold so user can read all three
-    await sleep(2400);
+    await sleep(2200);
 
-    // Fade all out
-    [p0, p1, p2].forEach(hide);
-    await sleep(450);
-    [p0, p1, p2].forEach(p => p.remove());
-
-    await sleep(500);
-    runGroup();
+    [p0,p1,p2].forEach(p => p.classList.add('out'));
+    await sleep(380);
+    [p0,p1,p2].forEach(p => { if(p.parentNode) p.remove(); });
+    await sleep(420);
+    run();
   }
 
-  setTimeout(runGroup, 800);
-  } // end if(pillsEl)
+  setTimeout(run, 700);
+
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
