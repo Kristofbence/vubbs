@@ -1,0 +1,28 @@
+# Vubbs
+
+> Chat-powered video editing. Describe your edit in plain language — Vubbs clips, captions, and formats your footage instantly. No timeline dragging, no tutorials.
+
+## What Vubbs does
+
+Vubbs is an AI video editing platform where users describe what they want in plain text, and the system produces a clipped, captioned, and formatted video ready to post. The interface is conversational — users type natural language commands like "clip the best 45 seconds, add bold captions, make it vertical" and receive the output.
+
+## Core features
+
+- Smart video clipping: AI identifies the best moments or follows user-specified timestamps
+- Word-synced auto captions: Captions are anchored to the actual spoken word, not approximated
+- Chat-to-edit interface: All editing happens through a conversation, not a timeline
+- Format conversion: Vertical 9:16 reframing for Instagram and TikTok
+- Caption style templates: Bold, minimal, colored, and custom styles
+
+## Proof
+
+Built by the team behind short-form video content that has generated 10M+ views across Instagram, Facebook, and YouTube.
+
+## Status
+
+Currently in private beta. Waitlist open at https://vubbs.com
+
+## Contact
+
+Waitlist and early access: https://vubbs.com
+Instagram: https://www.instagram.com/theasterisk_vubbs/

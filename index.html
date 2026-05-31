@@ -4,12 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vubbs — Edit video. Just chat.</title>
-  <meta name="description" content="Describe your edit. Vubbs clips, captions, and formats your footage. No timeline dragging. No tutorials. Just chat.">
+  <meta name="description" content="Chat-powered video editing. Describe your edit in plain language and Vubbs clips, captions, and formats your footage instantly. No timeline. No tutorials.">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vubbs.com/">
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Vubbs — Edit video. Just chat.">
-  <meta property="og:description" content="Chat-powered video editing. Clip, caption, and format your footage in plain language.">
+  <meta property="og:description" content="Describe your edit. Vubbs clips, captions, and formats your footage. No timeline dragging. No tutorials.">
   <meta property="og:url" content="https://vubbs.com">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vubbs">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vubbs — Edit video. Just chat.">
+  <meta name="twitter:description" content="Chat-powered video editing. Describe the edit, get the clip.">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Vubbs",
+    "url": "https://vubbs.com",
+    "description": "Chat-powered video editing platform. Describe your edit in plain language and Vubbs clips, captions, and formats your footage. No timeline dragging, no tutorials.",
+    "applicationCategory": "VideoApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder", "price": "0" },
+    "creator": { "@type": "Organization", "name": "Vubbs", "url": "https://vubbs.com" }
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,25 +51,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #070710;
-      --s1:        #0D0D1C;
-      --s2:        #131328;
-      --border:    rgba(255,255,255,0.07);
-      --lime:      #AAFF00;
-      --lime-glow: rgba(170,255,0,0.12);
-      --lime-dim:  rgba(170,255,0,0.06);
-      --text:      #EEEEF8;
-      --muted:     #666685;
-      --dim:       #2E2E4A;
-      --ff-head:   'Syne', sans-serif;
-      --ff-body:   'Outfit', sans-serif;
-      --ff-mono:   'JetBrains Mono', monospace;
-      --r:         10px;
-      --r-sm:      7px;
+      --bg:       #FFFFFF;
+      --bg2:      #F7F7F4;
+      --bg-dark:  #0A0A14;
+      --border:   rgba(0,0,0,0.07);
+      --border-m: rgba(0,0,0,0.12);
+      --lime:     #AAFF00;
+      --lime-bg:  rgba(170,255,0,0.12);
+      --lime-brd: rgba(170,255,0,0.3);
+      --lime-dk:  #6BBF00;
+      --text:     #0A0A14;
+      --muted:    #666680;
+      --dim:      #BBBBD0;
+      --card-sh:  0 2px 20px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.05);
+      --ff-head:  'Syne', sans-serif;
+      --ff-body:  'Outfit', sans-serif;
+      --ff-mono:  'JetBrains Mono', monospace;
+      --r:        12px;
+      --r-sm:     8px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -58,594 +82,382 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* subtle film-grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.022;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 6vw;
-      background: rgba(7,7,16,0.82);
+      padding: 16px 6vw;
+      background: rgba(255,255,255,0.9);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
     .logo {
-      font-family: var(--ff-head);
-      font-weight: 800;
-      font-size: 20px;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.04em;
+      font-family: var(--ff-head); font-weight: 800; font-size: 20px;
+      color: var(--text); text-decoration: none; letter-spacing: -0.04em;
     }
-    .logo em { font-style: normal; color: var(--lime); }
-
+    .logo em { font-style: normal; color: var(--lime-dk); }
     .nav-btn {
-      background: var(--lime);
-      color: #060610;
-      font-family: var(--ff-head);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      padding: 9px 20px;
-      border: none;
-      border-radius: var(--r-sm);
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity .2s, transform .2s;
+      background: var(--text); color: #fff;
+      font-family: var(--ff-head); font-weight: 700; font-size: 13px;
+      letter-spacing: 0.02em; padding: 10px 22px;
+      border: none; border-radius: 100px; cursor: pointer;
+      text-decoration: none; transition: opacity .2s, transform .2s;
     }
-    .nav-btn:hover { opacity: .83; transform: translateY(-1px); }
+    .nav-btn:hover { opacity: .8; transform: translateY(-1px); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center;
       padding: 110px 6vw 80px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
+      background: var(--bg);
     }
-
-    /* hero ambient glow */
+    /* lime blob */
     .hero::before {
       content: '';
-      position: absolute;
-      top: -15%; right: -8%;
-      width: 55vw; height: 55vw;
-      background: radial-gradient(circle, rgba(170,255,0,0.07) 0%, transparent 68%);
+      position: absolute; top: -10%; right: -5%;
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(170,255,0,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: -5%;
+      width: 35vw; height: 35vw;
+      background: radial-gradient(circle, rgba(170,255,0,0.08) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .hero-grid {
       max-width: 1160px; margin: 0 auto; width: 100%;
-      display: grid;
-      grid-template-columns: 55% 1fr;
-      gap: 40px;
-      align-items: center;
+      display: grid; grid-template-columns: 55% 1fr;
+      gap: 40px; align-items: center;
+      position: relative; z-index: 1;
     }
 
     .chip {
       display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--ff-mono);
-      font-size: 11px;
-      color: var(--lime);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 22px;
+      font-family: var(--ff-mono); font-size: 11px;
+      color: var(--lime-dk); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 20px; background: var(--lime-bg);
+      padding: 5px 12px; border-radius: 20px; border: 1px solid var(--lime-brd);
     }
-    .chip-line { width: 22px; height: 1px; background: var(--lime); }
 
     .hero h1 {
       font-family: var(--ff-head);
-      font-size: clamp(40px, 5.2vw, 70px);
-      font-weight: 800;
-      line-height: 1.04;
-      letter-spacing: -0.035em;
-      margin-bottom: 22px;
+      font-size: clamp(38px, 5vw, 68px);
+      font-weight: 800; line-height: 1.04; letter-spacing: -0.035em;
+      margin-bottom: 20px; color: var(--text);
     }
-    .hero h1 .hl { color: var(--lime); }
+    .hero h1 .hl {
+      color: var(--lime-dk);
+      background: var(--lime-bg);
+      padding: 0 6px; border-radius: 6px;
+    }
 
     .hero p {
-      font-size: clamp(15px, 1.4vw, 17px);
-      color: var(--muted);
-      line-height: 1.72;
-      max-width: 430px;
-      margin-bottom: 36px;
+      font-size: clamp(15px, 1.4vw, 17px); color: var(--muted);
+      line-height: 1.72; max-width: 430px; margin-bottom: 36px;
     }
 
     /* forms */
     .inline-form { display: flex; max-width: 440px; }
     .inline-form input {
-      flex: 1;
-      background: var(--s1);
-      border: 1px solid var(--border);
-      border-right: none;
+      flex: 1; background: var(--bg2);
+      border: 1px solid var(--border-m); border-right: none;
       border-radius: var(--r-sm) 0 0 var(--r-sm);
-      padding: 13px 16px;
-      color: var(--text);
-      font-family: var(--ff-body);
-      font-size: 14px;
-      outline: none;
+      padding: 14px 16px; color: var(--text);
+      font-family: var(--ff-body); font-size: 14px; outline: none;
       transition: border-color .2s;
     }
-    .inline-form input:focus { border-color: rgba(170,255,0,.38); }
+    .inline-form input:focus { border-color: var(--lime-dk); }
     .inline-form input::placeholder { color: var(--dim); }
     .inline-form button {
-      background: var(--lime);
-      color: #060610;
-      font-family: var(--ff-head);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      padding: 13px 22px;
-      border: none;
+      background: var(--text); color: #fff;
+      font-family: var(--ff-head); font-weight: 700; font-size: 13px;
+      padding: 14px 22px; border: none;
       border-radius: 0 var(--r-sm) var(--r-sm) 0;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity .2s;
+      cursor: pointer; white-space: nowrap; transition: opacity .2s;
     }
-    .inline-form button:hover { opacity: .84; }
-
-    .form-note {
-      margin-top: 11px;
-      font-family: var(--ff-mono);
-      font-size: 11px;
-      color: var(--dim);
-    }
-
+    .inline-form button:hover { opacity: .82; }
+    .form-note { margin-top: 10px; font-family: var(--ff-mono); font-size: 11px; color: var(--dim); }
     .success-msg {
-      display: none;
-      background: var(--lime-dim);
-      border: 1px solid rgba(170,255,0,.25);
-      border-radius: var(--r-sm);
-      padding: 13px 18px;
-      font-family: var(--ff-mono);
-      font-size: 13px;
-      color: var(--lime);
-      max-width: 440px;
+      display: none; background: var(--lime-bg);
+      border: 1px solid var(--lime-brd); border-radius: var(--r-sm);
+      padding: 13px 18px; font-family: var(--ff-mono); font-size: 13px;
+      color: var(--lime-dk); max-width: 440px;
     }
 
     /* ── EDIT DEMO ── */
     .edit-demo {
-      background: var(--s1);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
+      background: #fff; border-radius: var(--r);
+      border: 1px solid var(--border-m); box-shadow: var(--card-sh);
       overflow: hidden;
-      box-shadow: 0 32px 72px rgba(0,0,0,.55), 0 0 0 1px rgba(170,255,0,.04);
     }
     .demo-bar {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 13px 16px;
-      background: var(--s2);
+      padding: 12px 16px; background: #FAFAFA;
       border-bottom: 1px solid var(--border);
     }
     .demo-bar-left { display: flex; align-items: center; gap: 9px; }
     .chat-avi {
       width: 28px; height: 28px; border-radius: 50%;
-      background: var(--lime);
+      background: var(--text);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--ff-head); font-weight: 800; font-size: 10px; color: #060610;
+      font-family: var(--ff-head); font-weight: 800; font-size: 10px; color: var(--lime);
     }
-    .chat-name { font-family: var(--ff-head); font-weight: 700; font-size: 12px; }
-    .demo-online {
-      display: flex; align-items: center; gap: 5px;
-      font-family: var(--ff-mono); font-size: 10px; color: var(--muted);
-    }
-    .dot-pulse {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--lime); animation: blink 2s infinite;
-    }
+    .chat-name { font-family: var(--ff-head); font-weight: 700; font-size: 12px; color: var(--text); }
+    .demo-online { display: flex; align-items: center; gap: 5px; font-family: var(--ff-mono); font-size: 10px; color: var(--muted); }
+    .dot-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--lime-dk); animation: blink 2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
     .demo-preview {
-      background: #07070E;
-      height: 280px;
+      background: #0A0A12; height: 280px;
       position: relative; overflow: hidden;
     }
-    .demo-film {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      transition: opacity .22s ease, transform .22s ease;
+    .demo-scene-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.55; z-index: 1;
     }
-    /* film states */
-    .df-bg {
+    .demo-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(150deg, #1a0d04 0%, #070710 55%, #091209 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.6) 100%);
+      z-index: 2;
+    }
+    .demo-film {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column;
+      transition: opacity .2s ease, transform .2s ease;
     }
     .df-header {
-      position: relative; z-index: 2;
       padding: 10px 14px 8px;
       font-family: var(--ff-mono); font-size: 9px;
-      letter-spacing: 0.12em; color: rgba(255,255,255,.22);
-      border-bottom: 1px solid rgba(255,255,255,.04);
+      letter-spacing: 0.12em; color: rgba(255,255,255,.45);
+      border-bottom: 1px solid rgba(255,255,255,.07);
       display: flex; justify-content: space-between; align-items: center;
     }
-    .df-header-right { color: rgba(255,255,255,.12); }
-    .df-body {
-      position: relative; z-index: 2;
-      flex: 1; padding: 14px;
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    .df-char {
-      font-family: var(--ff-mono); font-size: 9px;
-      letter-spacing: 0.1em; color: rgba(255,255,255,.35); text-align: center;
-    }
-    .df-line { font-family: var(--ff-mono); font-size: 11px; color: rgba(255,255,255,.7); line-height: 1.55; }
-    /* karaoke words */
+    .df-body { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+    .df-char { font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,.4); text-align: center; }
+    .df-line { font-family: var(--ff-mono); font-size: 11px; color: rgba(255,255,255,.85); line-height: 1.55; }
     .cw { display: inline; padding: 0 2px; border-radius: 2px; font-family: var(--ff-mono); font-size: 11px; }
-    .cw.g { background: rgba(30,170,80,.45); color: #fff; }
-    .cw.r { background: rgba(210,50,50,.45); color: #fff; }
+    .cw.g { background: rgba(30,170,80,.5); color: #fff; }
+    .cw.r { background: rgba(210,50,50,.5); color: #fff; }
     .cw.a { background: var(--lime); color: #060610; }
-    /* caption bar */
     .df-capbar {
       position: absolute; z-index: 4;
       bottom: 22px; left: 0; right: 0; text-align: center; padding: 0 12px;
     }
     .df-capbar span {
-      font-family: var(--ff-head); font-weight: 800; font-size: 13px;
-      color: #fff; background: rgba(0,0,0,.72);
-      padding: 3px 10px; border-radius: 3px;
-      text-shadow: 0 1px 3px rgba(0,0,0,.8);
+      font-family: var(--ff-head); font-weight: 800; font-size: 14px;
+      color: #fff; background: rgba(0,0,0,.78);
+      padding: 4px 12px; border-radius: 4px;
     }
-    /* trim timeline */
     .df-tl { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
     .df-tl-row { display: flex; align-items: center; gap: 10px; }
-    .df-tl-lbl { font-family: var(--ff-mono); font-size: 9px; color: var(--muted); width: 60px; flex-shrink: 0; }
+    .df-tl-lbl { font-family: var(--ff-mono); font-size: 9px; color: rgba(255,255,255,.45); width: 60px; flex-shrink: 0; }
     .df-tl-lbl.hl { color: var(--lime); }
-    .df-tl-track { flex: 1; height: 5px; background: rgba(255,255,255,.07); border-radius: 3px; overflow: hidden; }
-    .df-tl-fill { height: 100%; border-radius: 3px; transition: width .7s ease; }
-    .df-tl-fill.full { width: 100%; background: rgba(255,255,255,.18); }
+    .df-tl-track { flex: 1; height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden; }
+    .df-tl-fill { height: 100%; border-radius: 3px; }
+    .df-tl-fill.full { width: 100%; background: rgba(255,255,255,.25); }
     .df-tl-fill.trim { width: 14%; background: var(--lime); }
     .df-tl-dur { font-family: var(--ff-mono); font-size: 9px; color: rgba(255,255,255,.4); width: 28px; text-align: right; flex-shrink: 0; }
     .df-tl-dur.hl { color: var(--lime); }
-    /* vertical state */
     .df-vert { display: flex; height: 100%; }
     .df-vert-bar { flex: 1; background: #000; }
     .df-vert-mid {
-      width: 52%; background: linear-gradient(180deg,#1a0d04,#070710);
+      width: 52%; background: rgba(0,0,0,.5);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 10px; position: relative;
     }
-    .df-vert-tag {
-      position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
-      font-family: var(--ff-mono); font-size: 8px; color: rgba(255,255,255,.25); white-space: nowrap;
-    }
-    .df-vert-badge {
-      background: var(--lime); color: #060610;
-      font-family: var(--ff-head); font-weight: 700; font-size: 9px;
-      padding: 3px 8px; border-radius: 10px; text-align: center; margin-bottom: 6px;
-    }
-    /* progress bar */
-    .df-prog {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: rgba(255,255,255,.06); z-index: 5;
-    }
+    .df-vert-tag { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); font-family: var(--ff-mono); font-size: 8px; color: rgba(255,255,255,.3); white-space: nowrap; }
+    .df-vert-badge { background: var(--lime); color: #060610; font-family: var(--ff-head); font-weight: 700; font-size: 9px; padding: 3px 8px; border-radius: 10px; text-align: center; margin-bottom: 6px; }
+    .df-prog { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(255,255,255,.1); z-index: 5; }
     .df-prog-fill { height: 100%; background: var(--lime); transition: width .4s ease; }
 
-    /* demo chips */
     .demo-chips {
       display: flex; align-items: center; gap: 6px;
       padding: 11px 14px; border-top: 1px solid var(--border);
-      background: var(--s2); flex-wrap: wrap;
+      background: #FAFAFA; flex-wrap: wrap;
     }
     .demo-chips-lbl { font-family: var(--ff-mono); font-size: 10px; color: var(--muted); flex-shrink: 0; margin-right: 2px; }
     .demo-chip {
-      font-family: var(--ff-mono); font-size: 10px;
-      color: var(--muted); background: var(--s1);
-      border: 1px solid var(--border); padding: 4px 10px;
-      border-radius: 14px; cursor: pointer; transition: all .16s; white-space: nowrap;
+      font-family: var(--ff-mono); font-size: 10px; color: var(--muted);
+      background: #fff; border: 1px solid var(--border-m);
+      padding: 5px 11px; border-radius: 14px; cursor: pointer;
+      transition: all .16s; white-space: nowrap;
     }
-    .demo-chip:hover { color: var(--text); border-color: rgba(255,255,255,.18); }
+    .demo-chip:hover { color: var(--text); border-color: var(--text); }
     .demo-chip.active { color: #060610; background: var(--lime); border-color: var(--lime); }
 
     /* ── SECTIONS ── */
     section { padding: 96px 6vw; }
-
     .inner { max-width: 1160px; margin: 0 auto; }
 
     .eyebrow {
       display: flex; align-items: center; gap: 8px;
-      font-family: var(--ff-mono);
-      font-size: 11px;
-      color: var(--lime);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      font-family: var(--ff-mono); font-size: 11px;
+      color: var(--lime-dk); letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 14px;
     }
-    .eyebrow-line { width: 20px; height: 1px; background: var(--lime); }
+    .eyebrow-line { width: 20px; height: 1px; background: var(--lime-dk); }
 
     h2 {
       font-family: var(--ff-head);
-      font-size: clamp(30px, 3.8vw, 50px);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      margin-bottom: 56px;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 800; line-height: 1.08;
+      letter-spacing: -0.025em; margin-bottom: 52px; color: var(--text);
     }
 
-    /* ── STEPS ── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 2px;
-    }
-
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
     .step {
-      background: var(--s1);
-      border: 1px solid var(--border);
-      padding: 38px 30px;
-      position: relative;
-      transition: background .25s;
+      background: #fff; border: 1px solid var(--border);
+      padding: 36px 28px; position: relative; transition: box-shadow .25s;
     }
-    .step:first-child  { border-radius: var(--r) 0 0 var(--r); }
-    .step:last-child   { border-radius: 0 var(--r) var(--r) 0; }
-    .step:hover        { background: var(--s2); }
-
-    .step-num {
-      font-family: var(--ff-head);
-      font-size: 58px;
-      font-weight: 800;
-      color: var(--dim);
-      line-height: 1;
-      margin-bottom: 18px;
-      letter-spacing: -0.04em;
-    }
-    .step h3 {
-      font-family: var(--ff-head);
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+    .step:first-child { border-radius: var(--r) 0 0 var(--r); }
+    .step:last-child  { border-radius: 0 var(--r) var(--r) 0; }
+    .step:hover { box-shadow: var(--card-sh); }
+    .step-num { font-family: var(--ff-head); font-size: 52px; font-weight: 800; color: rgba(0,0,0,.06); line-height: 1; margin-bottom: 16px; letter-spacing: -0.04em; }
+    .step h3 { font-family: var(--ff-head); font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
     .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
-
-    .step-arrow {
-      position: absolute; right: -13px; top: 50%;
-      transform: translateY(-50%);
-      width: 26px; height: 26px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 10;
-      color: var(--lime);
-      font-size: 12px;
-    }
+    .step-arrow { position: absolute; right: -13px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: var(--bg2); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; color: var(--lime-dk); font-size: 12px; }
 
     /* ── FEATURES ── */
-    .feat-bg {
-      background: var(--s1);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .feats { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; }
-
-    .feat-icon {
-      width: 44px; height: 44px;
-      background: var(--lime-dim);
-      border: 1px solid rgba(170,255,0,.18);
-      border-radius: var(--r-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px;
-    }
-    .feat-icon svg { width: 20px; height: 20px; stroke: var(--lime); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-
-    .feat h3 {
-      font-family: var(--ff-head);
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+    .feats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .feat { background: #fff; border: 1px solid var(--border); border-radius: var(--r); padding: 32px 26px; transition: box-shadow .25s; }
+    .feat:hover { box-shadow: var(--card-sh); }
+    .feat-icon { width: 44px; height: 44px; background: var(--lime-bg); border: 1px solid var(--lime-brd); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .feat-icon svg { width: 20px; height: 20px; stroke: var(--lime-dk); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .feat h3 { font-family: var(--ff-head); font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
     .feat p { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    /* ── PROOF STRIP ── */
-    .proof-strip {
-      padding: 56px 6vw;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .proof-inner {
-      max-width: 1160px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; flex-wrap: wrap;
-    }
-    .proof-text {
-      font-family: var(--ff-head);
-      font-size: 17px;
-      font-weight: 600;
-      max-width: 460px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .proof-text strong { color: var(--text); }
-
-    .proof-stats { display: flex; gap: 44px; }
-    .proof-stat-val {
-      font-family: var(--ff-head);
-      font-size: 34px;
-      font-weight: 800;
-      color: var(--lime);
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .proof-stat-lbl { font-size: 12px; color: var(--muted); margin-top: 5px; }
-
-    /* ── FINAL CTA ── */
-    .cta-center { text-align: center; }
-    .cta-center .eyebrow { justify-content: center; }
-    .cta-center .eyebrow-line { display: none; }
-    .cta-center h2 { margin-left: auto; margin-right: auto; }
-    .cta-center p {
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 420px;
-      margin: 0 auto 36px;
-    }
-    .cta-center .inline-form { margin: 0 auto; justify-content: center; }
-    .cta-center .form-note { text-align: center; }
-    .cta-center .success-msg { margin: 0 auto; }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 28px 6vw;
-      border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 14px;
-    }
-    footer .logo { font-size: 17px; }
-    .foot-copy {
-      font-family: var(--ff-mono);
-      font-size: 11px;
-      color: var(--dim);
-    }
-
-    /* ── FADE-IN ── */
-    .fi {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .fi.vis { opacity: 1; transform: translateY(0); }
-
     /* ── SHOWCASE ── */
-    .showcase-bg {
-      background: var(--s1);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
+    .showcase-bg { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .ig-row {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 16px;
-      margin-bottom: 32px;
-      cursor: grab;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(170,255,0,.35) var(--s2);
+      display: flex; gap: 12px; overflow-x: auto;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      padding-bottom: 16px; margin-bottom: 32px; cursor: grab;
+      scrollbar-width: thin; scrollbar-color: var(--lime-dk) var(--bg2);
     }
     .ig-row:active { cursor: grabbing; }
     .ig-row::-webkit-scrollbar { height: 4px; }
-    .ig-row::-webkit-scrollbar-track { background: var(--s2); border-radius: 4px; }
-    .ig-row::-webkit-scrollbar-thumb { background: rgba(170,255,0,.35); border-radius: 4px; }
-
+    .ig-row::-webkit-scrollbar-track { background: var(--bg2); border-radius: 4px; }
+    .ig-row::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 4px; }
     .ig-card {
-      flex: 0 0 240px;
-      scroll-snap-align: start;
-      position: relative;
-      border-radius: var(--r);
-      overflow: hidden;
-      background: var(--s2);
-      border: 1px solid var(--border);
-      height: 480px;
+      flex: 0 0 240px; scroll-snap-align: start;
+      position: relative; border-radius: var(--r);
+      overflow: hidden; background: #fff;
+      border: 1px solid var(--border); height: 480px;
+      box-shadow: var(--card-sh);
     }
-
     .ig-badge {
-      position: absolute;
-      bottom: 12px; left: 12px;
-      z-index: 20;
-      background: var(--lime);
-      color: #060610;
-      font-family: var(--ff-head);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-      padding: 5px 12px;
-      border-radius: 20px;
-      pointer-events: none;
-      box-shadow: 0 2px 8px rgba(0,0,0,.5);
+      position: absolute; bottom: 12px; left: 12px; z-index: 20;
+      background: var(--text); color: var(--lime);
+      font-family: var(--ff-head); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.02em; padding: 5px 12px; border-radius: 20px;
+      pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,.3);
     }
-
-    .ig-card iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .ig-channels {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
+    .ig-card iframe { display: block; width: 100%; height: 100%; border: none; }
+    .ig-channels { display: flex; gap: 14px; flex-wrap: wrap; }
     .ig-channel-link {
-      font-family: var(--ff-mono);
-      font-size: 13px;
-      color: var(--lime);
-      text-decoration: none;
-      border: 1px solid rgba(170,255,0,.25);
-      padding: 8px 16px;
-      border-radius: var(--r-sm);
-      transition: background .2s;
+      font-family: var(--ff-mono); font-size: 13px; color: var(--text);
+      text-decoration: none; border: 1px solid var(--border-m);
+      padding: 8px 16px; border-radius: var(--r-sm); transition: all .2s; background: #fff;
     }
-    .ig-channel-link:hover { background: var(--lime-dim); }
+    .ig-channel-link:hover { border-color: var(--lime-dk); color: var(--lime-dk); }
 
+    /* ── PROOF STRIP ── */
+    .proof-strip { padding: 56px 6vw; border-top: 1px solid var(--border); }
+    .proof-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .proof-text { font-family: var(--ff-head); font-size: 17px; font-weight: 600; max-width: 460px; color: var(--muted); line-height: 1.55; }
+    .proof-text strong { color: var(--text); }
+    .proof-stats { display: flex; gap: 44px; }
+    .proof-stat-val { font-family: var(--ff-head); font-size: 34px; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
+    .proof-stat-lbl { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+    /* ── FINAL CTA ── */
+    .cta-dark {
+      background: var(--bg-dark); padding: 100px 6vw;
+      border-radius: 24px; margin: 0 24px 60px;
+    }
+    .cta-dark-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .cta-dark .eyebrow { justify-content: center; color: rgba(170,255,0,.7); }
+    .cta-dark .eyebrow-line { background: rgba(170,255,0,.4); display: none; }
+    .cta-dark h2 { color: #fff; margin-bottom: 16px; }
+    .cta-dark p { color: rgba(255,255,255,.55); font-size: 16px; max-width: 400px; margin: 0 auto 36px; }
+    .cta-dark .inline-form input { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); color: #fff; }
+    .cta-dark .inline-form input::placeholder { color: rgba(255,255,255,.3); }
+    .cta-dark .inline-form input:focus { border-color: var(--lime); }
+    .cta-dark .inline-form button { background: var(--lime); color: #060610; }
+    .cta-dark .form-note { color: rgba(255,255,255,.25); text-align: center; }
+    .cta-dark .success-msg { background: rgba(170,255,0,.1); border-color: rgba(170,255,0,.3); color: var(--lime); }
+    .cta-dark .inline-form { justify-content: center; }
+
+    /* ── FOOTER ── */
+    footer { padding: 28px 6vw; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    footer .logo { font-size: 17px; }
+    .foot-copy { font-family: var(--ff-mono); font-size: 11px; color: var(--dim); }
+
+    /* ── FADE-IN ── */
+    .fi { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .fi.vis { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
     @media (max-width: 860px) {
       .hero-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero { padding: 88px 5vw 60px; }
       .edit-demo { display: none; }
-
       .steps { grid-template-columns: 1fr; gap: 2px; }
       .step:first-child { border-radius: var(--r) var(--r) 0 0; }
       .step:last-child  { border-radius: 0 0 var(--r) var(--r); }
       .step-arrow { display: none; }
-
-      .feats { grid-template-columns: 1fr; gap: 28px; }
-
+      .feats { grid-template-columns: 1fr; gap: 16px; }
       .proof-inner { flex-direction: column; align-items: flex-start; }
       .proof-stats { gap: 28px; }
-
-      .inline-form { flex-direction: column; }
-      .inline-form input {
-        border-right: 1px solid var(--border);
-        border-bottom: none;
-        border-radius: var(--r-sm) var(--r-sm) 0 0;
-      }
-      .inline-form button { border-radius: 0 0 var(--r-sm) var(--r-sm); }
+      .cta-dark { margin: 0 12px 40px; border-radius: 16px; padding: 64px 5vw; }
+      .inline-form { flex-direction: column; max-width: 100%; }
+      .inline-form input { border-right: 1px solid var(--border-m); border-bottom: none; border-radius: var(--r-sm) var(--r-sm) 0 0; }
+      .inline-form button { border-radius: 0 0 var(--r-sm) var(--r-sm); padding: 14px; }
+      h2 { margin-bottom: 36px; }
+      section { padding: 64px 5vw; }
+      .ig-card { flex: 0 0 200px; height: 420px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 36px; }
+      .proof-stats { flex-wrap: wrap; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<nav aria-label="Main navigation">
   <a href="/" class="logo">vubbs<em>.</em></a>
   <a href="#waitlist" class="nav-btn">Get early access →</a>
 </nav>
 
+<main>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" aria-labelledby="hero-headline">
   <div class="hero-grid">
-
-    <!-- Copy + Form -->
     <div>
-      <div class="chip"><span class="chip-line"></span>Chat-powered video editing</div>
-      <h1>Edit video.<br><span class="hl">Just chat.</span></h1>
+      <div class="chip">Chat-powered video editing</div>
+      <h1 id="hero-headline">Edit video.<br><span class="hl">Just chat.</span></h1>
       <p>Describe what you want. Vubbs clips, captions, and formats your footage — no timeline dragging, no tutorials, no guesswork.</p>
-
       <div id="hf-wrap">
-        <form class="inline-form" id="hero-form" novalidate>
-          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+        <form class="inline-form" id="hero-form" novalidate aria-label="Join the waitlist">
+          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
           <button type="submit">Join waitlist →</button>
         </form>
         <p class="form-note" id="hf-note">Early access · No spam · Unsubscribe anytime</p>
-        <div class="success-msg" id="hf-ok">✓ You're in — we'll be in touch soon.</div>
+        <div class="success-msg" id="hf-ok" role="status">✓ You're in — we'll be in touch soon.</div>
       </div>
     </div>
 
     <!-- Interactive Edit Demo -->
-    <div class="edit-demo">
+    <div class="edit-demo" aria-hidden="true">
       <div class="demo-bar">
         <div class="demo-bar-left">
           <div class="chat-avi">V</div>
@@ -657,6 +469,8 @@
         </div>
       </div>
       <div class="demo-preview">
+        <img src="scene.jpg" alt="Film scene from the editing demo" class="demo-scene-img" id="demo-img" onerror="this.style.display='none'">
+        <div class="demo-overlay"></div>
         <div class="demo-film" id="demo-film"></div>
       </div>
       <div class="demo-chips">
@@ -667,27 +481,26 @@
         <button class="demo-chip" data-edit="style">"Bold white style"</button>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section>
+<section class="how-bg" aria-labelledby="how-headline">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>How it works</div>
-    <h2 class="fi">Three steps.<br>No learning curve.</h2>
+    <h2 id="how-headline" class="fi">Three steps.<br>No learning curve.</h2>
     <div class="steps fi">
       <div class="step">
         <div class="step-num">01</div>
         <h3>Upload your footage</h3>
         <p>Drop in any raw video — interviews, recordings, livestreams, footage from any camera or format.</p>
-        <div class="step-arrow">→</div>
+        <div class="step-arrow" aria-hidden="true">→</div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
         <h3>Chat your edit</h3>
         <p>Type what you want in plain language. "Clip the best 45 seconds, bold white captions, make it vertical."</p>
-        <div class="step-arrow">→</div>
+        <div class="step-arrow" aria-hidden="true">→</div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
@@ -699,162 +512,100 @@
 </section>
 
 <!-- FEATURES -->
-<section class="feat-bg">
+<section aria-labelledby="feat-headline">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>What you get</div>
-    <h2 class="fi">Every tool you need.<br>One conversation.</h2>
+    <h2 id="feat-headline" class="fi">Every tool you need.<br>One conversation.</h2>
     <div class="feats">
-
       <div class="feat fi">
-        <div class="feat-icon">
+        <div class="feat-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M3 6v12M21 6v12"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
         </div>
         <h3>Smart Clipping</h3>
-        <p>Tell Vubbs which moments to keep — or let it find them. No scrubbing through timelines. Just describe the cut and it's done.</p>
+        <p>Tell Vubbs which moments to keep — or let it find them. No scrubbing through timelines. Just describe the cut.</p>
       </div>
-
       <div class="feat fi">
-        <div class="feat-icon">
+        <div class="feat-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <h3>Chat to Edit</h3>
         <p>The chat interface is the product. No menus, no tutorials. Describe the change, iterate in conversation, export when it's right.</p>
       </div>
-
       <div class="feat fi">
-        <div class="feat-icon">
+        <div class="feat-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><rect x="15" y="13" width="6" height="6" rx="1"/></svg>
         </div>
         <h3>Auto Captions</h3>
         <p>Word-synced captions, not vibe-synced. Every word lands exactly when it's spoken — styled to your template, ready to post.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- SHOWCASE -->
-<section class="showcase-bg">
+<section class="showcase-bg" aria-labelledby="showcase-headline">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>The work</div>
-    <h2 class="fi">Real edits.<br>Real numbers.</h2>
-
-    <div class="ig-row" id="ig-row">
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DYvCGgkClU3/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">4.6M views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DYsXI_WEf76/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">4.4M views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DZARfDTKFhw/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">472K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DY_xg0dqdiu/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">204K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DY7z6L5qDlB/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">166K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DY4nrPwKjkF/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">112K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DY10ilAKwcG/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">100K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DYzqA0UCTR0/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">79.6K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DYwwkVUjABa/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">70K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DYo68JEHT5f/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">56.5K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DYmqnWaAH1m/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">51.7K views</div>
-      </div>
-
-      <div class="ig-card fi">
-        <iframe src="https://www.instagram.com/p/DY2E8Rrqkmk/embed/" scrolling="no" allowtransparency="true"></iframe>
-        <div class="ig-badge">51.1K views</div>
-      </div>
-
+    <h2 id="showcase-headline" class="fi">Real edits.<br>Real numbers.</h2>
+    <div class="ig-row fi" id="ig-row" role="list" aria-label="Instagram video showcase">
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYvCGgkClU3/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 4.6M views" loading="lazy"></iframe><div class="ig-badge">4.6M views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYsXI_WEf76/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 4.4M views" loading="lazy"></iframe><div class="ig-badge">4.4M views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DZARfDTKFhw/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 472K views" loading="lazy"></iframe><div class="ig-badge">472K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY_xg0dqdiu/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 204K views" loading="lazy"></iframe><div class="ig-badge">204K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY7z6L5qDlB/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 166K views" loading="lazy"></iframe><div class="ig-badge">166K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY4nrPwKjkF/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 112K views" loading="lazy"></iframe><div class="ig-badge">112K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY10ilAKwcG/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 100K views" loading="lazy"></iframe><div class="ig-badge">100K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYzqA0UCTR0/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 79.6K views" loading="lazy"></iframe><div class="ig-badge">79.6K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYwwkVUjABa/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 70K views" loading="lazy"></iframe><div class="ig-badge">70K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYo68JEHT5f/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 56.5K views" loading="lazy"></iframe><div class="ig-badge">56.5K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYmqnWaAH1m/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 51.7K views" loading="lazy"></iframe><div class="ig-badge">51.7K views</div></div>
+      <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DY2E8Rrqkmk/embed/" scrolling="no" allowtransparency="true" title="Instagram post - 51.1K views" loading="lazy"></iframe><div class="ig-badge">51.1K views</div></div>
     </div>
-
     <div class="ig-channels fi">
-      <a href="https://www.instagram.com/theasterisk_vubbs/" target="_blank" rel="noopener" class="ig-channel-link">↗ @theasterisk_vubbs</a>
-      <a href="https://www.instagram.com/truthserum.ai/" target="_blank" rel="noopener" class="ig-channel-link">↗ @truthserum.ai</a>
+      <a href="https://www.instagram.com/theasterisk_vubbs/" target="_blank" rel="noopener noreferrer" class="ig-channel-link">↗ @theasterisk_vubbs</a>
+      <a href="https://www.instagram.com/truthserum.ai/" target="_blank" rel="noopener noreferrer" class="ig-channel-link">↗ @truthserum.ai</a>
     </div>
   </div>
 </section>
 
 <!-- PROOF STRIP -->
-<div class="proof-strip fi">
+<div class="proof-strip fi" role="region" aria-label="Key statistics">
   <div class="proof-inner">
     <div class="proof-text">
       <strong>Built by a team that's been deep in the edit.</strong> The same pipeline powers short-form content that's driven tens of millions of views across major platforms.
     </div>
     <div class="proof-stats">
-      <div>
-        <div class="proof-stat-val">10M+</div>
-        <div class="proof-stat-lbl">views powered</div>
-      </div>
-      <div>
-        <div class="proof-stat-val">3</div>
-        <div class="proof-stat-lbl">live channels</div>
-      </div>
-      <div>
-        <div class="proof-stat-val">&lt;60s</div>
-        <div class="proof-stat-lbl">avg. turnaround</div>
-      </div>
+      <div><div class="proof-stat-val">10M+</div><div class="proof-stat-lbl">views powered</div></div>
+      <div><div class="proof-stat-val">3</div><div class="proof-stat-lbl">live channels</div></div>
+      <div><div class="proof-stat-val">&lt;60s</div><div class="proof-stat-lbl">avg. turnaround</div></div>
     </div>
   </div>
 </div>
 
 <!-- FINAL CTA -->
-<section class="cta-center" id="waitlist">
-  <div class="inner">
-    <div class="eyebrow fi"><span class="eyebrow-line"></span>Early access</div>
-    <h2 class="fi">You're early.<br>That's the point.</h2>
-    <p class="fi">Vubbs is in private beta. Get on the list and you'll be first through the door.</p>
-
-    <div class="fi" id="cf-wrap">
-      <form class="inline-form" id="cta-form" novalidate>
-        <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
-        <button type="submit">Get early access →</button>
-      </form>
-      <p class="form-note" id="cf-note">Zero spam. Just early access when we open.</p>
-      <div class="success-msg" id="cf-ok">✓ You're on the list. We'll reach out when it's ready.</div>
+<section id="waitlist" aria-labelledby="cta-headline">
+  <div class="cta-dark">
+    <div class="cta-dark-inner">
+      <div class="eyebrow fi">Early access</div>
+      <h2 id="cta-headline" class="fi">You're early.<br>That's the point.</h2>
+      <p class="fi">Vubbs is in private beta. Get on the list and you'll be first through the door.</p>
+      <div class="fi" id="cf-wrap">
+        <form class="inline-form" id="cta-form" novalidate aria-label="Early access waitlist">
+          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
+          <button type="submit">Get early access →</button>
+        </form>
+        <p class="form-note" id="cf-note">Zero spam. Just early access when we open.</p>
+        <div class="success-msg" id="cf-ok" role="status">✓ You're on the list. We'll reach out when it's ready.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+</main>
+
 <footer>
   <a href="/" class="logo">vubbs<em>.</em></a>
-  <div class="foot-copy">© 2026 Vubbs · All rights reserved</div>
+  <div class="foot-copy">© 2026 Vubbs · All rights reserved · <a href="https://www.instagram.com/theasterisk_vubbs/" style="color:inherit;text-decoration:none" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 
 <script>
@@ -865,8 +616,7 @@
 
   const states = {
     captions: `
-      <div class="df-bg"></div>
-      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span class="df-header-right">1:24 / 3:42</span></div>
+      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span style="color:rgba(255,255,255,.25)">1:24 / 3:42</span></div>
       <div class="df-body">
         <div class="df-char">JORDAN</div>
         <div class="df-line" id="cw-line">
@@ -875,50 +625,33 @@
           <span class="cw">your</span> <span class="cw">problems</span> <span class="cw">by</span>
           <span class="cw">becoming</span> <span class="cw">rich.</span>
         </div>
-        <div style="margin-top:10px">
-          <div class="df-char">DONNIE</div>
-          <div class="df-line">
-            <span class="cw">How?</span> <span class="cw">When?</span>
-          </div>
-        </div>
+        <div style="margin-top:10px"><div class="df-char">DONNIE</div><div class="df-line"><span class="cw">How?</span> <span class="cw">When?</span></div></div>
       </div>
       <div class="df-capbar"><span id="capbar-text">deal with your problems</span></div>
       <div class="df-prog"><div class="df-prog-fill" style="width:38%"></div></div>`,
-
     trim: `
-      <div class="df-bg"></div>
-      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span class="df-header-right">trim mode</span></div>
+      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span style="color:rgba(255,255,255,.25)">trim mode</span></div>
       <div class="df-body">
         <div class="df-tl">
-          <div class="df-tl-row">
-            <div class="df-tl-lbl">Original</div>
-            <div class="df-tl-track"><div class="df-tl-fill full"></div></div>
-            <div class="df-tl-dur">3:42</div>
-          </div>
-          <div class="df-tl-row">
-            <div class="df-tl-lbl hl">Trimmed</div>
-            <div class="df-tl-track"><div class="df-tl-fill trim"></div></div>
-            <div class="df-tl-dur hl">0:30</div>
-          </div>
+          <div class="df-tl-row"><div class="df-tl-lbl">Original</div><div class="df-tl-track"><div class="df-tl-fill full"></div></div><div class="df-tl-dur">3:42</div></div>
+          <div class="df-tl-row"><div class="df-tl-lbl hl">Trimmed</div><div class="df-tl-track"><div class="df-tl-fill trim"></div></div><div class="df-tl-dur hl">0:30</div></div>
         </div>
         <div style="padding:0 14px;margin-top:4px">
-          <div style="background:rgba(170,255,0,.07);border:1px solid rgba(170,255,0,.18);border-radius:6px;padding:10px 12px">
-            <div style="font-family:var(--ff-mono);font-size:10px;color:var(--lime);margin-bottom:4px">✓ Peak moment identified</div>
-            <div style="font-family:var(--ff-mono);font-size:10px;color:var(--muted)">Highest dialogue density · 1:14 – 1:44</div>
+          <div style="background:rgba(170,255,0,.1);border:1px solid rgba(170,255,0,.2);border-radius:6px;padding:10px 12px">
+            <div style="font-family:var(--ff-mono);font-size:10px;color:#AAFF00;margin-bottom:4px">✓ Peak moment identified</div>
+            <div style="font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.45)">Highest dialogue density · 1:14 – 1:44</div>
           </div>
         </div>
       </div>
       <div class="df-prog"><div class="df-prog-fill" style="width:14%"></div></div>`,
-
     vertical: `
       <div class="df-vert">
         <div class="df-vert-bar"></div>
         <div class="df-vert-mid">
           <div class="df-vert-tag">9:16 · Instagram Ready</div>
           <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:8px">
-            <div style="font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.65);text-align:center;line-height:1.6">
-              <div style="color:rgba(255,255,255,.3);margin-bottom:4px;font-size:9px">JORDAN</div>
-              I want you to deal<br>with your problems<br>by becoming rich.
+            <div style="font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6">
+              <div style="color:rgba(255,255,255,.3);margin-bottom:4px;font-size:9px">JORDAN</div>I want you to deal<br>with your problems<br>by becoming rich.
             </div>
           </div>
           <div class="df-vert-badge">✓ Reframed to 9:16</div>
@@ -927,60 +660,48 @@
         <div class="df-vert-bar"></div>
       </div>
       <div class="df-prog" style="position:absolute;bottom:0"><div class="df-prog-fill" style="width:38%"></div></div>`,
-
     style: `
-      <div class="df-bg" style="background:linear-gradient(150deg,#000 0%,#0a0a0a 100%)"></div>
-      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span class="df-header-right">bold style</span></div>
+      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span style="color:rgba(255,255,255,.25)">bold style</span></div>
       <div class="df-body">
         <div class="df-char">JORDAN</div>
         <div style="font-family:var(--ff-head);font-weight:800;font-size:20px;line-height:1.2;color:#fff;letter-spacing:-0.02em;text-transform:uppercase">
-          I want you to deal with your <span style="color:var(--lime)">PROBLEMS</span>
+          I want you to deal with your <span style="color:#AAFF00">PROBLEMS</span>
         </div>
       </div>
-      <div class="df-capbar">
-        <span style="font-family:var(--ff-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:0.01em">DEAL WITH YOUR PROBLEMS</span>
-      </div>
+      <div class="df-capbar"><span style="font-family:var(--ff-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:0.01em">DEAL WITH YOUR PROBLEMS</span></div>
       <div class="df-prog"><div class="df-prog-fill" style="width:52%"></div></div>`
   };
 
-  const statusLabels = {
-    captions: 'captions added',
-    trim: '30s clip ready',
-    vertical: '9:16 formatted',
-    style: 'style applied'
-  };
-
-  let cwIdx = 0, cwTimer = null;
+  const statusLabels = { captions:'captions added', trim:'30s clip ready', vertical:'9:16 formatted', style:'style applied' };
+  let cwIdx=0, cwTimer=null;
 
   function animateCaptions() {
     const words = demoFilm.querySelectorAll('#cw-line .cw');
     const capbar = demoFilm.querySelector('#capbar-text');
-    const capWords = ['I want you', 'to deal', 'with your', 'problems', 'by becoming', 'rich.'];
+    const capWords = ['I want you','to deal','with your','problems','by becoming','rich.'];
     if (!words.length) return;
     cwIdx = 0;
     if (cwTimer) clearInterval(cwTimer);
     cwTimer = setInterval(() => {
-      words.forEach((w, i) => { w.className = 'cw' + (i < cwIdx ? ' g' : ''); });
+      words.forEach((w,i) => { w.className='cw'+(i<cwIdx?' g':''); });
       if (cwIdx < words.length) {
         words[cwIdx].className = 'cw a';
         if (capbar) capbar.textContent = capWords[Math.min(cwIdx, capWords.length-1)];
       }
       cwIdx++;
-      if (cwIdx > words.length) { cwIdx = 0; }
+      if (cwIdx > words.length) cwIdx = 0;
     }, 380);
   }
 
   function applyEdit(type) {
-    if (cwTimer) { clearInterval(cwTimer); cwTimer = null; }
-    demoFilm.style.opacity = '0';
-    demoFilm.style.transform = 'scale(0.98)';
-    demoStatus.textContent = 'processing…';
+    if (cwTimer) { clearInterval(cwTimer); cwTimer=null; }
+    demoFilm.style.opacity='0'; demoFilm.style.transform='scale(0.98)';
+    demoStatus.textContent='processing…';
     setTimeout(() => {
-      demoFilm.innerHTML = states[type] || states.captions;
-      demoFilm.style.opacity = '1';
-      demoFilm.style.transform = 'scale(1)';
-      demoStatus.textContent = statusLabels[type] || 'ready';
-      if (type === 'captions') animateCaptions();
+      demoFilm.innerHTML = states[type]||states.captions;
+      demoFilm.style.opacity='1'; demoFilm.style.transform='scale(1)';
+      demoStatus.textContent = statusLabels[type]||'ready';
+      if (type==='captions') animateCaptions();
     }, 200);
   }
 
@@ -992,28 +713,31 @@
     });
   });
 
-  // Boot with captions state
-  demoFilm.style.transition = 'opacity .2s ease, transform .2s ease';
+  demoFilm.style.transition='opacity .2s ease, transform .2s ease';
   applyEdit('captions');
+
+  // ── DRAG-TO-SCROLL ──────────────────────────────────────
+  const row = document.getElementById('ig-row');
+  if (row) {
+    let isDown=false, startX, scrollLeft;
+    row.addEventListener('mousedown', e => { isDown=true; startX=e.pageX-row.offsetLeft; scrollLeft=row.scrollLeft; });
+    row.addEventListener('mouseleave', ()=>isDown=false);
+    row.addEventListener('mouseup', ()=>isDown=false);
+    row.addEventListener('mousemove', e => { if(!isDown)return; e.preventDefault(); row.scrollLeft=scrollLeft-(e.pageX-row.offsetLeft-startX)*1.4; });
+  }
 
   // ── SCROLL FADE-IN ──────────────────────────────────────
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
-  }, { threshold: 0.14 });
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
   document.querySelectorAll('.fi').forEach(el => obs.observe(el));
 
-  // ── WEB3FORMS SUBMIT ────────────────────────────────────
-  async function submit(email) {
+  // ── FORMS ───────────────────────────────────────────────
+  async function submitForm(email) {
     try {
       const r = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: '0fa80f2a-9db5-4902-aebf-74da4351d2de',
-          email,
-          subject: 'Vubbs Waitlist Signup',
-          from_name: 'Vubbs Waitlist'
-        })
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ access_key:'0fa80f2a-9db5-4902-aebf-74da4351d2de', email, subject:'Vubbs Waitlist Signup', from_name:'Vubbs Waitlist' })
       });
       return r.ok;
     } catch { return false; }
@@ -1025,45 +749,19 @@
       const inp = this.querySelector('input[type=email]');
       if (!inp.value) return;
       const btn = this.querySelector('button');
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-      const ok = await submit(inp.value);
+      btn.textContent='Sending…'; btn.disabled=true;
+      const ok = await submitForm(inp.value);
       if (ok) {
-        this.style.display = 'none';
-        const note = document.getElementById(noteId);
-        if (note) note.style.display = 'none';
-        document.getElementById(okId).style.display = 'block';
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'waitlist_signup', { event_category: 'lead', event_label: label });
-        }
-      } else {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      }
+        this.style.display='none';
+        const note=document.getElementById(noteId); if(note) note.style.display='none';
+        document.getElementById(okId).style.display='block';
+        if(typeof gtag!=='undefined') gtag('event','waitlist_signup',{event_category:'lead',event_label:label});
+      } else { btn.textContent='Try again'; btn.disabled=false; }
     });
   }
 
-  // ── DRAG-TO-SCROLL CAROUSEL ─────────────────────────────
-  const row = document.getElementById('ig-row');
-  if (row) {
-    let isDown = false, startX, scrollLeft;
-    row.addEventListener('mousedown', e => {
-      isDown = true;
-      startX = e.pageX - row.offsetLeft;
-      scrollLeft = row.scrollLeft;
-    });
-    row.addEventListener('mouseleave', () => isDown = false);
-    row.addEventListener('mouseup', () => isDown = false);
-    row.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - row.offsetLeft;
-      row.scrollLeft = scrollLeft - (x - startX) * 1.4;
-    });
-  }
-
-  bindForm('hero-form', 'hf-note', 'hf-ok', 'hero');
-  bindForm('cta-form',  'cf-note', 'cf-ok', 'cta');
+  bindForm('hero-form','hf-note','hf-ok','hero');
+  bindForm('cta-form','cf-note','cf-ok','cta');
 </script>
 
 </body>
