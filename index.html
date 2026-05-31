@@ -97,9 +97,9 @@
     /* Pills stack upward like chat — column-reverse means new pill appears at bottom, old ones rise */
     .cd-pills{position:absolute;bottom:20px;left:14px;right:14px;display:flex;flex-direction:column-reverse;gap:10px;align-items:flex-end;z-index:10;}
     @keyframes pill-up{0%{opacity:0;transform:translateY(20px) scale(0.93);}60%{transform:translateY(-3px) scale(1.01);}100%{opacity:1;transform:translateY(0) scale(1);}}
-    .cd-pill{background:rgba(18,18,30,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:rgba(255,255,255,.94);font-family:var(--ff-body);font-size:16px;font-weight:500;padding:13px 24px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 24px rgba(0,0,0,.35);opacity:0;}
+    .cd-pill{background:rgba(18,18,30,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:rgba(255,255,255,.94);font-family:var(--ff-body);font-size:18px;font-weight:500;padding:14px 26px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 24px rgba(0,0,0,.35);opacity:0;}
     .cd-pill.show{animation:pill-up .42s cubic-bezier(.22,.68,0,1.2) forwards;}
-    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;font-size:16px;}
+    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;font-size:18px;}
     .cd-applying-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;animation:apulse 1s ease-in-out infinite;}
     @keyframes apulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
 
@@ -189,10 +189,9 @@
     .fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
     .fi.vis{opacity:1;transform:translateY(0);}
 
-    /* ── DESKTOP: limit demo width ── */
+    /* ── DESKTOP: fix card height ── */
     @media (min-width:861px) {
-      .cd-card{max-height:480px;}
-      .cd-video-area{aspect-ratio:unset;height:100%;}
+      .cd-video-area{aspect-ratio:unset;height:380px;}
     }
 
     /* ── MOBILE ── */
@@ -204,10 +203,9 @@
       .chat-demo{width:100%;}
       .cd-card{border-radius:18px;}
       .cd-video-area{aspect-ratio:3/4;}
-      .cd-pill{font-size:15px;padding:12px 20px;}
-      .cd-bar{padding:14px 14px 14px 20px;}
-      .cd-bar-text{font-size:16px;}
-      .cd-bar-btn{width:42px;height:42px;}
+      .cd-bar{padding:16px 16px 16px 22px;}
+      .cd-bar-text{font-size:17px;}
+      .cd-bar-btn{width:46px;height:46px;font-size:20px;}
 
       .steps{grid-template-columns:1fr;gap:2px;}
       .step:first-child{border-radius:var(--r) var(--r) 0 0;}
@@ -232,9 +230,7 @@
     @media (max-width:480px) {
       .hero h1{font-size:36px;}
       .proof-stats{flex-wrap:wrap;gap:20px;}
-      .cd-pill{font-size:14px;padding:11px 18px;}
-      .cd-pills{left:10px;right:10px;bottom:16px;gap:8px;}
-      .cd-bar-text{font-size:15px;}
+      .cd-pills{left:10px;right:10px;bottom:16px;gap:10px;}
     }
   </style>
 </head>
