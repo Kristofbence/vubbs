@@ -85,30 +85,27 @@
 
     /* ── CHAT DEMO ── */
     .chat-demo{position:relative;}
-
-    .cd-card{background:#111118;border-radius:22px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.16),0 4px 16px rgba(0,0,0,0.08);}
-
-    .cd-video-area{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
+    .cd-outer{position:relative;}
+    .cd-card{background:#111118;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.22),0 8px 24px rgba(0,0,0,0.12);transition:transform .5s ease;}
+    .cd-video-area{position:relative;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
     .cd-video-area > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
     .cd-fallback{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;}
     .cd-fallback span{font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:0.1em;text-align:center;}
-    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(0deg,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.4) 50%,transparent 100%);z-index:2;pointer-events:none;}
-
-    /* Pills stack upward like chat — column-reverse means new pill appears at bottom, old ones rise */
-    .cd-pills{position:absolute;bottom:20px;left:14px;right:14px;display:flex;flex-direction:column-reverse;gap:10px;align-items:flex-end;z-index:10;}
-    @keyframes pill-up{0%{opacity:0;transform:translateY(20px) scale(0.93);}60%{transform:translateY(-3px) scale(1.01);}100%{opacity:1;transform:translateY(0) scale(1);}}
-    .cd-pill{background:rgba(18,18,30,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:rgba(255,255,255,.94);font-family:var(--ff-body);font-size:18px;font-weight:500;padding:14px 26px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.12);box-shadow:0 6px 24px rgba(0,0,0,.35);opacity:0;}
-    .cd-pill.show{animation:pill-up .42s cubic-bezier(.22,.68,0,1.2) forwards;}
-    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;font-size:18px;}
-    .cd-applying-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;animation:apulse 1s ease-in-out infinite;}
-    @keyframes apulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
-
-    /* Chat bar — bigger, more prominent */
-    .cd-bar{display:flex;align-items:center;gap:14px;background:#0e0e18;padding:16px 16px 16px 24px;border-top:1px solid rgba(255,255,255,.07);}
+    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:65%;background:linear-gradient(0deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.45) 45%,transparent 100%);z-index:2;pointer-events:none;}
+    /* Pills: outside card, float over right edge */
+    .cd-pills{position:absolute;right:-18px;bottom:88px;display:flex;flex-direction:column-reverse;gap:11px;align-items:flex-end;z-index:30;}
+    @keyframes pill-up{0%{opacity:0;transform:translateY(24px) scale(0.88);}55%{transform:translateY(-5px) scale(1.03);}100%{opacity:1;transform:translateY(0) scale(1);}}
+    .cd-pill{background:rgba(12,12,22,0.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:rgba(255,255,255,.95);font-family:var(--ff-body);font-size:18px;font-weight:500;padding:14px 26px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 40px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07);opacity:0;}
+    .cd-pill.show{animation:pill-up .46s cubic-bezier(.22,.68,0,1.18) forwards;}
+    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;font-size:18px;box-shadow:0 8px 32px rgba(107,191,0,.3),0 2px 8px rgba(0,0,0,.2);}
+    .cd-applying-dot{width:9px;height:9px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;}
+    @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(107,191,0,0);opacity:1;}50%{box-shadow:0 0 10px 3px rgba(107,191,0,.7),0 0 22px 6px rgba(107,191,0,.3);opacity:.85;}}
+    .cd-applying-dot{animation:glow-pulse .9s ease-in-out infinite;}
+    .cd-bar{display:flex;align-items:center;gap:14px;background:#0d0d17;padding:16px 16px 16px 24px;border-top:1px solid rgba(255,255,255,.07);}
     .cd-bar-text{font-family:var(--ff-body);font-size:17px;color:rgba(255,255,255,.35);flex:1;min-width:0;}
     .cd-bar-text.typing{color:rgba(255,255,255,.9);}
-    .cd-bar-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:19px;flex-shrink:0;transition:background .2s,color .2s;}
-    .cd-bar-btn.ready{background:var(--lime-dk);color:#fff;}
+    .cd-bar-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:19px;flex-shrink:0;transition:background .2s,color .2s,box-shadow .2s;}
+    .cd-bar-btn.ready{background:var(--lime-dk);color:#fff;box-shadow:0 0 16px rgba(107,191,0,.5);}
 
     /* ── SECTIONS ── */
     section{padding:88px 5vw;}
@@ -189,9 +186,11 @@
     .fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
     .fi.vis{opacity:1;transform:translateY(0);}
 
-    /* ── DESKTOP: fix card height ── */
+    /* ── DESKTOP: 9:16 card, 3D tilt, pills float outside ── */
     @media (min-width:861px) {
-      .cd-video-area{aspect-ratio:unset;height:380px;}
+      .chat-demo{max-width:290px;margin:0 auto;}
+      .cd-card{transform:perspective(1000px) rotateY(-6deg) rotateX(2deg);}
+      .cd-card:hover{transform:perspective(1000px) rotateY(-2deg) rotateX(0.5deg);}
     }
 
     /* ── MOBILE ── */
@@ -201,11 +200,9 @@
       .hero-sub{max-width:100%;}
 
       .chat-demo{width:100%;}
-      .cd-card{border-radius:18px;}
-      .cd-video-area{aspect-ratio:3/4;}
-      .cd-bar{padding:16px 16px 16px 22px;}
-      .cd-bar-text{font-size:17px;}
-      .cd-bar-btn{width:46px;height:46px;font-size:20px;}
+      .cd-outer{width:100%;}
+      .cd-card{border-radius:18px;transform:none !important;}
+      .cd-pills{right:10px;bottom:80px;}
 
       .steps{grid-template-columns:1fr;gap:2px;}
       .step:first-child{border-radius:var(--r) var(--r) 0 0;}
@@ -266,19 +263,22 @@
 
     <!-- Chat-to-edit demo -->
     <div class="chat-demo" aria-hidden="true">
-      <div class="cd-card">
-        <div class="cd-video-area">
-          <img src="scene.jpg" alt=""
-            onload="var f=document.getElementById('cd-fb');if(f)f.style.display='none';"
-            onerror="this.style.display='none'">
-          <div id="cd-fb" class="cd-fallback"><span>YOUR VIDEO<br>HERE</span></div>
-          <div class="cd-gradient"></div>
-          <div class="cd-pills" id="cd-pills"></div>
+      <div class="cd-outer">
+        <div class="cd-card">
+          <div class="cd-video-area">
+            <img src="scene.jpg" alt=""
+              onload="var f=document.getElementById('cd-fb');if(f)f.style.display='none';"
+              onerror="this.style.display='none'">
+            <div id="cd-fb" class="cd-fallback"><span>YOUR VIDEO<br>HERE</span></div>
+            <div class="cd-gradient"></div>
+          </div>
+          <div class="cd-bar">
+            <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
+            <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
+          </div>
         </div>
-        <div class="cd-bar">
-          <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
-          <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
-        </div>
+        <!-- Pills live outside the card so they can float over its edge -->
+        <div class="cd-pills" id="cd-pills"></div>
       </div>
     </div>
 
@@ -408,10 +408,14 @@
   const barBtn   = document.getElementById('cd-bar-btn');
 
   const seqs = [
-    { cmd:'Add word captions',    done:['Add word captions',   'Sync to audio']         },
-    { cmd:'Trim to 30 seconds',   done:['Trim to 30 seconds',  'Keep best moments']     },
-    { cmd:'Make it vertical',     done:['Make it vertical',    'Reframe to face']       },
-    { cmd:'Change caption style', done:['Change caption style','Apply bold template']   },
+    { cmd:'Add word captions',      done:['Add word captions',    'Sync to audio']         },
+    { cmd:'Trim to 30 seconds',     done:['Trim to 30 seconds',   'Find best moment']      },
+    { cmd:'Make it vertical 9:16',  done:['Crop to 9:16',         'Auto-frame to face']    },
+    { cmd:'Change caption style',   done:['Apply bold template',  'Match brand colors']    },
+    { cmd:'Add intro title card',   done:['Generate title',       'Fade in 0.5s']          },
+    { cmd:'Color grade warm',       done:['Warm color grade',     'Boost contrast']        },
+    { cmd:'Speed up to 1.5x',       done:['Speed up 1.5×',        'Smooth audio pitch']    },
+    { cmd:'Translate to Spanish',   done:['Auto-translate subs',  'Sync to timing']        },
   ];
 
   let si=0;
@@ -420,9 +424,9 @@
   async function typeCmd(txt) {
     barText.textContent='';
     barText.classList.add('typing');
-    for(const ch of txt){barText.textContent+=ch;await sleep(40);}
+    for(const ch of txt){barText.textContent+=ch;await sleep(36);}
     barBtn.classList.add('ready');
-    await sleep(350);
+    await sleep(300);
     barBtn.classList.remove('ready');
   }
 
@@ -439,20 +443,26 @@
   async function runSeq(){
     const s=seqs[si++%seqs.length];
     await typeCmd(s.cmd);
-    await sleep(180);
-    [...pillsEl.children].forEach(p=>{p.style.opacity='0';p.style.transform='translateX(16px)';});
-    await sleep(300);
+    await sleep(160);
+    // fade out old pills
+    [...pillsEl.children].forEach(p=>{
+      p.style.transition='opacity .25s ease, transform .25s ease';
+      p.style.opacity='0';p.style.transform='translateY(-10px)';
+    });
+    await sleep(260);
     pillsEl.innerHTML='';
+    // add done pills
     for(const t of s.done){
-      const p=pill(t,false);pillsEl.appendChild(p);await sleep(40);p.classList.add('show');await sleep(600);
+      const p=pill(t,false);pillsEl.appendChild(p);await sleep(30);p.classList.add('show');await sleep(520);
     }
-    const ap=pill('Applying edits...',true);pillsEl.appendChild(ap);await sleep(40);ap.classList.add('show');
+    // applying pill
+    const ap=pill('Applying edits...',true);pillsEl.appendChild(ap);await sleep(30);ap.classList.add('show');
     barText.textContent='Chat to edit';barText.classList.remove('typing');
-    await sleep(2800);
+    await sleep(2400);
     runSeq();
   }
 
-  if(pillsEl) setTimeout(runSeq,700);
+  if(pillsEl) setTimeout(runSeq,600);
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
