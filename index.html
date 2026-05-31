@@ -494,8 +494,73 @@
     }
     .fi.vis { opacity: 1; transform: translateY(0); }
 
+    /* ── SHOWCASE ── */
+    .showcase-bg {
+      background: var(--s1);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .ig-card {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      background: var(--s2);
+      border: 1px solid var(--border);
+    }
+
+    .ig-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      z-index: 20;
+      background: var(--lime);
+      color: #060610;
+      font-family: var(--ff-head);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .ig-card iframe {
+      display: block;
+      width: 100%;
+      height: 420px;
+      border: none;
+    }
+
+    .ig-channels {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ig-channel-link {
+      font-family: var(--ff-mono);
+      font-size: 13px;
+      color: var(--lime);
+      text-decoration: none;
+      border: 1px solid rgba(170,255,0,.25);
+      padding: 8px 16px;
+      border-radius: var(--r-sm);
+      transition: background .2s;
+    }
+    .ig-channel-link:hover { background: var(--lime-dim); }
+
     /* ── MOBILE ── */
     @media (max-width: 780px) {
+      .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .ig-card iframe { height: 360px; }
+    }
       .hero-grid { grid-template-columns: 1fr; gap: 36px; }
       .hero { padding: 88px 5vw 60px; }
       .chat-wrap { order: -1; }
@@ -632,6 +697,83 @@
         <p>Word-synced captions, not vibe-synced. Every word lands exactly when it's spoken — styled to your template, ready to post.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase-bg">
+  <div class="inner">
+    <div class="eyebrow fi"><span class="eyebrow-line"></span>The work</div>
+    <h2 class="fi">Real edits.<br>Real numbers.</h2>
+
+    <div class="ig-grid">
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DYvCGgkClU3/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DYsXI_WEf76/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DZARfDTKFhw/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DY_xg0dqdiu/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DY7z6L5qDlB/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DY4nrPwKjkF/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DY10ilAKwcG/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DYzqA0UCTR0/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DYwwkVUjABa/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DYo68JEHT5f/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DYmqnWaAH1m/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="ig-card fi">
+        <div class="ig-badge">— views</div>
+        <iframe src="https://www.instagram.com/p/DY2E8Rrqkmk/embed/" scrolling="no" allowtransparency="true"></iframe>
+      </div>
+
+    </div>
+
+    <div class="ig-channels fi">
+      <a href="https://www.instagram.com/theasterisk_vubbs/" target="_blank" rel="noopener" class="ig-channel-link">↗ @theasterisk_vubbs</a>
+      <a href="https://www.instagram.com/truthserum.ai/" target="_blank" rel="noopener" class="ig-channel-link">↗ @truthserum.ai</a>
     </div>
   </div>
 </section>
