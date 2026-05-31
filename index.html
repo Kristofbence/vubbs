@@ -86,26 +86,27 @@
     /* ── CHAT DEMO ── */
     .chat-demo{position:relative;}
     .cd-outer{position:relative;}
-    .cd-card{background:#111118;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.22),0 8px 24px rgba(0,0,0,0.12);transition:transform .5s ease;}
-    .cd-video-area{position:relative;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
+    /* overflow:visible so pills float over the bar */
+    .cd-card{position:relative;border-radius:22px;overflow:visible;box-shadow:0 32px 80px rgba(0,0,0,0.22),0 8px 24px rgba(0,0,0,0.12);transition:transform .5s ease;}
+    /* video clips to top corners independently */
+    .cd-video-area{position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:22px 22px 0 0;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
     .cd-video-area > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
     .cd-fallback{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;}
     .cd-fallback span{font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:0.1em;text-align:center;}
-    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:65%;background:linear-gradient(0deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.45) 45%,transparent 100%);z-index:2;pointer-events:none;}
-    /* Pills: outside card, float over right edge */
-    .cd-pills{position:absolute;right:-18px;bottom:88px;display:flex;flex-direction:column-reverse;gap:11px;align-items:flex-end;z-index:30;}
-    @keyframes pill-up{0%{opacity:0;transform:translateY(24px) scale(0.88);}55%{transform:translateY(-5px) scale(1.03);}100%{opacity:1;transform:translateY(0) scale(1);}}
-    .cd-pill{background:rgba(12,12,22,0.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:rgba(255,255,255,.95);font-family:var(--ff-body);font-size:18px;font-weight:500;padding:14px 26px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 40px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07);opacity:0;}
-    .cd-pill.show{animation:pill-up .46s cubic-bezier(.22,.68,0,1.18) forwards;}
-    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;font-size:18px;box-shadow:0 8px 32px rgba(107,191,0,.3),0 2px 8px rgba(0,0,0,.2);}
-    .cd-applying-dot{width:9px;height:9px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;}
-    @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(107,191,0,0);opacity:1;}50%{box-shadow:0 0 10px 3px rgba(107,191,0,.7),0 0 22px 6px rgba(107,191,0,.3);opacity:.85;}}
-    .cd-applying-dot{animation:glow-pulse .9s ease-in-out infinite;}
-    .cd-bar{display:flex;align-items:center;gap:14px;background:#0d0d17;padding:16px 16px 16px 24px;border-top:1px solid rgba(255,255,255,.07);}
+    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(0deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.4) 50%,transparent 100%);z-index:2;pointer-events:none;}
+    /* bar clips to bottom corners, stays below pills */
+    .cd-bar{position:relative;z-index:1;display:flex;align-items:center;gap:14px;background:#0d0d17;border-radius:0 0 22px 22px;padding:16px 16px 16px 24px;}
     .cd-bar-text{font-family:var(--ff-body);font-size:17px;color:rgba(255,255,255,.35);flex:1;min-width:0;}
     .cd-bar-text.typing{color:rgba(255,255,255,.9);}
     .cd-bar-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:19px;flex-shrink:0;transition:background .2s,color .2s,box-shadow .2s;}
     .cd-bar-btn.ready{background:var(--lime-dk);color:#fff;box-shadow:0 0 16px rgba(107,191,0,.5);}
+    /* pills container: no flex, no reflow — each pill positioned by JS */
+    .cd-pills{position:absolute;bottom:20px;left:14px;right:14px;z-index:30;pointer-events:none;height:0;overflow:visible;}
+    .cd-pill{position:absolute;right:0;background:rgba(12,12,22,0.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:rgba(255,255,255,.95);font-family:var(--ff-body);font-size:18px;font-weight:500;padding:14px 26px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 40px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07);}
+    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(107,191,0,.3),0 2px 8px rgba(0,0,0,.2);}
+    .cd-applying-dot{width:9px;height:9px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;}
+    @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(107,191,0,0);opacity:1;}50%{box-shadow:0 0 10px 3px rgba(107,191,0,.7),0 0 22px 6px rgba(107,191,0,.3);opacity:.85;}}
+    .cd-applying-dot{animation:glow-pulse .9s ease-in-out infinite;}
 
     /* ── SECTIONS ── */
     section{padding:88px 5vw;}
@@ -276,9 +277,9 @@
             <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
             <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
           </div>
+          <!-- Pills float over the bar via z-index -->
+          <div class="cd-pills" id="cd-pills"></div>
         </div>
-        <!-- Pills live outside the card so they can float over its edge -->
-        <div class="cd-pills" id="cd-pills"></div>
       </div>
     </div>
 
@@ -403,66 +404,95 @@
 
 <script>
   // ── CHAT DEMO ───────────────────────────────────────────
-  const pillsEl  = document.getElementById('cd-pills');
-  const barText  = document.getElementById('cd-bar-text');
-  const barBtn   = document.getElementById('cd-bar-btn');
+  const pillsEl = document.getElementById('cd-pills');
+  const barText = document.getElementById('cd-bar-text');
+  const barBtn  = document.getElementById('cd-bar-btn');
 
   const seqs = [
-    { cmd:'Add word captions',      done:['Add word captions',    'Sync to audio']         },
-    { cmd:'Trim to 30 seconds',     done:['Trim to 30 seconds',   'Find best moment']      },
-    { cmd:'Make it vertical 9:16',  done:['Crop to 9:16',         'Auto-frame to face']    },
-    { cmd:'Change caption style',   done:['Apply bold template',  'Match brand colors']    },
-    { cmd:'Add intro title card',   done:['Generate title',       'Fade in 0.5s']          },
-    { cmd:'Color grade warm',       done:['Warm color grade',     'Boost contrast']        },
-    { cmd:'Speed up to 1.5x',       done:['Speed up 1.5×',        'Smooth audio pitch']    },
-    { cmd:'Translate to Spanish',   done:['Auto-translate subs',  'Sync to timing']        },
+    { cmd:'Add word captions',      done:['Add word captions',    'Sync to audio']       },
+    { cmd:'Trim to 30 seconds',     done:['Trim to 30 seconds',   'Find best moment']    },
+    { cmd:'Make it vertical 9:16',  done:['Crop to 9:16',         'Auto-frame to face']  },
+    { cmd:'Change caption style',   done:['Apply bold template',  'Match brand colors']  },
+    { cmd:'Add intro title card',   done:['Generate title',       'Fade in 0.5s']        },
+    { cmd:'Color grade warm',       done:['Warm color grade',     'Boost contrast']      },
+    { cmd:'Speed up to 1.5x',       done:['Speed up 1.5×',        'Smooth audio pitch']  },
+    { cmd:'Translate to Spanish',   done:['Auto-translate subs',  'Sync to timing']      },
   ];
 
-  let si=0;
-  const sleep = ms => new Promise(r=>setTimeout(r,ms));
+  let si = 0;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const PILL_GAP = 12;
+  let stack = []; // {el, bottom}
 
-  async function typeCmd(txt) {
-    barText.textContent='';
-    barText.classList.add('typing');
-    for(const ch of txt){barText.textContent+=ch;await sleep(36);}
-    barBtn.classList.add('ready');
-    await sleep(300);
-    barBtn.classList.remove('ready');
-  }
-
-  function pill(txt,isApplying){
-    const p=document.createElement('div');
-    p.className='cd-pill'+(isApplying?' applying':'');
-    if(isApplying){
-      const d=document.createElement('div');d.className='cd-applying-dot';p.appendChild(d);
+  function makePillEl(txt, isApplying) {
+    const p = document.createElement('div');
+    p.className = 'cd-pill' + (isApplying ? ' applying' : '');
+    if (isApplying) {
+      const d = document.createElement('div'); d.className = 'cd-applying-dot'; p.appendChild(d);
       p.appendChild(document.createTextNode(txt));
-    } else {p.textContent=txt;}
+    } else { p.textContent = txt; }
     return p;
   }
 
-  async function runSeq(){
-    const s=seqs[si++%seqs.length];
-    await typeCmd(s.cmd);
-    await sleep(160);
-    // fade out old pills
-    [...pillsEl.children].forEach(p=>{
-      p.style.transition='opacity .25s ease, transform .25s ease';
-      p.style.opacity='0';p.style.transform='translateY(-10px)';
+  async function pushPill(txt, isApplying) {
+    const p = makePillEl(txt, isApplying);
+    // start hidden at bottom
+    p.style.bottom = '0px';
+    p.style.opacity = '0';
+    p.style.transform = 'translateY(16px) scale(0.92)';
+    p.style.transition = 'none';
+    pillsEl.appendChild(p);
+    await sleep(20);
+    const h = p.offsetHeight;
+    const startBottom = 0;
+    // shift existing pills up smoothly
+    stack.forEach(item => {
+      item.bottom += h + PILL_GAP;
+      item.el.style.transition = 'bottom 0.38s cubic-bezier(.22,.68,0,1.1)';
+      item.el.style.bottom = item.bottom + 'px';
     });
-    await sleep(260);
-    pillsEl.innerHTML='';
-    // add done pills
-    for(const t of s.done){
-      const p=pill(t,false);pillsEl.appendChild(p);await sleep(30);p.classList.add('show');await sleep(520);
-    }
-    // applying pill
-    const ap=pill('Applying edits...',true);pillsEl.appendChild(ap);await sleep(30);ap.classList.add('show');
-    barText.textContent='Chat to edit';barText.classList.remove('typing');
+    stack.push({ el: p, bottom: startBottom });
+    // animate new pill in
+    await sleep(16);
+    p.style.transition = 'opacity 0.38s ease, transform 0.42s cubic-bezier(.22,.68,0,1.18)';
+    p.style.opacity = '1';
+    p.style.transform = 'translateY(0) scale(1)';
+  }
+
+  async function clearStack() {
+    const old = [...stack]; stack = [];
+    old.forEach(item => {
+      item.el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+      item.el.style.opacity = '0';
+      item.el.style.transform = 'translateY(-10px) scale(0.95)';
+    });
+    await sleep(220);
+    pillsEl.innerHTML = '';
+  }
+
+  async function typeCmd(txt) {
+    barText.textContent = '';
+    barText.classList.add('typing');
+    for (const ch of txt) { barText.textContent += ch; await sleep(36); }
+    barBtn.classList.add('ready');
+    await sleep(280);
+    barBtn.classList.remove('ready');
+  }
+
+  async function runSeq() {
+    const s = seqs[si++ % seqs.length];
+    await typeCmd(s.cmd);
+    await sleep(150);
+    await clearStack();
+    for (const t of s.done) { await pushPill(t, false); await sleep(500); }
+    await pushPill('Applying edits...', true);
+    barText.textContent = 'Chat to edit';
+    barText.classList.remove('typing');
     await sleep(2400);
     runSeq();
   }
 
-  if(pillsEl) setTimeout(runSeq,600);
+  if (pillsEl) setTimeout(runSeq, 600);
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
