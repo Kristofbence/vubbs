@@ -86,27 +86,50 @@
     /* ── CHAT DEMO ── */
     .chat-demo{position:relative;}
     .cd-outer{position:relative;}
-    /* overflow:visible so pills float over the bar */
-    .cd-card{position:relative;border-radius:22px;overflow:visible;box-shadow:0 32px 80px rgba(0,0,0,0.22),0 8px 24px rgba(0,0,0,0.12);transition:transform .5s ease;}
-    /* video clips to top corners independently */
-    .cd-video-area{position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:22px 22px 0 0;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
+    /* card is fully stable — never changes size */
+    .cd-card{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 28px 72px rgba(0,0,0,0.2),0 6px 20px rgba(0,0,0,0.1);transition:transform .5s ease;}
+    .cd-video-area{position:relative;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(145deg,#1a0e05 0%,#0d0d22 55%,#0a1a0a 100%);}
     .cd-video-area > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
     .cd-fallback{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;}
     .cd-fallback span{font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:0.1em;text-align:center;}
-    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(0deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.4) 50%,transparent 100%);z-index:2;pointer-events:none;}
-    /* bar clips to bottom corners, stays below pills */
-    .cd-bar{position:relative;z-index:1;display:flex;align-items:center;gap:14px;background:#0d0d17;border-radius:0 0 22px 22px;padding:16px 16px 16px 24px;}
-    .cd-bar-text{font-family:var(--ff-body);font-size:17px;color:rgba(255,255,255,.35);flex:1;min-width:0;}
-    .cd-bar-text.typing{color:rgba(255,255,255,.9);}
-    .cd-bar-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:19px;flex-shrink:0;transition:background .2s,color .2s,box-shadow .2s;}
-    .cd-bar-btn.ready{background:var(--lime-dk);color:#fff;box-shadow:0 0 16px rgba(107,191,0,.5);}
-    /* pills container: no flex, no reflow — each pill positioned by JS */
-    .cd-pills{position:absolute;bottom:20px;left:14px;right:14px;z-index:30;pointer-events:none;height:0;overflow:visible;}
-    .cd-pill{position:absolute;right:0;background:rgba(12,12,22,0.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:rgba(255,255,255,.95);font-family:var(--ff-body);font-size:18px;font-weight:500;padding:14px 26px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 40px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07);}
-    .cd-pill.applying{background:rgba(255,255,255,.97);color:var(--lime-dk);border-color:var(--lime-brd);font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(107,191,0,.3),0 2px 8px rgba(0,0,0,.2);}
-    .cd-applying-dot{width:9px;height:9px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;}
-    @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(107,191,0,0);opacity:1;}50%{box-shadow:0 0 10px 3px rgba(107,191,0,.7),0 0 22px 6px rgba(107,191,0,.3);opacity:.85;}}
+    /* bottom gradient for readability */
+    .cd-gradient{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(0deg,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.3) 55%,transparent 100%);z-index:2;pointer-events:none;}
+    /* top fade — pills dissolve as they rise */
+    .cd-top-fade{position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(7,7,16,0.85) 0%,transparent 100%);z-index:6;pointer-events:none;}
+    /* pills container fills video, clips floaters at top and bottom */
+    .cd-pills{position:absolute;inset:0;overflow:hidden;z-index:10;pointer-events:none;}
+    /* each pill spawned by JS, floats up via keyframe */
+    @keyframes float-up{
+      0%  {opacity:0;transform:translateY(0);}
+      10% {opacity:1;transform:translateY(-18px);}
+      72% {opacity:1;}
+      100%{opacity:0;transform:translateY(-620px);}
+    }
+    .cd-pill{
+      position:absolute;right:14px;bottom:-4px;
+      background:rgba(12,12,22,0.9);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      color:rgba(255,255,255,.95);
+      font-family:var(--ff-body);font-size:17px;font-weight:500;
+      padding:13px 24px;border-radius:100px;white-space:nowrap;
+      border:1px solid rgba(255,255,255,.13);
+      box-shadow:0 8px 32px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.07);
+    }
+    .cd-pill.applying{
+      background:rgba(255,255,255,.97);color:var(--lime-dk);
+      border-color:var(--lime-brd);font-weight:700;
+      display:flex;align-items:center;gap:9px;
+      box-shadow:0 8px 28px rgba(107,191,0,.28),0 2px 8px rgba(0,0,0,.2);
+    }
+    .cd-applying-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dk);flex-shrink:0;}
+    @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(107,191,0,0);}50%{box-shadow:0 0 10px 3px rgba(107,191,0,.7),0 0 20px 5px rgba(107,191,0,.3);}}
     .cd-applying-dot{animation:glow-pulse .9s ease-in-out infinite;}
+    /* chat bar — static, always visible */
+    .cd-bar{display:flex;align-items:center;gap:14px;background:#0d0d17;padding:16px 16px 16px 24px;}
+    .cd-bar-text{font-family:var(--ff-body);font-size:17px;color:rgba(255,255,255,.35);flex:1;min-width:0;transition:color .2s;}
+    .cd-bar-text.typing{color:rgba(255,255,255,.88);}
+    .cd-bar-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:19px;flex-shrink:0;transition:background .2s,color .2s,box-shadow .2s;}
+    .cd-bar-btn.ready{background:var(--lime-dk);color:#fff;box-shadow:0 0 14px rgba(107,191,0,.5);}
 
     /* ── SECTIONS ── */
     section{padding:88px 5vw;}
@@ -272,13 +295,14 @@
               onerror="this.style.display='none'">
             <div id="cd-fb" class="cd-fallback"><span>YOUR VIDEO<br>HERE</span></div>
             <div class="cd-gradient"></div>
+            <div class="cd-top-fade"></div>
+            <!-- Pills float up through the video and dissolve -->
+            <div class="cd-pills" id="cd-pills"></div>
           </div>
           <div class="cd-bar">
             <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
             <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
           </div>
-          <!-- Pills float over the bar via z-index -->
-          <div class="cd-pills" id="cd-pills"></div>
         </div>
       </div>
     </div>
@@ -403,96 +427,69 @@
 </footer>
 
 <script>
-  // ── CHAT DEMO ───────────────────────────────────────────
+  // ── CHAT DEMO — continuous float-up stream ──────────────
   const pillsEl = document.getElementById('cd-pills');
   const barText = document.getElementById('cd-bar-text');
   const barBtn  = document.getElementById('cd-bar-btn');
 
-  const seqs = [
-    { cmd:'Add word captions',      done:['Add word captions',    'Sync to audio']       },
-    { cmd:'Trim to 30 seconds',     done:['Trim to 30 seconds',   'Find best moment']    },
-    { cmd:'Make it vertical 9:16',  done:['Crop to 9:16',         'Auto-frame to face']  },
-    { cmd:'Change caption style',   done:['Apply bold template',  'Match brand colors']  },
-    { cmd:'Add intro title card',   done:['Generate title',       'Fade in 0.5s']        },
-    { cmd:'Color grade warm',       done:['Warm color grade',     'Boost contrast']      },
-    { cmd:'Speed up to 1.5x',       done:['Speed up 1.5×',        'Smooth audio pitch']  },
-    { cmd:'Translate to Spanish',   done:['Auto-translate subs',  'Sync to timing']      },
+  const cmds = [
+    'Add word captions',   'Trim to 30 seconds',  'Make it vertical',
+    'Bold caption style',  'Add intro title',      'Color grade warm',
+    'Speed up 1.5×',       'Auto-translate subs',  'Sync to audio',
+    'Find best moment',    'Auto-frame to face',   'Boost contrast',
+    'Remove background',   'Add outro card',       'Normalize audio',
   ];
 
-  let si = 0;
+  let ci = 0;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
-  const PILL_GAP = 12;
-  let stack = []; // {el, bottom}
 
-  function makePillEl(txt, isApplying) {
+  function spawnPill(text, isApplying) {
+    if (!pillsEl) return;
+    const dur = isApplying ? 3800 : 4400;
     const p = document.createElement('div');
     p.className = 'cd-pill' + (isApplying ? ' applying' : '');
     if (isApplying) {
       const d = document.createElement('div'); d.className = 'cd-applying-dot'; p.appendChild(d);
-      p.appendChild(document.createTextNode(txt));
-    } else { p.textContent = txt; }
-    return p;
-  }
-
-  async function pushPill(txt, isApplying) {
-    const p = makePillEl(txt, isApplying);
-    // start hidden at bottom
-    p.style.bottom = '0px';
-    p.style.opacity = '0';
-    p.style.transform = 'translateY(16px) scale(0.92)';
-    p.style.transition = 'none';
+      p.appendChild(document.createTextNode(text));
+    } else { p.textContent = text; }
+    p.style.animationName = 'float-up';
+    p.style.animationDuration = dur + 'ms';
+    p.style.animationTimingFunction = 'ease-out';
+    p.style.animationFillMode = 'forwards';
     pillsEl.appendChild(p);
-    await sleep(20);
-    const h = p.offsetHeight;
-    const startBottom = 0;
-    // shift existing pills up smoothly
-    stack.forEach(item => {
-      item.bottom += h + PILL_GAP;
-      item.el.style.transition = 'bottom 0.38s cubic-bezier(.22,.68,0,1.1)';
-      item.el.style.bottom = item.bottom + 'px';
-    });
-    stack.push({ el: p, bottom: startBottom });
-    // animate new pill in
-    await sleep(16);
-    p.style.transition = 'opacity 0.38s ease, transform 0.42s cubic-bezier(.22,.68,0,1.18)';
-    p.style.opacity = '1';
-    p.style.transform = 'translateY(0) scale(1)';
+    setTimeout(() => { if (p.parentNode) p.parentNode.removeChild(p); }, dur + 100);
   }
 
-  async function clearStack() {
-    const old = [...stack]; stack = [];
-    old.forEach(item => {
-      item.el.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-      item.el.style.opacity = '0';
-      item.el.style.transform = 'translateY(-10px) scale(0.95)';
-    });
-    await sleep(220);
-    pillsEl.innerHTML = '';
-  }
+  async function loop() {
+    const cmd = cmds[ci % cmds.length];
 
-  async function typeCmd(txt) {
-    barText.textContent = '';
+    // Show in bar
+    barText.textContent = cmd;
     barText.classList.add('typing');
-    for (const ch of txt) { barText.textContent += ch; await sleep(36); }
     barBtn.classList.add('ready');
-    await sleep(280);
-    barBtn.classList.remove('ready');
-  }
+    await sleep(420);
 
-  async function runSeq() {
-    const s = seqs[si++ % seqs.length];
-    await typeCmd(s.cmd);
-    await sleep(150);
-    await clearStack();
-    for (const t of s.done) { await pushPill(t, false); await sleep(500); }
-    await pushPill('Applying edits...', true);
+    // Spawn floating pill
+    spawnPill(cmd, false);
+    barBtn.classList.remove('ready');
+
+    // Every 3rd: also spawn "Applying edits..."
+    if (ci % 3 === 2) {
+      await sleep(500);
+      spawnPill('Applying edits...', true);
+    }
+
+    // Reset bar
+    await sleep(300);
     barText.textContent = 'Chat to edit';
     barText.classList.remove('typing');
-    await sleep(2400);
-    runSeq();
+
+    ci++;
+    await sleep(1700);
+    loop();
   }
 
-  if (pillsEl) setTimeout(runSeq, 600);
+  if (pillsEl) setTimeout(loop, 500);
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
