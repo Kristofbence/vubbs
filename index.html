@@ -189,106 +189,91 @@
       color: var(--lime-dk); max-width: 440px;
     }
 
-    /* ── EDIT DEMO ── */
-    .edit-demo {
-      background: #fff; border-radius: var(--r);
-      border: 1px solid var(--border-m); box-shadow: var(--card-sh);
+    /* ── CHAT DEMO ── */
+    .chat-demo {
+      position: relative;
+      padding: 10px 60px 10px 10px;
+    }
+    .cd-frame {
+      position: relative;
+      width: 82%;
+      border-radius: 20px;
       overflow: hidden;
+      aspect-ratio: 3/4;
+      background: #1a1020;
+      box-shadow: 0 28px 64px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
     }
-    .demo-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; background: #FAFAFA;
-      border-bottom: 1px solid var(--border);
+    .cd-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
-    .demo-bar-left { display: flex; align-items: center; gap: 9px; }
-    .chat-avi {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--text);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--ff-head); font-weight: 800; font-size: 10px; color: var(--lime);
-    }
-    .chat-name { font-family: var(--ff-head); font-weight: 700; font-size: 12px; color: var(--text); }
-    .demo-online { display: flex; align-items: center; gap: 5px; font-family: var(--ff-mono); font-size: 10px; color: var(--muted); }
-    .dot-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--lime-dk); animation: blink 2s infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-    .demo-preview {
-      background: #0A0A12; height: 280px;
-      position: relative; overflow: hidden;
-    }
-    .demo-scene-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0.55; z-index: 1;
-    }
-    .demo-overlay {
+    .cd-frame-fallback {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.6) 100%);
-      z-index: 2;
+      background: linear-gradient(145deg,#1a0e05 0%,#0d0d22 50%,#0a1a12 100%);
+      display: flex; align-items: center; justify-content: center;
     }
-    .demo-film {
-      position: absolute; inset: 0; z-index: 3;
+    .cd-frame-fallback-txt {
+      font-family: var(--ff-mono); font-size: 10px;
+      color: rgba(255,255,255,.2); letter-spacing: 0.1em; text-align: center;
+    }
+    /* Pills: float to the right, overlapping the frame */
+    .cd-pills {
+      position: absolute;
+      right: 0; top: 22%;
       display: flex; flex-direction: column;
-      transition: opacity .2s ease, transform .2s ease;
+      gap: 10px; align-items: flex-end;
+      z-index: 10;
     }
-    .df-header {
-      padding: 10px 14px 8px;
-      font-family: var(--ff-mono); font-size: 9px;
-      letter-spacing: 0.12em; color: rgba(255,255,255,.45);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      display: flex; justify-content: space-between; align-items: center;
+    .cd-pill {
+      background: rgba(18,18,28,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: rgba(255,255,255,.88);
+      font-family: var(--ff-body); font-size: 13.5px; font-weight: 500;
+      padding: 10px 20px; border-radius: 100px; white-space: nowrap;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 4px 18px rgba(0,0,0,.22);
+      opacity: 0; transform: translateX(24px);
+      transition: opacity .38s ease, transform .38s ease;
     }
-    .df-body { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
-    .df-char { font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,.4); text-align: center; }
-    .df-line { font-family: var(--ff-mono); font-size: 11px; color: rgba(255,255,255,.85); line-height: 1.55; }
-    .cw { display: inline; padding: 0 2px; border-radius: 2px; font-family: var(--ff-mono); font-size: 11px; }
-    .cw.g { background: rgba(30,170,80,.5); color: #fff; }
-    .cw.r { background: rgba(210,50,50,.5); color: #fff; }
-    .cw.a { background: var(--lime); color: #060610; }
-    .df-capbar {
-      position: absolute; z-index: 4;
-      bottom: 22px; left: 0; right: 0; text-align: center; padding: 0 12px;
+    .cd-pill.show { opacity: 1; transform: translateX(0); }
+    .cd-pill.applying {
+      background: rgba(255,255,255,.96);
+      color: var(--lime-dk);
+      border-color: var(--lime-brd);
+      font-weight: 600;
+      gap: 8px; display: flex; align-items: center;
     }
-    .df-capbar span {
-      font-family: var(--ff-head); font-weight: 800; font-size: 14px;
-      color: #fff; background: rgba(0,0,0,.78);
-      padding: 4px 12px; border-radius: 4px;
+    .cd-applying-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--lime-dk); flex-shrink: 0;
+      animation: applying-pulse 1s ease-in-out infinite;
     }
-    .df-tl { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
-    .df-tl-row { display: flex; align-items: center; gap: 10px; }
-    .df-tl-lbl { font-family: var(--ff-mono); font-size: 9px; color: rgba(255,255,255,.45); width: 60px; flex-shrink: 0; }
-    .df-tl-lbl.hl { color: var(--lime); }
-    .df-tl-track { flex: 1; height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden; }
-    .df-tl-fill { height: 100%; border-radius: 3px; }
-    .df-tl-fill.full { width: 100%; background: rgba(255,255,255,.25); }
-    .df-tl-fill.trim { width: 14%; background: var(--lime); }
-    .df-tl-dur { font-family: var(--ff-mono); font-size: 9px; color: rgba(255,255,255,.4); width: 28px; text-align: right; flex-shrink: 0; }
-    .df-tl-dur.hl { color: var(--lime); }
-    .df-vert { display: flex; height: 100%; }
-    .df-vert-bar { flex: 1; background: #000; }
-    .df-vert-mid {
-      width: 52%; background: rgba(0,0,0,.5);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 10px; position: relative;
+    @keyframes applying-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    /* Input bar */
+    .cd-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(18,18,28,0.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-radius: 100px; padding: 11px 11px 11px 22px;
+      margin-top: 14px; width: 90%;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 4px 18px rgba(0,0,0,.14);
     }
-    .df-vert-tag { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); font-family: var(--ff-mono); font-size: 8px; color: rgba(255,255,255,.3); white-space: nowrap; }
-    .df-vert-badge { background: var(--lime); color: #060610; font-family: var(--ff-head); font-weight: 700; font-size: 9px; padding: 3px 8px; border-radius: 10px; text-align: center; margin-bottom: 6px; }
-    .df-prog { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(255,255,255,.1); z-index: 5; }
-    .df-prog-fill { height: 100%; background: var(--lime); transition: width .4s ease; }
-
-    .demo-chips {
-      display: flex; align-items: center; gap: 6px;
-      padding: 11px 14px; border-top: 1px solid var(--border);
-      background: #FAFAFA; flex-wrap: wrap;
+    .cd-bar-text {
+      font-family: var(--ff-body); font-size: 14px;
+      color: rgba(255,255,255,.45); flex: 1;
+      min-height: 20px;
     }
-    .demo-chips-lbl { font-family: var(--ff-mono); font-size: 10px; color: var(--muted); flex-shrink: 0; margin-right: 2px; }
-    .demo-chip {
-      font-family: var(--ff-mono); font-size: 10px; color: var(--muted);
-      background: #fff; border: 1px solid var(--border-m);
-      padding: 5px 11px; border-radius: 14px; cursor: pointer;
-      transition: all .16s; white-space: nowrap;
+    .cd-bar-text.typing { color: rgba(255,255,255,.85); }
+    .cd-bar-btn {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); font-size: 15px;
+      transition: background .2s;
     }
-    .demo-chip:hover { color: var(--text); border-color: var(--text); }
-    .demo-chip.active { color: #060610; background: var(--lime); border-color: var(--lime); }
+    .cd-bar-btn.ready { background: var(--lime-dk); color: #fff; }
 
     /* ── SECTIONS ── */
     section { padding: 96px 6vw; }
@@ -409,6 +394,7 @@
       .hero-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero { padding: 88px 5vw 60px; }
       .edit-demo { display: none; }
+      .chat-demo { display: none; }
       .steps { grid-template-columns: 1fr; gap: 2px; }
       .step:first-child { border-radius: var(--r) var(--r) 0 0; }
       .step:last-child  { border-radius: 0 0 var(--r) var(--r); }
@@ -456,29 +442,21 @@
       </div>
     </div>
 
-    <!-- Interactive Edit Demo -->
-    <div class="edit-demo" aria-hidden="true">
-      <div class="demo-bar">
-        <div class="demo-bar-left">
-          <div class="chat-avi">V</div>
-          <div class="chat-name">Vubbs</div>
-        </div>
-        <div class="demo-online">
-          <div class="dot-pulse"></div>
-          <span id="demo-status">captions added</span>
+    <!-- Chat-to-edit animation demo -->
+    <div class="chat-demo" aria-hidden="true">
+      <!-- Video frame -->
+      <div class="cd-frame">
+        <img src="scene.jpg" alt="Video being edited" onerror="this.style.display='none'">
+        <div class="cd-frame-fallback">
+          <div class="cd-frame-fallback-txt">YOUR VIDEO<br>HERE</div>
         </div>
       </div>
-      <div class="demo-preview">
-        <img src="scene.jpg" alt="Film scene from the editing demo" class="demo-scene-img" id="demo-img" onerror="this.style.display='none'">
-        <div class="demo-overlay"></div>
-        <div class="demo-film" id="demo-film"></div>
-      </div>
-      <div class="demo-chips">
-        <span class="demo-chips-lbl">Try:</span>
-        <button class="demo-chip active" data-edit="captions">"Add word captions"</button>
-        <button class="demo-chip" data-edit="trim">"Trim to 30 seconds"</button>
-        <button class="demo-chip" data-edit="vertical">"Make it vertical"</button>
-        <button class="demo-chip" data-edit="style">"Bold white style"</button>
+      <!-- Floating command pills -->
+      <div class="cd-pills" id="cd-pills"></div>
+      <!-- Chat input bar -->
+      <div class="cd-bar">
+        <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
+        <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
       </div>
     </div>
   </div>
@@ -609,112 +587,80 @@
 </footer>
 
 <script>
-  // ── INTERACTIVE EDIT DEMO ───────────────────────────────
-  const demoFilm = document.getElementById('demo-film');
-  const demoStatus = document.getElementById('demo-status');
-  const chips = document.querySelectorAll('.demo-chip');
+  // ── CHAT DEMO ANIMATION ─────────────────────────────────
+  const pillsEl   = document.getElementById('cd-pills');
+  const barText   = document.getElementById('cd-bar-text');
+  const barBtn    = document.getElementById('cd-bar-btn');
 
-  const states = {
-    captions: `
-      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span style="color:rgba(255,255,255,.25)">1:24 / 3:42</span></div>
-      <div class="df-body">
-        <div class="df-char">JORDAN</div>
-        <div class="df-line" id="cw-line">
-          <span class="cw">I</span> <span class="cw">want</span> <span class="cw">you</span>
-          <span class="cw">to</span> <span class="cw">deal</span> <span class="cw">with</span>
-          <span class="cw">your</span> <span class="cw">problems</span> <span class="cw">by</span>
-          <span class="cw">becoming</span> <span class="cw">rich.</span>
-        </div>
-        <div style="margin-top:10px"><div class="df-char">DONNIE</div><div class="df-line"><span class="cw">How?</span> <span class="cw">When?</span></div></div>
-      </div>
-      <div class="df-capbar"><span id="capbar-text">deal with your problems</span></div>
-      <div class="df-prog"><div class="df-prog-fill" style="width:38%"></div></div>`,
-    trim: `
-      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span style="color:rgba(255,255,255,.25)">trim mode</span></div>
-      <div class="df-body">
-        <div class="df-tl">
-          <div class="df-tl-row"><div class="df-tl-lbl">Original</div><div class="df-tl-track"><div class="df-tl-fill full"></div></div><div class="df-tl-dur">3:42</div></div>
-          <div class="df-tl-row"><div class="df-tl-lbl hl">Trimmed</div><div class="df-tl-track"><div class="df-tl-fill trim"></div></div><div class="df-tl-dur hl">0:30</div></div>
-        </div>
-        <div style="padding:0 14px;margin-top:4px">
-          <div style="background:rgba(170,255,0,.1);border:1px solid rgba(170,255,0,.2);border-radius:6px;padding:10px 12px">
-            <div style="font-family:var(--ff-mono);font-size:10px;color:#AAFF00;margin-bottom:4px">✓ Peak moment identified</div>
-            <div style="font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.45)">Highest dialogue density · 1:14 – 1:44</div>
-          </div>
-        </div>
-      </div>
-      <div class="df-prog"><div class="df-prog-fill" style="width:14%"></div></div>`,
-    vertical: `
-      <div class="df-vert">
-        <div class="df-vert-bar"></div>
-        <div class="df-vert-mid">
-          <div class="df-vert-tag">9:16 · Instagram Ready</div>
-          <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:8px">
-            <div style="font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.7);text-align:center;line-height:1.6">
-              <div style="color:rgba(255,255,255,.3);margin-bottom:4px;font-size:9px">JORDAN</div>I want you to deal<br>with your problems<br>by becoming rich.
-            </div>
-          </div>
-          <div class="df-vert-badge">✓ Reframed to 9:16</div>
-          <div style="font-family:var(--ff-mono);font-size:8px;color:rgba(255,255,255,.25);text-align:center;padding-bottom:4px">Captions repositioned</div>
-        </div>
-        <div class="df-vert-bar"></div>
-      </div>
-      <div class="df-prog" style="position:absolute;bottom:0"><div class="df-prog-fill" style="width:38%"></div></div>`,
-    style: `
-      <div class="df-header"><span>THE WOLF OF WALL STREET (2013)</span><span style="color:rgba(255,255,255,.25)">bold style</span></div>
-      <div class="df-body">
-        <div class="df-char">JORDAN</div>
-        <div style="font-family:var(--ff-head);font-weight:800;font-size:20px;line-height:1.2;color:#fff;letter-spacing:-0.02em;text-transform:uppercase">
-          I want you to deal with your <span style="color:#AAFF00">PROBLEMS</span>
-        </div>
-      </div>
-      <div class="df-capbar"><span style="font-family:var(--ff-head);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:0.01em">DEAL WITH YOUR PROBLEMS</span></div>
-      <div class="df-prog"><div class="df-prog-fill" style="width:52%"></div></div>`
-  };
+  const sequences = [
+    { cmd: 'Add word captions',   pills: ['Add word captions',   'Sync to audio'] },
+    { cmd: 'Trim to 30 seconds',  pills: ['Trim to 30 seconds',  'Keep best moments'] },
+    { cmd: 'Make it vertical',    pills: ['Make it vertical',    'Reframe to face'] },
+    { cmd: 'Change caption style',pills: ['Change caption style','Apply bold template'] },
+  ];
 
-  const statusLabels = { captions:'captions added', trim:'30s clip ready', vertical:'9:16 formatted', style:'style applied' };
-  let cwIdx=0, cwTimer=null;
+  let seqIdx = 0;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  function animateCaptions() {
-    const words = demoFilm.querySelectorAll('#cw-line .cw');
-    const capbar = demoFilm.querySelector('#capbar-text');
-    const capWords = ['I want you','to deal','with your','problems','by becoming','rich.'];
-    if (!words.length) return;
-    cwIdx = 0;
-    if (cwTimer) clearInterval(cwTimer);
-    cwTimer = setInterval(() => {
-      words.forEach((w,i) => { w.className='cw'+(i<cwIdx?' g':''); });
-      if (cwIdx < words.length) {
-        words[cwIdx].className = 'cw a';
-        if (capbar) capbar.textContent = capWords[Math.min(cwIdx, capWords.length-1)];
-      }
-      cwIdx++;
-      if (cwIdx > words.length) cwIdx = 0;
-    }, 380);
+  async function typeText(text) {
+    barText.textContent = '';
+    barText.classList.add('typing');
+    for (const ch of text) { barText.textContent += ch; await sleep(42); }
+    barBtn.classList.add('ready');
+    await sleep(400);
+    barBtn.classList.remove('ready');
   }
 
-  function applyEdit(type) {
-    if (cwTimer) { clearInterval(cwTimer); cwTimer=null; }
-    demoFilm.style.opacity='0'; demoFilm.style.transform='scale(0.98)';
-    demoStatus.textContent='processing…';
-    setTimeout(() => {
-      demoFilm.innerHTML = states[type]||states.captions;
-      demoFilm.style.opacity='1'; demoFilm.style.transform='scale(1)';
-      demoStatus.textContent = statusLabels[type]||'ready';
-      if (type==='captions') animateCaptions();
-    }, 200);
+  function makePill(text, isApplying) {
+    const p = document.createElement('div');
+    p.className = 'cd-pill' + (isApplying ? ' applying' : '');
+    if (isApplying) {
+      const dot = document.createElement('div');
+      dot.className = 'cd-applying-dot';
+      p.appendChild(dot);
+      p.appendChild(document.createTextNode(text));
+    } else {
+      p.textContent = text;
+    }
+    return p;
   }
 
-  chips.forEach(btn => {
-    btn.addEventListener('click', () => {
-      chips.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyEdit(btn.dataset.edit);
-    });
-  });
+  async function runSequence() {
+    const seq = sequences[seqIdx++ % sequences.length];
 
-  demoFilm.style.transition='opacity .2s ease, transform .2s ease';
-  applyEdit('captions');
+    // Type in bar
+    await typeText(seq.cmd);
+    await sleep(200);
+
+    // Clear pills
+    [...pillsEl.children].forEach(p => { p.style.opacity='0'; p.style.transform='translateX(20px)'; });
+    await sleep(320);
+    pillsEl.innerHTML = '';
+
+    // Add done pills one by one
+    for (const text of seq.pills) {
+      const pill = makePill(text, false);
+      pillsEl.appendChild(pill);
+      await sleep(30);
+      pill.classList.add('show');
+      await sleep(480);
+    }
+
+    // Add "Applying edits..." pill
+    const applying = makePill('Applying edits...', true);
+    pillsEl.appendChild(applying);
+    await sleep(30);
+    applying.classList.add('show');
+
+    // Reset bar
+    barText.textContent = 'Chat to edit';
+    barText.classList.remove('typing');
+
+    await sleep(2800);
+    runSequence();
+  }
+
+  if (pillsEl) setTimeout(runSequence, 600);
 
   // ── DRAG-TO-SCROLL ──────────────────────────────────────
   const row = document.getElementById('ig-row');
