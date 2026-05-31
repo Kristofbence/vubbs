@@ -430,25 +430,25 @@
   const barText = document.getElementById('cd-bar-text');
   const barBtn  = document.getElementById('cd-bar-btn');
 
-  // Each group: two edit commands + "Applying edits..."
+  if (!pillsEl) return;
+
   const groups = [
-    ['Add word captions',  'Sync to audio'],
-    ['Trim to 30 seconds', 'Find best moment'],
-    ['Make it vertical',   'Auto-frame to face'],
-    ['Apply bold style',   'Match brand colors'],
-    ['Add intro title',    'Fade in 0.5s'],
-    ['Color grade warm',   'Boost contrast'],
-    ['Speed up 1.5×',      'Smooth audio pitch'],
-    ['Translate to Spanish','Sync to timing'],
+    ['Add captions',      'Sync to audio'],
+    ['Trim to 30s',       'Find best moment'],
+    ['Make it vertical',  'Auto-frame face'],
+    ['Bold style',        'Match colors'],
+    ['Add intro title',   'Fade in 0.5s'],
+    ['Color grade warm',  'Boost contrast'],
+    ['Speed up 1.5×',     'Smooth audio'],
+    ['Translate subs',    'Sync timing'],
   ];
 
-  // Three fixed vertical slots (bottom of video → upward)
-  const SLOTS = ['22%', '37%', '52%'];
-
+  // Fixed bottom positions — percent of video height
+  const SLOTS = ['14%', '27%', '40%'];
   let gi = 0;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  function makePill(text, isApplying, slot) {
+  function makePill(text, isApplying, slotIdx) {
     const p = document.createElement('div');
     p.className = 'cd-pill' + (isApplying ? ' applying' : '');
     if (isApplying) {
@@ -457,61 +457,59 @@
     } else {
       p.textContent = text;
     }
-    p.style.bottom = SLOTS[slot];
+    p.style.bottom = SLOTS[slotIdx];
     pillsEl.appendChild(p);
     return p;
   }
 
-  async function showIn(p) {
-    await sleep(16); // one frame — let browser register initial state
-    p.classList.add('visible');
+  // Force reflow so the browser registers opacity:0 before we trigger the transition
+  function show(p) {
+    p.getBoundingClientRect(); // forces sync layout — browser commits initial state
+    requestAnimationFrame(() => p.classList.add('visible'));
   }
 
-  async function hideAll(pills) {
-    pills.forEach(p => { p.classList.remove('visible'); p.style.transform = 'translateX(-8px)'; });
-    await sleep(360);
-    pills.forEach(p => p.remove());
+  function hide(p) {
+    p.classList.remove('visible');
+    p.style.transform = 'translateX(-6px)';
   }
 
   async function runGroup() {
     const g = groups[gi++ % groups.length];
 
-    // Pill 0 — bottom slot
+    // Pill 1 — bottom slot
     barText.textContent = g[0];
     barText.classList.add('active');
     barBtn.classList.add('active');
     const p0 = makePill(g[0], false, 0);
-    await showIn(p0);
-    await sleep(120);
+    show(p0);
+    await sleep(800);
     barBtn.classList.remove('active');
 
-    await sleep(900);
-
-    // Pill 1 — middle slot
+    // Pill 2 — middle slot
     barText.textContent = g[1];
     const p1 = makePill(g[1], false, 1);
-    await showIn(p1);
-    await sleep(120);
+    show(p1);
+    await sleep(800);
 
-    await sleep(900);
-
-    // Pill 2 — top slot ("Applying edits...")
+    // Pill 3 — upper slot — Applying
     barText.textContent = 'Chat to edit';
     barText.classList.remove('active');
     const p2 = makePill('Applying edits...', true, 2);
-    await showIn(p2);
+    show(p2);
 
-    // Hold — all three visible and readable
-    await sleep(2200);
+    // Hold so user can read all three
+    await sleep(2400);
 
-    // Fade all out together
-    await hideAll([p0, p1, p2]);
+    // Fade all out
+    [p0, p1, p2].forEach(hide);
+    await sleep(450);
+    [p0, p1, p2].forEach(p => p.remove());
 
     await sleep(500);
     runGroup();
   }
 
-  if (pillsEl) setTimeout(runGroup, 800);
+  setTimeout(runGroup, 800);
 
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
