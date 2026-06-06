@@ -520,9 +520,11 @@
   // ── FORMS ───────────────────────────────────────────────
   async function sub(email){
     try{
-      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({access_key:'31731a61-cbf2-4334-832e-e9a74b7b44ee',email,subject:'Vubbs Waitlist Signup',from_name:'Vubbs Waitlist'})});
-      return r.ok;
+      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({access_key:'31731a61-cbf2-4334-832e-e9a74b7b44ee',email,name:'Vubbs Waitlist',subject:'Vubbs Waitlist Signup'})});
+      const data=await r.json();
+      return data.success===true;
     }catch{return false;}
   }
 
