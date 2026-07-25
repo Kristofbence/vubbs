@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vubbs — Edit video. Just chat.</title>
-  <meta name="description" content="Chat-powered video editing. Describe your edit in plain language and Vubbs clips, captions, and formats your footage instantly. No timeline. No tutorials.">
+  <title>Vubbs — Run your social media.</title>
+  <meta name="description" content="Grow your social media with AI posts that don't look AI — on autopilot. Vubbs creates and posts your content to Instagram, Facebook, TikTok, Threads and Pinterest.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vubbs.com/">
-  <meta property="og:title" content="Vubbs — Edit video. Just chat.">
-  <meta property="og:description" content="Describe your edit. Vubbs clips, captions, and formats your footage. No timeline. No tutorials.">
+  <meta property="og:title" content="Vubbs — Run your social media.">
+  <meta property="og:description" content="Grow your social media with AI posts that don't look AI — on autopilot.">
   <meta property="og:url" content="https://vubbs.com">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Vubbs">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vubbs — Edit video. Just chat.">
-  <meta name="twitter:description" content="Chat-powered video editing. Describe the edit, get the clip.">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vubbs","url":"https://vubbs.com","description":"Chat-powered video editing platform. Describe your edit and Vubbs clips, captions, and formats your footage.","applicationCategory":"VideoApplication","operatingSystem":"Web","offers":{"@type":"Offer","availability":"https://schema.org/PreOrder","price":"0"},"creator":{"@type":"Organization","name":"Vubbs","url":"https://vubbs.com"}}</script>
+  <meta name="twitter:title" content="Vubbs — Run your social media.">
+  <meta name="twitter:description" content="AI posts that don't look AI. Created and posted on autopilot.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vubbs","url":"https://vubbs.com","description":"AI social media content — posts, carousels and reels created and published on autopilot to Instagram, Facebook, TikTok, Threads and Pinterest.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","availability":"https://schema.org/PreOrder","price":"0"},"creator":{"@type":"Organization","name":"Vubbs","url":"https://vubbs.com"}}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,23 +59,23 @@
     .nav-btn:hover{opacity:.8;}
 
     /* ── HERO ── */
-    .hero{min-height:100vh;display:flex;align-items:center;padding:90px 5vw 60px;position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;top:-10%;right:-5%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(170,255,0,0.16) 0%,transparent 65%);pointer-events:none;}
-    .hero::after{content:'';position:absolute;bottom:0;left:-5%;width:30vw;height:30vw;background:radial-gradient(circle,rgba(170,255,0,0.07) 0%,transparent 65%);pointer-events:none;}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 5vw 72px;position:relative;overflow:hidden;text-align:center;}
+    .hero::before{content:'';position:absolute;top:-14%;right:-8%;width:52vw;height:52vw;background:radial-gradient(circle,rgba(170,255,0,0.16) 0%,transparent 65%);pointer-events:none;}
+    .hero::after{content:'';position:absolute;bottom:-6%;left:-8%;width:34vw;height:34vw;background:radial-gradient(circle,rgba(170,255,0,0.07) 0%,transparent 65%);pointer-events:none;}
 
-    .hero-grid{max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:52% 1fr;gap:48px;align-items:center;position:relative;z-index:1;}
+    .hero-inner{max-width:780px;width:100%;position:relative;z-index:1;}
 
-    .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;color:var(--lime-dk);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;background:var(--lime-bg);padding:5px 12px;border-radius:20px;border:1px solid var(--lime-brd);}
+    .chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:11px;color:var(--lime-dk);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:22px;background:var(--lime-bg);padding:5px 12px;border-radius:20px;border:1px solid var(--lime-brd);}
 
-    .hero h1{font-family:var(--ff-head);font-size:clamp(40px,5.2vw,72px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;margin-bottom:18px;}
-    .hero h1 .hl{color:var(--lime-dk);background:var(--lime-bg);padding:0 6px;border-radius:6px;}
+    .hero h1{font-family:var(--ff-head);font-size:clamp(42px,6.2vw,80px);font-weight:800;line-height:1.02;letter-spacing:-0.035em;margin-bottom:20px;}
+    .hero h1 .hl{color:var(--lime-dk);background:var(--lime-bg);padding:0 8px;border-radius:8px;}
 
-    .hero-sub{font-size:clamp(15px,1.4vw,17px);color:var(--muted);line-height:1.7;max-width:420px;margin-bottom:32px;}
+    .hero-sub{font-size:clamp(16px,1.6vw,19px);color:var(--muted);line-height:1.65;max-width:520px;margin:0 auto 34px;}
 
     /* ── FORM ── */
-    .hero-form-wrap{display:flex;flex-direction:column;gap:10px;max-width:460px;}
+    .hero-form-wrap{display:flex;flex-direction:column;gap:10px;max-width:460px;margin:0 auto;}
     .form-row{display:flex;}
-    .form-row input{flex:1;background:var(--bg2);border:1.5px solid var(--border-m);border-right:none;border-radius:var(--r-sm) 0 0 var(--r-sm);padding:15px 18px;color:var(--text);font-family:var(--ff-body);font-size:15px;outline:none;transition:border-color .2s;}
+    .form-row input{flex:1;min-width:0;background:var(--bg2);border:1.5px solid var(--border-m);border-right:none;border-radius:var(--r-sm) 0 0 var(--r-sm);padding:15px 18px;color:var(--text);font-family:var(--ff-body);font-size:15px;outline:none;transition:border-color .2s;}
     .form-row input:focus{border-color:var(--lime-dk);}
     .form-row input::placeholder{color:var(--dim);}
     .form-row button{background:var(--text);color:#fff;font-family:var(--ff-head);font-weight:700;font-size:14px;padding:15px 24px;border:none;border-radius:0 var(--r-sm) var(--r-sm) 0;cursor:pointer;white-space:nowrap;transition:opacity .2s;}
@@ -83,43 +83,12 @@
     .form-note{font-family:var(--ff-mono);font-size:11px;color:var(--dim);}
     .success-msg{display:none;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r-sm);padding:13px 18px;font-family:var(--ff-mono);font-size:13px;color:var(--lime-dk);}
 
-    /* ── CHAT DEMO ── */
-    .chat-demo{position:relative;}
-    .cd-outer{position:relative;}
-    /* Card is the whole phone — video fills it, bar overlaid inside at bottom */
-    .cd-card{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.22),0 4px 16px rgba(0,0,0,.1);transition:transform .5s ease;}
-    .cd-vid{position:relative;aspect-ratio:9/16;background:#0a0a14;}
-    .cd-vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-    .cd-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-    .cd-fallback span{font-family:var(--ff-mono);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:0.1em;text-align:center;}
-    /* Dark gradient from bottom so pills are readable */
-    .cd-grad{position:absolute;bottom:0;left:0;right:0;height:70%;background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.4) 45%,transparent 100%);pointer-events:none;}
-    /* Bar pinned to bottom of card */
-    .cd-bar{position:absolute;bottom:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:12px;padding:14px 14px 14px 20px;background:rgba(5,5,14,.96);border-top:1px solid rgba(255,255,255,.06);}
-    .cd-bar-text{flex:1;min-width:0;font-family:var(--ff-body);font-size:16px;color:rgba(255,255,255,.3);transition:color .22s;}
-    .cd-bar-text.on{color:rgba(255,255,255,.85);}
-    .cd-bar-btn{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:17px;transition:background .22s,box-shadow .22s;}
-    .cd-bar-btn.on{background:#6bbf00;color:#fff;box-shadow:0 0 14px rgba(107,191,0,.45);}
-    /* Pills container — sits above bar, inside card */
-    .cd-pills{position:absolute;left:0;right:0;bottom:70px;z-index:15;pointer-events:none;padding:0 14px;}
-    /* Each pill: slide in from right, hold, slide out left */
-    .cd-pill{
-      display:block;margin-bottom:10px;
-      background:rgba(10,10,22,.88);
-      color:rgba(255,255,255,.92);
-      font-family:var(--ff-body);font-size:19px;font-weight:500;
-      padding:14px 24px;border-radius:100px;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 6px 24px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);
-      width:fit-content;margin-left:auto;
-      opacity:0;transform:translateY(14px) scale(0.95);
-      transition:opacity .4s ease,transform .42s cubic-bezier(.34,1.3,.64,1);
-    }
-    .cd-pill.show{opacity:1;transform:translateY(0) scale(1);}
-    .cd-pill.out{opacity:0;transform:translateY(-8px) scale(0.95);}
-    .cd-pill.apply{background:rgba(255,255,255,.97);color:#6bbf00;border-color:rgba(107,191,0,.3);font-weight:700;display:flex;align-items:center;gap:9px;font-size:19px;box-shadow:0 6px 24px rgba(107,191,0,.22);}
-    .cd-adot{width:8px;height:8px;border-radius:50%;background:#6bbf00;flex-shrink:0;animation:adot .9s ease-in-out infinite;}
-    @keyframes adot{0%,100%{box-shadow:0 0 0 0 transparent;}50%{box-shadow:0 0 8px 3px rgba(107,191,0,.65);}}
+    /* ── PLATFORM ROW ── */
+    .plat{margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+    .plat-label{font-family:var(--ff-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);}
+    .plat-row{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;}
+    .plat-row svg{width:28px;height:28px;display:block;fill:#9E9EB2;transition:fill .22s;}
+    .plat-row .plat-ico:hover svg{fill:var(--text);}
 
     /* ── SECTIONS ── */
     section{padding:88px 5vw;}
@@ -130,26 +99,19 @@
 
     h2{font-family:var(--ff-head);font-size:clamp(28px,3.5vw,48px);font-weight:800;line-height:1.08;letter-spacing:-0.025em;margin-bottom:48px;color:var(--text);}
 
-    /* ── HOW IT WORKS ── */
-    .how-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-    .step{background:#fff;border:1px solid var(--border);padding:36px 28px;position:relative;transition:box-shadow .25s;}
-    .step:first-child{border-radius:var(--r) 0 0 var(--r);}
-    .step:last-child{border-radius:0 var(--r) var(--r) 0;}
-    .step:hover{box-shadow:var(--sh);}
-    .step-num{font-family:var(--ff-head);font-size:52px;font-weight:800;color:rgba(0,0,0,.06);line-height:1;margin-bottom:16px;letter-spacing:-0.04em;}
-    .step h3{font-family:var(--ff-head);font-size:18px;font-weight:700;margin-bottom:10px;}
-    .step p{font-size:14px;color:var(--muted);line-height:1.65;}
-    .step-arrow{position:absolute;right:-13px;top:50%;transform:translateY(-50%);width:26px;height:26px;background:var(--bg2);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:10;color:var(--lime-dk);font-size:12px;}
+    /* ── CONTENT TYPES ── */
+    .types{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .type{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:36px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;transition:box-shadow .25s;}
+    .type:hover{box-shadow:var(--sh);}
+    .type-icon{width:46px;height:46px;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;}
+    .type-icon svg{width:21px;height:21px;stroke:var(--lime-dk);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+    .type h3{font-family:var(--ff-head);font-size:20px;font-weight:700;letter-spacing:-0.02em;}
 
-    /* ── FEATURES ── */
-    .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .feat{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:30px 24px;transition:box-shadow .25s;}
-    .feat:hover{box-shadow:var(--sh);}
-    .feat-icon{width:44px;height:44px;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
-    .feat-icon svg{width:20px;height:20px;stroke:var(--lime-dk);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-    .feat h3{font-family:var(--ff-head);font-size:19px;font-weight:700;margin-bottom:9px;}
-    .feat p{font-size:14px;color:var(--muted);line-height:1.7;}
+    /* ── AUTO CAROUSEL CREATOR ── */
+    .acc{margin-top:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r);padding:24px 26px;}
+    .acc-tag{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:var(--lime-dk);padding:4px 10px;border-radius:20px;flex-shrink:0;}
+    .acc-text{font-size:16px;color:var(--muted);line-height:1.6;}
+    .acc-text strong{font-family:var(--ff-head);font-weight:700;color:var(--text);}
 
     /* ── SHOWCASE ── */
     .showcase-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -168,11 +130,10 @@
     /* ── PROOF STRIP ── */
     .proof-strip{padding:52px 5vw;border-top:1px solid var(--border);}
     .proof-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
-    .proof-text{font-family:var(--ff-head);font-size:17px;font-weight:600;max-width:460px;color:var(--muted);line-height:1.55;}
+    .proof-text{font-family:var(--ff-head);font-size:17px;font-weight:600;max-width:480px;color:var(--muted);line-height:1.55;}
     .proof-text strong{color:var(--text);}
-    .proof-stats{display:flex;gap:40px;}
-    .proof-stat-val{font-family:var(--ff-head);font-size:34px;font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1;}
-    .proof-stat-lbl{font-size:12px;color:var(--muted);margin-top:4px;}
+    .proof-stat-val{font-family:var(--ff-head);font-size:clamp(38px,5vw,56px);font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1;}
+    .proof-stat-lbl{font-size:13px;color:var(--muted);margin-top:6px;}
 
     /* ── CTA ── */
     .cta-wrap{padding:0 5vw 64px;}
@@ -200,32 +161,17 @@
     .fi{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
     .fi.vis{opacity:1;transform:translateY(0);}
 
-    /* ── DESKTOP ── */
-    @media (min-width:861px) {
-      .chat-demo{width:300px;flex-shrink:0;}
-      .cd-outer{width:300px;}
-      .cd-card{width:300px;}
-    }
-
     /* ── MOBILE ── */
     @media (max-width:860px) {
-      .hero-grid{grid-template-columns:1fr;gap:36px;}
-      .hero{padding:80px 5vw 48px;}
+      .hero{padding:108px 5vw 56px;min-height:auto;}
       .hero-sub{max-width:100%;}
+      .plat{margin-top:38px;}
+      .plat-row{gap:24px;}
 
-      .chat-demo{width:100%;max-width:360px;margin:0 auto;}
-      .cd-outer{width:100%;}
-      .cd-card{border-radius:18px;transform:none !important;}
-
-      .steps{grid-template-columns:1fr;gap:2px;}
-      .step:first-child{border-radius:var(--r) var(--r) 0 0;}
-      .step:last-child{border-radius:0 0 var(--r) var(--r);}
-      .step-arrow{display:none;}
-
-      .feats{grid-template-columns:1fr;gap:14px;}
+      .types{grid-template-columns:1fr;gap:14px;}
+      .type{flex-direction:row;justify-content:flex-start;text-align:left;padding:22px 24px;gap:16px;}
 
       .proof-inner{flex-direction:column;align-items:flex-start;}
-      .proof-stats{gap:24px;}
 
       .cta-dark{border-radius:16px;padding:52px 5vw;}
       .form-row{flex-direction:column;}
@@ -238,9 +184,10 @@
     }
 
     @media (max-width:480px) {
-      .hero h1{font-size:36px;}
-      .proof-stats{flex-wrap:wrap;gap:20px;}
-      .cd-pills{left:10px;right:10px;}
+      .hero h1{font-size:38px;}
+      .plat-row{gap:20px;}
+      .plat-row svg{width:26px;height:26px;}
+      .acc{padding:20px;}
     }
   </style>
 </head>
@@ -255,96 +202,60 @@
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-h1">
-  <div class="hero-grid">
+  <div class="hero-inner">
 
-    <div>
-      <div class="chip">Chat-powered video editing</div>
-      <h1 id="hero-h1">Edit video.<br><span class="hl">Just chat.</span></h1>
-      <p class="hero-sub">Describe what you want. Vubbs clips, captions, and formats your footage — no timeline, no tutorials, no guesswork.</p>
+    <div class="chip">AI social media on autopilot</div>
+    <h1 id="hero-h1">Run your<br><span class="hl">social media.</span></h1>
+    <p class="hero-sub">Grow your social media with AI posts that don't look AI — on autopilot.</p>
 
-      <div id="hf-wrap">
-        <div class="hero-form-wrap">
-          <form class="form-row" id="hero-form" novalidate>
-            <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
-            <button type="submit">Join waitlist →</button>
-          </form>
-          <p class="form-note" id="hf-note">Early access · No spam · Unsubscribe anytime</p>
-          <div class="success-msg" id="hf-ok" role="status">✓ You're in — we'll be in touch soon.</div>
-        </div>
+    <div id="hf-wrap">
+      <div class="hero-form-wrap">
+        <form class="form-row" id="hero-form" novalidate>
+          <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
+          <button type="submit">Join waitlist →</button>
+        </form>
+        <p class="form-note" id="hf-note">Early access · No spam · Unsubscribe anytime</p>
+        <div class="success-msg" id="hf-ok" role="status">✓ You're in — we'll be in touch soon.</div>
       </div>
     </div>
 
-    <!-- Chat-to-edit demo -->
-    <div class="chat-demo" aria-hidden="true">
-      <div class="cd-outer">
-        <div class="cd-card">
-          <div class="cd-vid">
-            <img src="scene.jpg" alt=""
-              onload="var f=document.getElementById('cd-fb');if(f)f.style.display='none';"
-              onerror="this.style.display='none'">
-            <div id="cd-fb" class="cd-fallback"><span>YOUR VIDEO<br>HERE</span></div>
-            <div class="cd-grad"></div>
-            <div class="cd-pills" id="cd-pills"></div>
-            <div class="cd-bar">
-              <span class="cd-bar-text" id="cd-bar-text">Chat to edit</span>
-              <div class="cd-bar-btn" id="cd-bar-btn">↑</div>
-            </div>
-          </div>
-        </div>
+    <!-- Platforms we post to -->
+    <div class="plat">
+      <div class="plat-label">Posts to</div>
+      <div class="plat-row">
+        <span class="plat-ico"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span>
+        <span class="plat-ico"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span>
+        <span class="plat-ico"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></span>
+        <span class="plat-ico"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Threads</title><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></span>
+        <span class="plat-ico"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg></span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-bg" aria-labelledby="how-h2">
+<!-- WHAT VUBBS MAKES -->
+<section aria-labelledby="types-h2">
   <div class="inner">
-    <div class="eyebrow fi"><span class="eyebrow-line"></span>How it works</div>
-    <h2 id="how-h2" class="fi">Three steps.<br>No learning curve.</h2>
-    <div class="steps fi">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Upload your footage</h3>
-        <p>Drop in any raw video — interviews, recordings, livestreams, footage from any camera or format.</p>
-        <div class="step-arrow" aria-hidden="true">→</div>
+    <div class="eyebrow fi"><span class="eyebrow-line"></span>What Vubbs creates</div>
+    <h2 id="types-h2" class="fi">Made for you.<br>Posted for you.</h2>
+    <div class="types">
+      <div class="type fi">
+        <div class="type-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 15-4.5-4.5L5 21"/></svg></div>
+        <h3>Posts</h3>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Chat your edit</h3>
-        <p>Type what you want in plain language. "Clip the best 45 seconds, bold white captions, make it vertical."</p>
-        <div class="step-arrow" aria-hidden="true">→</div>
+      <div class="type fi">
+        <div class="type-icon"><svg viewBox="0 0 24 24"><rect x="7" y="4" width="10" height="16" rx="2"/><path d="M4 8v8M20 8v8"/></svg></div>
+        <h3>Carousels</h3>
       </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Download &amp; post</h3>
-        <p>Your clip is ready — captions synced, format optimised, sized for every platform.</p>
+      <div class="type fi">
+        <div class="type-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M8.5 3 12 9M15 3l3.5 6"/><path d="m10.6 12.4 4.2 2.3-4.2 2.3z"/></svg></div>
+        <h3>Reels</h3>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section aria-labelledby="feat-h2">
-  <div class="inner">
-    <div class="eyebrow fi"><span class="eyebrow-line"></span>What you get</div>
-    <h2 id="feat-h2" class="fi">Every tool you need.<br>One conversation.</h2>
-    <div class="feats">
-      <div class="feat fi">
-        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M3 6v12M21 6v12"/><path d="M9 9l6 6M15 9l-6 6"/></svg></div>
-        <h3>Smart Clipping</h3>
-        <p>Tell Vubbs which moments to keep — or let it find them. No scrubbing through timelines. Just describe the cut.</p>
-      </div>
-      <div class="feat fi">
-        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3>Chat to Edit</h3>
-        <p>The chat interface is the product. No menus, no tutorials. Describe the change, iterate, export when it's right.</p>
-      </div>
-      <div class="feat fi">
-        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><rect x="15" y="13" width="6" height="6" rx="1"/></svg></div>
-        <h3>Auto Captions</h3>
-        <p>Word-synced captions, not vibe-synced. Every word lands exactly when spoken — styled to your template, ready to post.</p>
-      </div>
+    <div class="acc fi">
+      <span class="acc-tag">New</span>
+      <p class="acc-text"><strong>Auto Carousel Creator</strong> — AI-generated carousel posts, multiple slides, ready to publish.</p>
     </div>
   </div>
 </section>
@@ -353,7 +264,7 @@
 <section class="showcase-bg" aria-labelledby="showcase-h2">
   <div class="inner">
     <div class="eyebrow fi"><span class="eyebrow-line"></span>The work</div>
-    <h2 id="showcase-h2" class="fi">Real edits.<br>Real numbers.</h2>
+    <h2 id="showcase-h2" class="fi">Real posts.<br>Real numbers.</h2>
     <div class="ig-row fi" id="ig-row" role="list">
       <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYvCGgkClU3/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="4.6M views"></iframe><div class="ig-badge">4.6M views</div></div>
       <div class="ig-card" role="listitem"><iframe src="https://www.instagram.com/p/DYsXI_WEf76/embed/" scrolling="no" allowtransparency="true" loading="lazy" title="4.4M views"></iframe><div class="ig-badge">4.4M views</div></div>
@@ -378,11 +289,10 @@
 <!-- PROOF -->
 <div class="proof-strip fi" role="region" aria-label="Statistics">
   <div class="proof-inner">
-    <div class="proof-text"><strong>Built by a team that's been deep in the edit.</strong> The same pipeline powers short-form content that's driven tens of millions of views across major platforms.</div>
-    <div class="proof-stats">
-      <div><div class="proof-stat-val">10M+</div><div class="proof-stat-lbl">views powered</div></div>
-      <div><div class="proof-stat-val">3</div><div class="proof-stat-lbl">live channels</div></div>
-      <div><div class="proof-stat-val">&lt;60s</div><div class="proof-stat-lbl">avg. turnaround</div></div>
+    <div class="proof-text"><strong>Built by a team that's been deep in the edit.</strong> The same pipeline now runs social channels end to end — created, captioned, and posted.</div>
+    <div>
+      <div class="proof-stat-val">25M+</div>
+      <div class="proof-stat-lbl">views powered</div>
     </div>
   </div>
 </div>
@@ -397,7 +307,7 @@
       <div class="fi hero-form-wrap" id="cf-wrap">
         <form class="form-row" id="cta-form" novalidate>
           <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
-          <button type="submit">Get early access →</button>
+          <button type="submit">Join waitlist →</button>
         </form>
         <p class="form-note" id="cf-note">Zero spam. Early access when we open.</p>
         <div class="success-msg" id="cf-ok" role="status">✓ You're on the list. We'll reach out when it's ready.</div>
@@ -414,93 +324,6 @@
 </footer>
 
 <script>
-  // ── CHAT DEMO ──────────────────────────────────────────
-  const pillsEl = document.getElementById('cd-pills');
-  const barText = document.getElementById('cd-bar-text');
-  const barBtn  = document.getElementById('cd-bar-btn');
-
-  const groups = [
-    ['Add captions',   'Sync to audio'  ],
-    ['Trim to 30 seconds', 'Keep best moment'],
-    ['Make it vertical', 'Auto-frame face'],
-    ['Bold caption style', 'Match brand colors'],
-    ['Add intro title', 'Fade in 0.5s'  ],
-    ['Color grade warm', 'Boost contrast'],
-    ['Speed up 1.5x',  'Smooth audio'   ],
-    ['Translate subs', 'Sync timing'    ],
-  ];
-
-  let gi = 0;
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-  // Type text into bar character by character
-  async function typeBar(text) {
-    barText.textContent = '';
-    barText.classList.add('on');
-    barBtn.classList.remove('on');
-    for (const ch of text) {
-      barText.textContent += ch;
-      await sleep(52);
-    }
-    barBtn.classList.add('on');
-    await sleep(450);
-  }
-
-  // Clear bar after sending
-  function clearBar() {
-    barText.textContent = 'Chat to edit';
-    barText.classList.remove('on');
-    barBtn.classList.remove('on');
-  }
-
-  // Spawn a pill bubble
-  function spawnPill(text, isApply) {
-    if (!pillsEl) return null;
-    const p = document.createElement('div');
-    p.className = 'cd-pill' + (isApply ? ' apply' : '');
-    if (isApply) {
-      const d = document.createElement('div'); d.className='cd-adot'; p.appendChild(d);
-      p.appendChild(document.createTextNode(text));
-    } else { p.textContent = text; }
-    pillsEl.appendChild(p);
-    p.getBoundingClientRect(); // force reflow
-    requestAnimationFrame(() => p.classList.add('show'));
-    return p;
-  }
-
-  async function run() {
-    if (!pillsEl) return;
-    const g = groups[gi++ % groups.length];
-
-    // Type first command → send → bubble appears
-    await typeBar(g[0]);
-    const p0 = spawnPill(g[0], false);
-    clearBar();
-    await sleep(1000);
-
-    // Type second command → send → bubble appears
-    await typeBar(g[1]);
-    const p1 = spawnPill(g[1], false);
-    clearBar();
-    await sleep(1000);
-
-    // AI responds: "Applying edits..."
-    const p2 = spawnPill('Applying edits...', true);
-
-    // Hold — all three visible and readable
-    await sleep(2800);
-
-    // Fade all out
-    [p0, p1, p2].filter(Boolean).forEach(p => p.classList.add('out'));
-    await sleep(400);
-    [p0, p1, p2].filter(Boolean).forEach(p => { if (p.parentNode) p.remove(); });
-    await sleep(500);
-    run();
-  }
-
-  setTimeout(run, 1000);
-
-
   // ── CAROUSEL DRAG ───────────────────────────────────────
   const row=document.getElementById('ig-row');
   if(row){

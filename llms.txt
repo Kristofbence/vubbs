@@ -1,22 +1,28 @@
 # Vubbs
 
-> Chat-powered video editing. Describe your edit in plain language — Vubbs clips, captions, and formats your footage instantly. No timeline dragging, no tutorials.
+> Run your social media. Grow your social media with AI posts that don't look AI — on autopilot.
 
 ## What Vubbs does
 
-Vubbs is an AI video editing platform where users describe what they want in plain text, and the system produces a clipped, captioned, and formatted video ready to post. The interface is conversational — users type natural language commands like "clip the best 45 seconds, add bold captions, make it vertical" and receive the output.
+Vubbs is an AI social media platform that creates and publishes content for you. It writes, designs, and posts to your channels on a schedule, so a social account keeps growing without anyone touching it. The output is made to read like a human ran the account — not like generated filler.
 
-## Core features
+## Platforms
 
-- Smart video clipping: AI identifies the best moments or follows user-specified timestamps
-- Word-synced auto captions: Captions are anchored to the actual spoken word, not approximated
-- Chat-to-edit interface: All editing happens through a conversation, not a timeline
-- Format conversion: Vertical 9:16 reframing for Instagram and TikTok
-- Caption style templates: Bold, minimal, colored, and custom styles
+Vubbs posts to Instagram, Facebook, TikTok, Threads, and Pinterest.
+
+## What Vubbs creates
+
+- Posts
+- Carousels
+- Reels
+
+## Auto Carousel Creator
+
+AI-generated carousel posts, multiple slides, ready to publish.
 
 ## Proof
 
-Built by the team behind short-form video content that has generated 10M+ views across Instagram, Facebook, and YouTube.
+Built by a team that's been deep in the edit. The same pipeline has powered 25M+ views across major platforms.
 
 ## Status
 
