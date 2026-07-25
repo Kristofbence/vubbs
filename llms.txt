@@ -1,14 +1,14 @@
 # Vubbs
 
-> Run your social media. Grow your social media with AI posts that don't look AI — on autopilot.
+> Never make another social post. Vubbs generates carousels, reels, and images that don't look AI-generated — then publishes them to Instagram, TikTok, Facebook, Threads, and Pinterest on autopilot.
 
 ## What Vubbs does
 
-Vubbs is an AI social media platform that creates and publishes content for you. It writes, designs, and posts to your channels on a schedule, so a social account keeps growing without anyone touching it. The output is made to read like a human ran the account — not like generated filler.
+Vubbs is an AI social media platform that creates and publishes content for you. It writes, designs, and posts to your channels on a schedule, so an account keeps growing without anyone making posts for it. The output is built to read like a person runs the account — not like generated filler.
 
 ## Platforms
 
-Vubbs posts to Instagram, Facebook, TikTok, Threads, and Pinterest.
+Instagram, TikTok, Facebook, Threads, and Pinterest.
 
 ## What Vubbs creates
 
@@ -22,7 +22,16 @@ AI-generated carousel posts, multiple slides, ready to publish.
 
 ## Proof
 
-Built by a team that's been deep in the edit. The same pipeline has powered 25M+ views across major platforms.
+25M+ views generated. Built by a team that's been deep in the edit — the same pipeline now runs live channels end to end.
+
+Live channels: @theasterisk_vubbs, @truthserum.ai, @lecart.app, @chatme.us, @stage.by.vubbs
+
+## Common questions
+
+- Voice: you set tone, topics, and reference accounts once; everything is generated against that profile.
+- Approval: review a queue before publishing, or run on full autopilot once you trust the output.
+- Setup: your accounts, a short brief on what you want to be known for, and any brand assets you already have.
+- Pricing: still being set ahead of launch. Waitlist members get early-access pricing.
 
 ## Status
 
