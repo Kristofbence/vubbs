@@ -15,8 +15,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Never make another social post.">
   <meta name="twitter:description" content="Vubbs generates carousels, reels, and images that don't look AI-generated — then publishes them to five platforms on autopilot.">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vubbs","url":"https://vubbs.com","description":"Vubbs generates carousels, reels, and images that don't look AI-generated — then publishes them to Instagram, TikTok, Facebook, Threads, and Pinterest on autopilot.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","availability":"https://schema.org/PreOrder","price":"0"},"creator":{"@type":"Organization","name":"Vubbs","url":"https://vubbs.com"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will it actually sound like me?","acceptedAnswer":{"@type":"Answer","text":"That's the part we care most about. You set your voice once — tone, topics, the accounts you want to sound like — and everything Vubbs generates is written against that profile instead of a generic AI register."}},{"@type":"Question","name":"Do I approve posts before they go out?","acceptedAnswer":{"@type":"Answer","text":"Your call. Vubbs is built to run unattended, but you'll be able to review a queue before anything publishes and switch to full autopilot once you trust the output."}},{"@type":"Question","name":"Which platforms do you support?","acceptedAnswer":{"@type":"Answer","text":"Instagram, TikTok, Facebook, Threads, and Pinterest. More will follow — early access members get a say in which ones come first."}},{"@type":"Question","name":"What do I need to provide?","acceptedAnswer":{"@type":"Answer","text":"Your accounts, a short brief on what you want to be known for, and any brand assets you already have — logo, colours, footage. No content calendar, no briefs per post."}},{"@type":"Question","name":"How much will it cost?","acceptedAnswer":{"@type":"Answer","text":"Pricing is still being set ahead of launch. Waitlist members get early-access pricing when we open."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vubbs","url":"https://vubbs.com","description":"Vubbs generates carousels, reels, and images that don't look AI-generated — then publishes them to Instagram, TikTok, Facebook, Threads, and Pinterest on autopilot.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD","description":"One post a day on Instagram, with a Vubbs watermark."},{"@type":"Offer","name":"Pro","price":"99","priceCurrency":"USD","description":"A carousel and a reel every day across Instagram, TikTok, Facebook, Threads and Pinterest, with no watermark."}],"creator":{"@type":"Organization","name":"Vubbs","url":"https://vubbs.com"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will it actually sound like me?","acceptedAnswer":{"@type":"Answer","text":"That's the part we care most about. You set your voice once — tone, topics, the accounts you want to sound like — and everything Vubbs generates is written against that profile instead of a generic AI register."}},{"@type":"Question","name":"Do I approve posts before they go out?","acceptedAnswer":{"@type":"Answer","text":"Your call. Vubbs is built to run unattended, but you'll be able to review a queue before anything publishes and switch to full autopilot once you trust the output."}},{"@type":"Question","name":"Which platforms do you support?","acceptedAnswer":{"@type":"Answer","text":"Instagram, TikTok, Facebook, Threads, and Pinterest. More will follow — early access members get a say in which ones come first."}},{"@type":"Question","name":"What do I need to provide?","acceptedAnswer":{"@type":"Answer","text":"Your accounts, a short brief on what you want to be known for, and any brand assets you already have — logo, colours, footage. No content calendar, no briefs per post."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"Free gets you a post a day on Instagram, with a Vubbs watermark. Pro is $99/month \u2014 a carousel and a reel every day, across all five platforms, no watermark."}}]}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +58,9 @@
     .logo em{font-style:normal;color:var(--lime-dk);}
     .nav-btn{background:var(--text);color:#fff;font-family:var(--ff-head);font-weight:700;font-size:13px;padding:10px 20px;border:none;border-radius:100px;cursor:pointer;text-decoration:none;transition:opacity .2s;white-space:nowrap;}
     .nav-btn:hover{opacity:.8;}
+    .nav-right{display:flex;align-items:center;gap:26px;}
+    .nav-link{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s;white-space:nowrap;}
+    .nav-link:hover{color:var(--text);}
 
     /* ── HERO ── */
     .hero{min-height:100vh;display:flex;align-items:center;padding:104px 5vw 56px;position:relative;overflow:hidden;}
@@ -89,9 +92,26 @@
     .form-note{font-family:var(--ff-mono);font-size:11px;color:var(--dim);}
     .success-msg{display:none;background:var(--lime-bg);border:1px solid var(--lime-brd);border-radius:var(--r-sm);padding:13px 18px;font-family:var(--ff-mono);font-size:13px;color:var(--lime-dk);}
 
-    /* ── HERO ILLUSTRATION ── */
-    .hero-art{display:flex;justify-content:center;align-items:center;}
-    .hero-art svg{width:100%;height:auto;max-width:520px;max-height:min(58vh,530px);display:block;}
+    /* Above-the-fold benefit list */
+    .hero-points{list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:9px;max-width:520px;}
+    .hero-points li{position:relative;padding-left:26px;font-size:15px;color:var(--muted);line-height:1.5;}
+    .hero-points li::before{content:'';position:absolute;left:0;top:6px;width:15px;height:9px;border-left:2px solid var(--lime-dk);border-bottom:2px solid var(--lime-dk);transform:rotate(-45deg);}
+
+    /* ── TRY IT CARD (above the fold) ── */
+    .try-wrap{display:flex;justify-content:center;}
+    .try-card{width:100%;max-width:440px;background:#fff;border:1px solid var(--border-m);border-radius:var(--r);padding:30px 30px 26px;box-shadow:0 18px 50px rgba(0,0,0,0.10),0 0 0 1px rgba(0,0,0,0.04);}
+    .try-badge{display:inline-block;font-family:var(--ff-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime-dk);background:var(--lime-bg);border:1px solid var(--lime-brd);padding:5px 11px;border-radius:20px;margin-bottom:16px;}
+    .try-title{font-family:var(--ff-head);font-size:26px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:10px;}
+    .try-title .dot{font-style:normal;color:var(--lime-dk);}
+    .try-sub{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:22px;}
+    .try-label{display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+    .try-input{width:100%;background:var(--bg2);border:1.5px solid var(--border-m);border-radius:var(--r-sm);padding:14px 16px;color:var(--text);font-family:var(--ff-body);font-size:15px;outline:none;margin-bottom:16px;transition:border-color .2s;}
+    .try-input:focus{border-color:var(--lime-dk);}
+    .try-input::placeholder{color:var(--dim);}
+    .try-btn{width:100%;background:var(--text);color:#fff;font-family:var(--ff-head);font-weight:700;font-size:15px;padding:16px 20px;border:none;border-radius:var(--r-sm);cursor:pointer;transition:opacity .2s;}
+    .try-btn:hover{opacity:.85;}
+    .try-note{font-family:var(--ff-mono);font-size:11px;color:var(--dim);text-align:center;margin-top:12px;}
+    .try-ok{margin-top:14px;line-height:1.6;}
 
     /* ── PLATFORM ROW ── */
     .plat{margin-top:40px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
@@ -125,6 +145,35 @@
     .acc-tag{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:var(--lime-dk);padding:4px 10px;border-radius:20px;flex-shrink:0;}
     .acc-text{font-size:16px;color:var(--muted);line-height:1.6;}
     .acc-text strong{font-family:var(--ff-head);font-weight:700;color:var(--text);}
+
+    /* ── HOW IT WORKS ── */
+    .flow{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;}
+    .flow::before{content:'';position:absolute;top:22px;left:12%;right:12%;height:1px;background:var(--lime-brd);}
+    .flow-step{position:relative;display:flex;flex-direction:column;gap:10px;}
+    .flow-num{width:44px;height:44px;flex-shrink:0;border-radius:50%;background:var(--lime-bg);border:1px solid var(--lime-brd);color:var(--lime-dk);font-family:var(--ff-head);font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+    .flow-step h3{font-family:var(--ff-head);font-size:18px;font-weight:700;letter-spacing:-0.015em;}
+    .flow-step p{font-size:14px;color:var(--muted);line-height:1.55;}
+
+    /* ── PRICING ── */
+    .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:880px;}
+    .tier{position:relative;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:32px 30px;display:flex;flex-direction:column;}
+    .tier-featured{border-color:var(--lime-brd);box-shadow:0 12px 40px rgba(0,0,0,0.07),0 0 0 1px var(--lime-brd);}
+    .tier-flag{position:absolute;top:-11px;left:30px;font-family:var(--ff-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:var(--lime-dk);padding:4px 11px;border-radius:20px;}
+    .tier-name{font-family:var(--ff-head);font-size:15px;font-weight:700;letter-spacing:0.02em;margin-bottom:10px;}
+    .tier-price{display:flex;align-items:baseline;gap:6px;margin-bottom:10px;}
+    .tier-amt{font-family:var(--ff-head);font-size:44px;font-weight:800;letter-spacing:-0.03em;line-height:1;}
+    .tier-per{font-family:var(--ff-mono);font-size:12px;color:var(--muted);}
+    .tier-line{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border);}
+    .tier-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px;flex:1;}
+    .tier-list li{position:relative;padding-left:25px;font-size:14.5px;color:var(--muted);line-height:1.5;}
+    .tier-list li em{font-style:normal;color:var(--text);font-weight:500;}
+    .tier-list li::before{content:'';position:absolute;left:1px;top:5px;width:13px;height:8px;border-left:2px solid var(--lime-dk);border-bottom:2px solid var(--lime-dk);transform:rotate(-45deg);}
+    .tier-list li.tier-minus{color:var(--dim);}
+    .tier-list li.tier-minus::before{border-left:none;border-bottom:2px solid var(--dim);transform:none;top:11px;width:12px;height:0;}
+    .tier-btn{display:block;text-align:center;background:var(--text);color:#fff;font-family:var(--ff-head);font-weight:700;font-size:14px;padding:15px 20px;border-radius:var(--r-sm);text-decoration:none;transition:opacity .2s;}
+    .tier-btn:hover{opacity:.85;}
+    .tier-btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border-m);}
+    .tier-btn-ghost:hover{border-color:var(--lime-dk);color:var(--lime-dk);opacity:1;}
 
     /* ── SHOWCASE ── */
     .showcase-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -203,17 +252,28 @@
     /* ── TABLET ── */
     @media (max-width:1080px) {
       .hero-grid{gap:32px;}
-      .hero-art svg{max-width:420px;}
     }
 
     /* ── MOBILE ── */
     @media (max-width:860px) {
+      .nav-link{display:none;}
       .hero{padding:100px 5vw 56px;min-height:auto;}
       .hero-grid{grid-template-columns:1fr;gap:38px;}
       .hero-sub{max-width:100%;}
       .hero-form-wrap{max-width:100%;}
-      .hero-art svg{max-width:380px;max-height:none;margin:0 auto;}
+      .hero-points{max-width:100%;}
+      .try-card{max-width:100%;padding:26px 22px 22px;}
+      .try-title{font-size:23px;}
       .plat{margin-top:34px;gap:16px;}
+
+      .flow{grid-template-columns:1fr;gap:22px;}
+      .flow::before{display:none;}
+      .flow-step{flex-direction:row;align-items:flex-start;gap:16px;}
+      .flow-num{width:38px;height:38px;font-size:15px;}
+      .flow-body{display:flex;flex-direction:column;gap:8px;}
+
+      .tiers{grid-template-columns:1fr;gap:26px;}
+      .tier{padding:28px 24px;}
 
       .types{grid-template-columns:1fr;gap:14px;}
       .type{flex-direction:row;justify-content:flex-start;align-items:flex-start;text-align:left;padding:22px 24px;gap:16px;}
@@ -247,7 +307,11 @@
 
 <nav>
   <a href="/" class="logo">vubbs<em>.</em></a>
-  <a href="#waitlist" class="nav-btn">Get early access →</a>
+  <div class="nav-right">
+    <a href="#how-h2" class="nav-link">How it works</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#waitlist" class="nav-btn">Get early access →</a>
+  </div>
 </nav>
 
 <main>
@@ -258,119 +322,39 @@
     <div class="hero-grid">
 
       <div class="hero-copy">
-        <div class="chip">AI social media on autopilot</div>
-        <h1 id="hero-h1">Your Business on Social Media.<br>Daily, Fact-Checked, and Fully Automated<em class="dot">.</em></h1>
-        <p class="hero-sub">Vubbs is the set-it-and-forget-it social media agent for busy business owners. Get one on-brand carousel and one video posted every day — without the manual work, without the expensive tools, and without the generic "AI slop."</p>
+        <div class="chip">Creates it. Checks it. Posts it.</div>
+        <h1 id="hero-h1">Your business on social media<em class="dot">.</em><br>Every day. Without you<em class="dot">.</em></h1>
+        <p class="hero-sub">Vubbs reads your website, writes carousels and reels from what's actually on it, and publishes them straight to your feeds. No files to download. No captions to paste. Nothing to remember.</p>
+
+        <ul class="hero-points">
+          <li>Written from your real material — never invented</li>
+          <li>Carousel and reel, designed for you daily</li>
+          <li>Published directly through official platform APIs</li>
+        </ul>
 
         <p class="proof-line"><b>25M+ views</b> generated</p>
-
-        <div class="hero-form-wrap">
-          <form class="form-row" id="hero-form" novalidate>
-            <input type="email" name="email" id="hero-email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address">
-            <button type="submit">Start Automating Your Feed →</button>
-          </form>
-          <p class="form-note" id="hf-note">Early access · No spam · Unsubscribe anytime</p>
-          <div class="success-msg" id="hf-ok" role="status">✓ You're in — we'll be in touch soon.</div>
-        </div>
       </div>
 
-      <!-- Hero illustration: a real Vubbs carousel slide, mid-publish -->
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg" role="img">
-          <title>A Vubbs-generated carousel slide on a phone, published automatically</title>
-          <defs>
-            <filter id="badge-sh" x="-40%" y="-60%" width="180%" height="240%">
-              <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0A0A14" flood-opacity="0.16"/>
-            </filter>
-            <clipPath id="frame"><rect x="0" y="0" width="560" height="500"/></clipPath>
-          </defs>
+      <!-- Try it: the above-the-fold conversion point -->
+      <div class="try-wrap">
+        <div class="try-card">
+          <div class="try-badge">Free · No card</div>
+          <h2 class="try-title">Get 3 carousels,<br>ready to post<em class="dot">.</em></h2>
+          <p class="try-sub">Give us your site. We'll read it and send back three finished carousels built from your own facts.</p>
 
-          <g clip-path="url(#frame)">
+          <form id="try-form" novalidate>
+            <label class="try-label" for="try-site">Your website</label>
+            <input class="try-input" type="url" id="try-site" name="website" placeholder="yourbusiness.com" autocomplete="url" required aria-label="Your website">
 
-            <!-- Flanking panels: the carousel continuing past the frame -->
-            <rect x="-30" y="110" width="110" height="180" rx="10" fill="#0A0A14"/>
-            <g fill="rgba(255,255,255,0.3)">
-              <rect x="-14" y="132" width="74" height="4" rx="2"/>
-              <rect x="-14" y="146" width="54" height="4" rx="2"/>
-              <rect x="-14" y="160" width="66" height="4" rx="2"/>
-              <rect x="-14" y="174" width="44" height="4" rx="2"/>
-            </g>
-            <rect x="52" y="46" width="100" height="48" rx="10" fill="#EDEDE8"/>
-            <rect x="30" y="310" width="120" height="130" rx="10" fill="rgba(170,255,0,0.15)"/>
-            <g fill="rgba(10,10,20,0.15)">
-              <rect x="46" y="332" width="84" height="4" rx="2"/>
-              <rect x="46" y="346" width="60" height="4" rx="2"/>
-              <rect x="46" y="360" width="72" height="4" rx="2"/>
-            </g>
+            <label class="try-label" for="try-email">Where should we send them?</label>
+            <input class="try-input" type="email" id="try-email" name="email" placeholder="you@yourbusiness.com" autocomplete="email" required aria-label="Email address">
 
-            <rect x="428" y="70" width="115" height="150" rx="10" fill="#EDEDE8"/>
-            <g fill="rgba(10,10,20,0.15)">
-              <rect x="444" y="92" width="78" height="4" rx="2"/>
-              <rect x="444" y="106" width="58" height="4" rx="2"/>
-              <rect x="444" y="120" width="70" height="4" rx="2"/>
-              <rect x="444" y="134" width="46" height="4" rx="2"/>
-            </g>
-            <rect x="432" y="240" width="160" height="175" rx="10" fill="#0A0A14"/>
-            <g fill="none" stroke="#AAFF00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="456" y="288" width="58" height="58" rx="9"/>
-              <circle cx="473" cy="305" r="4.5"/>
-              <path d="M460 340l15-15 11 11 9-9 15 15"/>
-            </g>
-            <rect x="428" y="436" width="96" height="44" rx="10" fill="rgba(170,255,0,0.15)"/>
+            <button class="try-btn" type="submit">Get my 3 carousels →</button>
+          </form>
 
-            <!-- Confetti -->
-            <g>
-              <path d="M20 406l9 16H11z" fill="#AAFF00" transform="rotate(12 20 414)"/>
-              <path d="M470 36l9 16h-18z" fill="#AAFF00" transform="rotate(-18 470 44)"/>
-              <path d="M166 288l9 16h-18z" fill="#AAFF00" transform="rotate(30 166 296)"/>
-              <rect x="142" y="474" width="9" height="9" fill="#0A0A14" transform="rotate(45 146.5 478.5)"/>
-              <rect x="380" y="20" width="9" height="9" fill="#0A0A14" transform="rotate(45 384.5 24.5)"/>
-              <rect x="530" y="434" width="9" height="9" fill="#0A0A14" transform="rotate(45 534.5 438.5)"/>
-              <circle cx="36" cy="66" r="4" fill="#AAFF00"/>
-              <circle cx="536" cy="248" r="3.5" fill="#AAFF00"/>
-              <circle cx="352" cy="486" r="3" fill="#AAFF00"/>
-              <circle cx="100" cy="84" r="3" fill="#0A0A14"/>
-              <circle cx="44" cy="470" r="3.5" fill="#0A0A14"/>
-            </g>
-
-            <!-- Phone -->
-            <rect x="182" y="38" width="196" height="425" rx="28" fill="#0A0A14"/>
-            <rect x="258" y="50" width="44" height="4" rx="2" fill="rgba(255,255,255,0.25)"/>
-
-            <!-- Screen: a real carousel slide -->
-            <rect x="190" y="62" width="180" height="393" rx="20" fill="#AAFF00"/>
-            <text x="212" y="96" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.1" fill="#0A0A14" opacity="0.75">1/5</text>
-            <g font-family="'Syne',sans-serif" font-size="22" font-weight="800" fill="#0A0A14" letter-spacing="-0.5">
-              <text x="212" y="234">3 hooks</text>
-              <text x="212" y="260">that stop</text>
-              <text x="212" y="286">the scroll</text>
-            </g>
-            <!-- Slide pagination -->
-            <rect x="212" y="422" width="16" height="5" rx="2.5" fill="#0A0A14"/>
-            <g fill="rgba(10,10,20,0.25)">
-              <circle cx="237" cy="424.5" r="2.5"/>
-              <circle cx="251" cy="424.5" r="2.5"/>
-              <circle cx="265" cy="424.5" r="2.5"/>
-              <circle cx="279" cy="424.5" r="2.5"/>
-            </g>
-
-            <!-- Swipe affordance -->
-            <g fill="none" stroke="rgba(10,10,20,0.5)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="158" cy="250" r="16"/>
-              <path d="M161 243l-7 7 7 7"/>
-              <circle cx="402" cy="250" r="16"/>
-              <path d="M399 243l7 7-7 7"/>
-            </g>
-
-            <!-- Result marker -->
-            <g filter="url(#badge-sh)">
-              <rect x="320" y="440" width="96" height="32" rx="16" fill="#FFFFFF"/>
-            </g>
-            <path d="M336 456.5l4 4 7.5-8.5" fill="none" stroke="#6BBF00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="355" y="460.5" font-family="'Syne',sans-serif" font-size="12" font-weight="700" fill="#0A0A14">Posted</text>
-
-          </g>
-        </svg>
+          <p class="try-note" id="try-note">Free · No card · Nothing to install</p>
+          <div class="success-msg try-ok" id="try-ok" role="status">✓ Got it. Check your inbox — a confirmation email is on its way, and your carousels follow shortly.</div>
+        </div>
       </div>
 
     </div>
@@ -387,6 +371,51 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section aria-labelledby="how-h2">
+  <div class="inner">
+    <div class="eyebrow fi"><span class="eyebrow-line"></span>How it works</div>
+    <h2 id="how-h2" class="fi">Hook it up once.<br>It runs by itself after that.</h2>
+    <p class="showcase-note fi">Four steps, and you're only involved in the first one.</p>
+
+    <ol class="flow fi">
+      <li class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+  <h3>Connect</h3>
+          <p>Give us your website and connect your accounts. That's the whole setup — no content calendar, no brief to write.</p>
+        </div>
+      </li>
+      <li class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+  <h3>Vubbs reads your business</h3>
+          <p>It goes through your site to learn what you actually sell, who you serve, and how you talk — so posts sound like you, not like a chatbot.</p>
+        </div>
+      </li>
+      <li class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+  <h3>It writes and designs</h3>
+          <p>Every day, one idea becomes a swipeable carousel and a short video. Built from your real material and checked against it before anything ships.</p>
+        </div>
+      </li>
+      <li class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+  <h3>It publishes for you</h3>
+          <p>Posts go live on your feeds through official platform APIs. Nothing to download, nothing to paste, no notification asking you to finish the job.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="acc fi">
+      <span class="acc-tag">Your part</span>
+      <p class="acc-text"><strong>Step one.</strong> That's it — steps two through four repeat every day without you.</p>
+    </div>
   </div>
 </section>
 
@@ -541,6 +570,48 @@
   </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing" aria-labelledby="pricing-h2">
+  <div class="inner">
+    <div class="eyebrow fi"><span class="eyebrow-line"></span>Pricing</div>
+    <h2 id="pricing-h2" class="fi">Start free.<br>Upgrade when it's working.</h2>
+    <p class="showcase-note fi">Both plans post every day. The difference is how far it reaches and whose name is on it.</p>
+
+    <div class="tiers fi">
+
+      <div class="tier">
+        <div class="tier-name">Free</div>
+        <div class="tier-price"><span class="tier-amt">$0</span><span class="tier-per">/month</span></div>
+        <p class="tier-line">For seeing whether you like what it makes.</p>
+        <ul class="tier-list">
+          <li>One post a day — a carousel or a reel</li>
+          <li>Instagram</li>
+          <li>Written from your own site, fact-checked</li>
+          <li>Published for you, hands-off</li>
+          <li class="tier-minus">Vubbs watermark on every post</li>
+        </ul>
+        <a href="#hero-h1" class="tier-btn tier-btn-ghost">Start free</a>
+      </div>
+
+      <div class="tier tier-featured">
+        <div class="tier-flag">Everything automated</div>
+        <div class="tier-name">Pro</div>
+        <div class="tier-price"><span class="tier-amt">$99</span><span class="tier-per">/month</span></div>
+        <p class="tier-line">For running the whole thing on autopilot.</p>
+        <ul class="tier-list">
+          <li>A carousel <em>and</em> a reel, every day</li>
+          <li>All five platforms — Instagram, TikTok, Facebook, Threads, Pinterest</li>
+          <li>No watermark, fully your brand</li>
+          <li>Direct publishing through official APIs</li>
+          <li>Written from your own site, fact-checked</li>
+        </ul>
+        <a href="#waitlist" class="tier-btn">Get Pro →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section aria-labelledby="faq-h2">
   <div class="inner">
@@ -569,8 +640,8 @@
       </details>
 
       <details class="faq-item">
-        <summary>How much will it cost?<span class="faq-sign" aria-hidden="true"></span></summary>
-        <p class="faq-answer">Pricing is still being set ahead of launch. Waitlist members get early-access pricing when we open.</p>
+        <summary>How much does it cost?<span class="faq-sign" aria-hidden="true"></span></summary>
+        <p class="faq-answer">Free gets you a post a day on Instagram, with a Vubbs watermark. Pro is $99/month — a carousel and a reel every day, across all five platforms, no watermark. <a href="#pricing">See the full comparison</a>.</p>
       </details>
 
     </div>
@@ -637,22 +708,29 @@
   document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 
   // ── FORMS ───────────────────────────────────────────────
-  async function sub(email){
+  async function sub(fields){
     try{
       const r=await fetch('https://api.web3forms.com/submit',{method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({access_key:'31731a61-cbf2-4334-832e-e9a74b7b44ee',email,name:'Vubbs Waitlist',subject:'Vubbs Waitlist Signup'})});
+        body:JSON.stringify(Object.assign({access_key:'31731a61-cbf2-4334-832e-e9a74b7b44ee',name:'Vubbs Waitlist',subject:'Vubbs Waitlist Signup'},fields))});
       const data=await r.json();
       return data.success===true;
     }catch{return false;}
   }
 
+  // Handles both the plain email forms and the hero's website+email form —
+  // a url input is picked up only when the form actually has one.
   function bindForm(fid,nid,oid,lbl){
-    document.getElementById(fid).addEventListener('submit',async function(e){
+    const form=document.getElementById(fid);
+    if(!form)return;
+    form.addEventListener('submit',async function(e){
       e.preventDefault();
-      const inp=this.querySelector('input[type=email]');if(!inp.value)return;
+      const inp=this.querySelector('input[type=email]');if(!inp||!inp.value)return;
+      const site=this.querySelector('input[type=url]');if(site&&!site.value)return;
       const btn=this.querySelector('button');btn.textContent='Sending…';btn.disabled=true;
-      const ok=await sub(inp.value);
+      const fields={email:inp.value};
+      if(site){fields.website=site.value;fields.subject='Vubbs — 3 free carousels requested';}
+      const ok=await sub(fields);
       if(ok){
         this.style.display='none';
         const n=document.getElementById(nid);if(n)n.style.display='none';
@@ -662,7 +740,7 @@
     });
   }
 
-  bindForm('hero-form','hf-note','hf-ok','hero');
+  bindForm('try-form','try-note','try-ok','hero_try');
   bindForm('cta-form','cf-note','cf-ok','cta');
 </script>
 </body>
